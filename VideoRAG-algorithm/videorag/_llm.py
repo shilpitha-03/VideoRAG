@@ -459,11 +459,6 @@ async def deepseek_complete(model_name, prompt, system_prompt=None, history_mess
         **kwargs
     )
 
-@retry(
-    stop=stop_after_attempt(5),
-    wait=wait_exponential(multiplier=1, min=4, max=10),
-    retry=retry_if_exception_type((RateLimitError, APIConnectionError)),
-)
 # async def bge_m3_embedding(model_name: str, texts: list[str]) -> np.ndarray:
 #     # 使用硅基流动的BAAI/bge-m3嵌入模型
 #     import httpx
@@ -486,28 +481,52 @@ async def deepseek_complete(model_name, prompt, system_prompt=None, history_mess
 #         result = response.json()
 #         embeddings = [item["embedding"] for item in result["data"]]
 #         return np.array(embeddings)
-async def bge_m3_embedding(model_name: str, texts: list[str]) -> np.ndarray:
-    # HuggingFace Inference API for BAAI/bge-m3
-    # Replaced SiliconFlow endpoint - same model, same 1024 dim output
-    import httpx
+# async def bge_m3_embedding(model_name: str, texts: list[str]) -> np.ndarray:
+#     # HuggingFace Inference API for BAAI/bge-m3
+#     # Replaced SiliconFlow endpoint - same model, same 1024 dim output
+#     import httpx
     
-    async with httpx.AsyncClient() as client:
-        response = await client.post(
-            "https://api-inference.huggingface.co/models/BAAI/bge-m3",
-            headers={
-                "Authorization": f"Bearer {os.environ.get('HF_TOKEN', '')}",
-                "Content-Type": "application/json"
-            },
-            json={
-                "inputs": texts,
-                "options": {"wait_for_model": True}
-            },
-            timeout=60.0
-        )
-        response.raise_for_status()
-        embeddings = response.json()
-        return np.array(embeddings)
+#     async with httpx.AsyncClient() as client:
+#         response = await client.post(
+#             "https://api-inference.huggingface.co/models/BAAI/bge-m3",
+#             headers={
+#                 "Authorization": f"Bearer {os.environ.get('HF_TOKEN', '')}",
+#                 "Content-Type": "application/json"
+#             },
+#             json={
+#                 "inputs": texts,
+#                 "options": {"wait_for_model": True}
+#             },
+#             timeout=60.0
+#         )
+#         response.raise_for_status()
+#         embeddings = response.json()
+#         return np.array(embeddings)
+_bge_model = None
 
+def get_bge_model():
+    global _bge_model
+    if _bge_model is None:
+        from sentence_transformers import SentenceTransformer
+        print("Loading bge-m3 onto GPU...")
+        _bge_model = SentenceTransformer('BAAI/bge-m3', device='cuda')
+        print("✓ bge-m3 loaded")
+    return _bge_model
+
+@retry(
+    stop=stop_after_attempt(5),
+    wait=wait_exponential(multiplier=1, min=4, max=10),
+    retry=retry_if_exception_type((RateLimitError, APIConnectionError)),
+)
+
+async def bge_m3_embedding(model_name: str, texts: list[str]) -> np.ndarray:
+    model = get_bge_model()
+    embeddings = model.encode(
+        texts,
+        normalize_embeddings=True,
+        show_progress_bar=False
+    )
+    return np.array(embeddings)
 # DeepSeek + BAAI/bge-m3 配置
 deepseek_bge_config = LLMConfig(
     embedding_func_raw = bge_m3_embedding,
