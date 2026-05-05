@@ -464,27 +464,48 @@ async def deepseek_complete(model_name, prompt, system_prompt=None, history_mess
     wait=wait_exponential(multiplier=1, min=4, max=10),
     retry=retry_if_exception_type((RateLimitError, APIConnectionError)),
 )
+# async def bge_m3_embedding(model_name: str, texts: list[str]) -> np.ndarray:
+#     # 使用硅基流动的BAAI/bge-m3嵌入模型
+#     import httpx
+    
+#     async with httpx.AsyncClient() as client:
+#         response = await client.post(
+#             "https://api.siliconflow.cn/v1/embeddings",
+#             headers={
+#                 "Authorization": f"Bearer {os.environ.get('SILICONFLOW_API_KEY', 'sk-******')}",
+#                 "Content-Type": "application/json"
+#             },
+#             json={
+#                 "model": "BAAI/bge-m3",
+#                 "input": texts,
+#                 "encoding_format": "float"
+#             },
+#             timeout=60.0
+#         )
+#         response.raise_for_status()
+#         result = response.json()
+#         embeddings = [item["embedding"] for item in result["data"]]
+#         return np.array(embeddings)
 async def bge_m3_embedding(model_name: str, texts: list[str]) -> np.ndarray:
-    # 使用硅基流动的BAAI/bge-m3嵌入模型
+    # HuggingFace Inference API for BAAI/bge-m3
+    # Replaced SiliconFlow endpoint - same model, same 1024 dim output
     import httpx
     
     async with httpx.AsyncClient() as client:
         response = await client.post(
-            "https://api.siliconflow.cn/v1/embeddings",
+            "https://api-inference.huggingface.co/models/BAAI/bge-m3",
             headers={
-                "Authorization": f"Bearer {os.environ.get('SILICONFLOW_API_KEY', 'sk-******')}",
+                "Authorization": f"Bearer {os.environ.get('HF_TOKEN', '')}",
                 "Content-Type": "application/json"
             },
             json={
-                "model": "BAAI/bge-m3",
-                "input": texts,
-                "encoding_format": "float"
+                "inputs": texts,
+                "options": {"wait_for_model": True}
             },
             timeout=60.0
         )
         response.raise_for_status()
-        result = response.json()
-        embeddings = [item["embedding"] for item in result["data"]]
+        embeddings = response.json()
         return np.array(embeddings)
 
 # DeepSeek + BAAI/bge-m3 配置
