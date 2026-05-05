@@ -121,8 +121,12 @@ class VideoRAG:
     def load_caption_model(self, debug=False):
         # caption model
         if not debug:
-            self.caption_model = AutoModel.from_pretrained('./MiniCPM-V-2_6-int4', trust_remote_code=True)
-            self.caption_tokenizer = AutoTokenizer.from_pretrained('./MiniCPM-V-2_6-int4', trust_remote_code=True)
+            # self.caption_model = AutoModel.from_pretrained('./MiniCPM-V-2_6-int4', trust_remote_code=True)
+            # self.caption_tokenizer = AutoTokenizer.from_pretrained('./MiniCPM-V-2_6-int4', trust_remote_code=True)
+            minicpm_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'MiniCPM-V-2_6-int4')
+            minicpm_path = os.path.normpath(minicpm_path)
+            self.caption_model = AutoModel.from_pretrained(minicpm_path, trust_remote_code=True)
+            self.caption_tokenizer = AutoTokenizer.from_pretrained(minicpm_path, trust_remote_code=True)
             self.caption_model.eval()
         else:
             self.caption_model = None
@@ -259,9 +263,22 @@ class VideoRAG:
                 )
             )
             
+            # process_saving_video_segments.start()
+            # process_segment_caption.start()
+            # process_saving_video_segments.join()
+            # process_segment_caption.join()
+            # Run sequentially - parallel GPU access from separate processes crashes single-GPU setups
+            # Save video segments first (CPU/disk only)
             process_saving_video_segments.start()
-            process_segment_caption.start()
             process_saving_video_segments.join()
+
+            import ctranslate2
+            ctranslate2.StorageView.empty_cache()
+            import gc
+            gc.collect()
+
+            # Then caption (GPU - MiniCPM-V loads fresh in this subprocess)
+            process_segment_caption.start()
             process_segment_caption.join()
             
             # if raise error in this two, stop the processing
