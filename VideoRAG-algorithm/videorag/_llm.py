@@ -503,30 +503,48 @@ async def deepseek_complete(model_name, prompt, system_prompt=None, history_mess
 #         embeddings = response.json()
 #         return np.array(embeddings)
 _bge_model = None
+_bge_tokenizer = None
 
 def get_bge_model():
-    global _bge_model
+    global _bge_model, _bge_tokenizer
     if _bge_model is None:
-        from sentence_transformers import SentenceTransformer
+        from transformers import AutoTokenizer, AutoModel
+        import torch
         print("Loading bge-m3 onto GPU...")
-        _bge_model = SentenceTransformer('BAAI/bge-m3', device='cuda')
+        _bge_tokenizer = AutoTokenizer.from_pretrained('BAAI/bge-m3')
+        _bge_model = AutoModel.from_pretrained(
+            'BAAI/bge-m3', 
+            torch_dtype=torch.float16
+        ).cuda()
+        _bge_model.eval()
         print("✓ bge-m3 loaded")
-    return _bge_model
+    return _bge_model, _bge_tokenizer
 
 @retry(
-    stop=stop_after_attempt(5),
-    wait=wait_exponential(multiplier=1, min=4, max=10),
-    retry=retry_if_exception_type((RateLimitError, APIConnectionError)),
+    stop=stop_after_attempt(3),
+    wait=wait_exponential(multiplier=1, min=2, max=8),
+    retry=retry_if_exception_type((RuntimeError,)),
 )
-
 async def bge_m3_embedding(model_name: str, texts: list[str]) -> np.ndarray:
-    model = get_bge_model()
-    embeddings = model.encode(
+    import torch
+    model, tokenizer = get_bge_model()
+    
+    encoded = tokenizer(
         texts,
-        normalize_embeddings=True,
-        show_progress_bar=False
-    )
-    return np.array(embeddings)
+        padding=True,
+        truncation=True,
+        max_length=512,
+        return_tensors='pt'
+    ).to('cuda')
+    
+    with torch.no_grad():
+        outputs = model(**encoded)
+        # Use CLS token embedding - standard for bge models
+        embeddings = outputs.last_hidden_state[:, 0, :]
+        # Normalize
+        embeddings = torch.nn.functional.normalize(embeddings, p=2, dim=1)
+    
+    return embeddings.cpu().float().numpy()
 # DeepSeek + BAAI/bge-m3 配置
 deepseek_bge_config = LLMConfig(
     embedding_func_raw = bge_m3_embedding,
