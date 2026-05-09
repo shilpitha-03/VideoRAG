@@ -232,6 +232,15 @@ class VideoRAG:
                 self.audio_output_format
             )
             
+            # Save transcripts immediately for inspection
+            import json
+            transcript_save_path = os.path.join(
+                self.working_dir, f'{video_name}_transcripts.json'
+            )
+            with open(transcript_save_path, 'w') as f:
+                json.dump(transcripts, f, indent=2)
+            logger.info(f"Transcripts saved to {transcript_save_path}")
+
             # Step3: saving video segments **as well as** obtain caption with vision language model
             manager = multiprocessing.Manager()
             captions = manager.dict()
@@ -272,10 +281,14 @@ class VideoRAG:
             process_saving_video_segments.start()
             process_saving_video_segments.join()
 
-            import ctranslate2
-            ctranslate2.StorageView.empty_cache()
+            # import ctranslate2
+            # ctranslate2.StorageView.empty_cache()
+            # import gc
+
             import gc
             gc.collect()
+            import torch
+            torch.cuda.empty_cache()
 
             # Then caption (GPU - MiniCPM-V loads fresh in this subprocess)
             process_segment_caption.start()
@@ -288,6 +301,14 @@ class VideoRAG:
                     log_file.write(f"Video Name:{video_name} Error processing:\n{error_message}\n\n")
                 raise RuntimeError(error_message)
             
+            # Save captions immediately for inspection
+            caption_save_path = os.path.join(
+                self.working_dir, f'{video_name}_captions.json'
+            )
+            with open(caption_save_path, 'w') as f:
+                json.dump(dict(captions), f, indent=2)
+            logger.info(f"Captions saved to {caption_save_path}")
+
             # Step4: insert video segments information
             segments_information = merge_segment_information(
                 segment_index2name,

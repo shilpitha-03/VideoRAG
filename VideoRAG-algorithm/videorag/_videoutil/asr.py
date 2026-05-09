@@ -7,7 +7,8 @@ from transformers import AutoModelForSpeechSeq2Seq, AutoProcessor, pipeline
 
 def speech_to_text(video_name, working_dir, segment_index2name, audio_output_format):
     # model = WhisperModel("./faster-distil-whisper-large-v3")
-    model = WhisperModel("./faster-distil-whisper-large-v3", device="cpu", compute_type="int8")
+    # model = WhisperModel("./faster-distil-whisper-large-v3", device="cpu", compute_type="int8")
+    model = WhisperModel("./faster-distil-whisper-large-v3", device="cuda", compute_type="float16")  # float16 avoids the int8 cuDNN ops that fail
     model.logger.setLevel(logging.WARNING)
     
     cache_path = os.path.join(working_dir, '_cache', video_name)
