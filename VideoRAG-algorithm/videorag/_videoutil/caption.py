@@ -61,7 +61,7 @@ def segment_caption(video_name, video_path, segment_index2name, transcripts, seg
                     **params
                 )
                 caption_result[index] = segment_caption.replace("\n", "").replace("<|endoftext|>", "")
-                torch.cuda.empty_cache()
+                # torch.cuda.empty_cache()
     except Exception as e:
         error_queue.put(f"Error in segment_caption:\n {str(e)}")
         raise RuntimeError
@@ -107,6 +107,6 @@ def retrieved_segment_caption(caption_model, caption_tokenizer, refine_knowledge
         )
         this_caption = segment_caption.replace("\n", "").replace("<|endoftext|>", "")
         caption_result[this_segment] = f"Caption:\n{this_caption}\nTranscript:\n{segment_transcript}\n\n"
-        torch.cuda.empty_cache()
+        # torch.cuda.empty_cache()
     
     return caption_result
