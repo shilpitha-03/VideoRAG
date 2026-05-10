@@ -55,7 +55,57 @@ from ._videoutil import(
     saving_video_segments,
 )
 
+def caption_in_main_process(
+    video_name, video_path, segment_index2name, 
+    transcripts, segment_times_info, caption_model, caption_tokenizer
+):
+    """Run captioning in the main process on GPU.
+    
+    Replaces the multiprocessing subprocess approach which cannot
+    initialize CUDA in forked processes on Linux.
+    Returns a regular dict of captions keyed by segment index.
+    """
+    import numpy as np
+    from PIL import Image
+    from tqdm import tqdm
+    from moviepy.video.io.VideoFileClip import VideoFileClip
+    import torch
 
+    def encode_video(video, frame_times):
+        frames = []
+        for t in frame_times:
+            frames.append(video.get_frame(t))
+        frames = np.stack(frames, axis=0)
+        frames = [Image.fromarray(v.astype('uint8')).resize((1280, 720)) 
+                  for v in frames]
+        return frames
+
+    captions = {}
+    with VideoFileClip(video_path) as video:
+        for index in tqdm(
+            segment_index2name, 
+            desc=f"Captioning Video {video_name}"
+        ):
+            frame_times = segment_times_info[index]["frame_times"]
+            video_frames = encode_video(video, frame_times)
+            segment_transcript = transcripts[index]
+            query = (
+                f"The transcript of the current video:\n"
+                f"{segment_transcript}.\n"
+                f"Now provide a description (caption) of the video in English."
+            )
+            msgs = [{'role': 'user', 'content': video_frames + [query]}]
+            params = {"use_image_id": False, "max_slice_nums": 2}
+            result = caption_model.chat(
+                image=None,
+                msgs=msgs,
+                tokenizer=caption_tokenizer,
+                **params
+            )
+            captions[index] = result.replace("\n", "").replace(
+                "<|endoftext|>", ""
+            )
+    return captions
 @dataclass
 class VideoRAG:
     working_dir: str = field(
@@ -202,11 +252,32 @@ class VideoRAG:
         self.llm.cheap_model_func = limit_async_func_call(self.llm.cheap_model_max_async)(
             partial(self.llm.cheap_model_func, hashing_kv=self.llm_response_cache)
         )
-
     def insert_video(self, video_path_list=None):
         loop = always_get_an_event_loop()
+        
+        # Load MiniCPM-V once in main process on GPU
+        # This avoids loading inside a forked subprocess which cannot initialize CUDA
+        import os
+        import torch
+        minicpm_path = os.path.join(
+            os.path.dirname(os.path.abspath(__file__)), 
+            'MiniCPM-V-2_6-int4'
+        )
+        minicpm_path = os.path.normpath(minicpm_path)
+        logger.info("Loading MiniCPM-V caption model...")
+        caption_model = AutoModel.from_pretrained(
+            minicpm_path, 
+            trust_remote_code=True
+        ).cuda()
+        caption_tokenizer = AutoTokenizer.from_pretrained(
+            minicpm_path, 
+            trust_remote_code=True
+        )
+        caption_model.eval()
+        logger.info("✓ MiniCPM-V loaded on GPU")
+
         for video_path in video_path_list:
-            # Step0: check the existence
+            # Step 0: check existence
             video_name = os.path.basename(video_path).split('.')[0]
             if video_name in self.video_segments._data:
                 logger.info(f"Find the video named {os.path.basename(video_path)} in storage and skip it.")
@@ -214,25 +285,25 @@ class VideoRAG:
             loop.run_until_complete(self.video_path_db.upsert(
                 {video_name: video_path}
             ))
-            
-            # Step1: split the videos
+
+            # Step 1: split
             segment_index2name, segment_times_info = split_video(
-                video_path, 
-                self.working_dir, 
+                video_path,
+                self.working_dir,
                 self.video_segment_length,
                 self.rough_num_frames_per_segment,
                 self.audio_output_format,
             )
-            
-            # Step2: obtain transcript with whisper
+
+            # Step 2: ASR
             transcripts = speech_to_text(
-                video_name, 
-                self.working_dir, 
+                video_name,
+                self.working_dir,
                 segment_index2name,
                 self.audio_output_format
             )
-            
-            # Save transcripts immediately for inspection
+
+            # Save transcripts for inspection
             import json
             transcript_save_path = os.path.join(
                 self.working_dir, f'{video_name}_transcripts.json'
@@ -241,11 +312,10 @@ class VideoRAG:
                 json.dump(transcripts, f, indent=2)
             logger.info(f"Transcripts saved to {transcript_save_path}")
 
-            # Step3: saving video segments **as well as** obtain caption with vision language model
+            # Step 3a: Save video segments in subprocess (CPU/disk only, no CUDA)
             manager = multiprocessing.Manager()
-            captions = manager.dict()
             error_queue = manager.Queue()
-            
+
             process_saving_video_segments = multiprocessing.Process(
                 target=saving_video_segments,
                 args=(
@@ -258,58 +328,37 @@ class VideoRAG:
                     self.video_output_format,
                 )
             )
-            
-            process_segment_caption = multiprocessing.Process(
-                target=segment_caption,
-                args=(
-                    video_name,
-                    video_path,
-                    segment_index2name,
-                    transcripts,
-                    segment_times_info,
-                    captions,
-                    error_queue,
-                )
-            )
-            
-            # process_saving_video_segments.start()
-            # process_segment_caption.start()
-            # process_saving_video_segments.join()
-            # process_segment_caption.join()
-            # Run sequentially - parallel GPU access from separate processes crashes single-GPU setups
-            # Save video segments first (CPU/disk only)
             process_saving_video_segments.start()
             process_saving_video_segments.join()
 
-            # import ctranslate2
-            # ctranslate2.StorageView.empty_cache()
-            # import gc
-
-            import gc
-            gc.collect()
-            import torch
-            torch.cuda.empty_cache()
-
-            # Then caption (GPU - MiniCPM-V loads fresh in this subprocess)
-            process_segment_caption.start()
-            process_segment_caption.join()
-            
-            # if raise error in this two, stop the processing
             while not error_queue.empty():
                 error_message = error_queue.get()
                 with open('error_log_videorag.txt', 'a', encoding='utf-8') as log_file:
-                    log_file.write(f"Video Name:{video_name} Error processing:\n{error_message}\n\n")
+                    log_file.write(f"Video Name:{video_name} Error saving:\n{error_message}\n\n")
                 raise RuntimeError(error_message)
-            
-            # Save captions immediately for inspection
+
+            # Step 3b: Caption in main process on GPU
+            # No subprocess - CUDA already initialized, runs on GPU
+            logger.info(f"Captioning {video_name} on GPU...")
+            captions = caption_in_main_process(
+                video_name,
+                video_path,
+                segment_index2name,
+                transcripts,
+                segment_times_info,
+                caption_model,
+                caption_tokenizer,
+            )
+
+            # Save captions for inspection
             caption_save_path = os.path.join(
                 self.working_dir, f'{video_name}_captions.json'
             )
             with open(caption_save_path, 'w') as f:
-                json.dump(dict(captions), f, indent=2)
+                json.dump(captions, f, indent=2)
             logger.info(f"Captions saved to {caption_save_path}")
 
-            # Step4: insert video segments information
+            # Step 4: insert segments
             segments_information = merge_segment_information(
                 segment_index2name,
                 segment_times_info,
@@ -320,23 +369,167 @@ class VideoRAG:
             loop.run_until_complete(self.video_segments.upsert(
                 {video_name: segments_information}
             ))
-            
-            # Step5: encode video segment features
+
+            # Step 5: ImageBind visual embeddings
             loop.run_until_complete(self.video_segment_feature_vdb.upsert(
                 video_name,
                 segment_index2name,
                 self.video_output_format,
             ))
-            
-            # Step6: delete the cache file
-            video_segment_cache_path = os.path.join(self.working_dir, '_cache', video_name)
+
+            # Step 6: delete cache
+            video_segment_cache_path = os.path.join(
+                self.working_dir, '_cache', video_name
+            )
             if os.path.exists(video_segment_cache_path):
                 shutil.rmtree(video_segment_cache_path)
-            
-            # Step 7: saving current video information
+
+            # Step 7: save
             loop.run_until_complete(self._save_video_segments())
-        
+
+        # Free caption model before bge-m3 loads
+        del caption_model
+        del caption_tokenizer
+        import gc
+        gc.collect()
+        torch.cuda.empty_cache()
+        logger.info("Caption model freed from GPU")
+
         loop.run_until_complete(self.ainsert(self.video_segments._data))
+    # def insert_video(self, video_path_list=None):
+    #     loop = always_get_an_event_loop()
+    #     for video_path in video_path_list:
+    #         # Step0: check the existence
+    #         video_name = os.path.basename(video_path).split('.')[0]
+    #         if video_name in self.video_segments._data:
+    #             logger.info(f"Find the video named {os.path.basename(video_path)} in storage and skip it.")
+    #             continue
+    #         loop.run_until_complete(self.video_path_db.upsert(
+    #             {video_name: video_path}
+    #         ))
+            
+    #         # Step1: split the videos
+    #         segment_index2name, segment_times_info = split_video(
+    #             video_path, 
+    #             self.working_dir, 
+    #             self.video_segment_length,
+    #             self.rough_num_frames_per_segment,
+    #             self.audio_output_format,
+    #         )
+            
+    #         # Step2: obtain transcript with whisper
+    #         transcripts = speech_to_text(
+    #             video_name, 
+    #             self.working_dir, 
+    #             segment_index2name,
+    #             self.audio_output_format
+    #         )
+            
+    #         # Save transcripts immediately for inspection
+    #         import json
+    #         transcript_save_path = os.path.join(
+    #             self.working_dir, f'{video_name}_transcripts.json'
+    #         )
+    #         with open(transcript_save_path, 'w') as f:
+    #             json.dump(transcripts, f, indent=2)
+    #         logger.info(f"Transcripts saved to {transcript_save_path}")
+
+    #         # Step3: saving video segments **as well as** obtain caption with vision language model
+    #         manager = multiprocessing.Manager()
+    #         captions = manager.dict()
+    #         error_queue = manager.Queue()
+            
+    #         process_saving_video_segments = multiprocessing.Process(
+    #             target=saving_video_segments,
+    #             args=(
+    #                 video_name,
+    #                 video_path,
+    #                 self.working_dir,
+    #                 segment_index2name,
+    #                 segment_times_info,
+    #                 error_queue,
+    #                 self.video_output_format,
+    #             )
+    #         )
+            
+    #         process_segment_caption = multiprocessing.Process(
+    #             target=segment_caption,
+    #             args=(
+    #                 video_name,
+    #                 video_path,
+    #                 segment_index2name,
+    #                 transcripts,
+    #                 segment_times_info,
+    #                 captions,
+    #                 error_queue,
+    #             )
+    #         )
+            
+    #         # process_saving_video_segments.start()
+    #         # process_segment_caption.start()
+    #         # process_saving_video_segments.join()
+    #         # process_segment_caption.join()
+    #         # Run sequentially - parallel GPU access from separate processes crashes single-GPU setups
+    #         # Save video segments first (CPU/disk only)
+    #         process_saving_video_segments.start()
+    #         process_saving_video_segments.join()
+
+    #         # import ctranslate2
+    #         # ctranslate2.StorageView.empty_cache()
+    #         # import gc
+
+    #         import gc
+    #         gc.collect()
+    #         import torch
+    #         torch.cuda.empty_cache()
+
+    #         # Then caption (GPU - MiniCPM-V loads fresh in this subprocess)
+    #         process_segment_caption.start()
+    #         process_segment_caption.join()
+            
+    #         # if raise error in this two, stop the processing
+    #         while not error_queue.empty():
+    #             error_message = error_queue.get()
+    #             with open('error_log_videorag.txt', 'a', encoding='utf-8') as log_file:
+    #                 log_file.write(f"Video Name:{video_name} Error processing:\n{error_message}\n\n")
+    #             raise RuntimeError(error_message)
+            
+    #         # Save captions immediately for inspection
+    #         caption_save_path = os.path.join(
+    #             self.working_dir, f'{video_name}_captions.json'
+    #         )
+    #         with open(caption_save_path, 'w') as f:
+    #             json.dump(dict(captions), f, indent=2)
+    #         logger.info(f"Captions saved to {caption_save_path}")
+
+    #         # Step4: insert video segments information
+    #         segments_information = merge_segment_information(
+    #             segment_index2name,
+    #             segment_times_info,
+    #             transcripts,
+    #             captions,
+    #         )
+    #         manager.shutdown()
+    #         loop.run_until_complete(self.video_segments.upsert(
+    #             {video_name: segments_information}
+    #         ))
+            
+    #         # Step5: encode video segment features
+    #         loop.run_until_complete(self.video_segment_feature_vdb.upsert(
+    #             video_name,
+    #             segment_index2name,
+    #             self.video_output_format,
+    #         ))
+            
+    #         # Step6: delete the cache file
+    #         video_segment_cache_path = os.path.join(self.working_dir, '_cache', video_name)
+    #         if os.path.exists(video_segment_cache_path):
+    #             shutil.rmtree(video_segment_cache_path)
+            
+    #         # Step 7: saving current video information
+    #         loop.run_until_complete(self._save_video_segments())
+        
+    #     loop.run_until_complete(self.ainsert(self.video_segments._data))
 
     def query(self, query: str, param: QueryParam = QueryParam()):
         loop = always_get_an_event_loop()
