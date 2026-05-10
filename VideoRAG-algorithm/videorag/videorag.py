@@ -169,14 +169,18 @@ class VideoRAG:
     convert_response_to_json_func: callable = convert_response_to_json
 
     def load_caption_model(self, debug=False):
-        # caption model
         if not debug:
-            # self.caption_model = AutoModel.from_pretrained('./MiniCPM-V-2_6-int4', trust_remote_code=True)
-            # self.caption_tokenizer = AutoTokenizer.from_pretrained('./MiniCPM-V-2_6-int4', trust_remote_code=True)
-            minicpm_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'MiniCPM-V-2_6-int4')
+            minicpm_path = os.path.join(
+                os.path.dirname(os.path.abspath(__file__)), 
+                '..', 'MiniCPM-V-2_6-int4'
+            )
             minicpm_path = os.path.normpath(minicpm_path)
-            self.caption_model = AutoModel.from_pretrained(minicpm_path, trust_remote_code=True)
-            self.caption_tokenizer = AutoTokenizer.from_pretrained(minicpm_path, trust_remote_code=True)
+            self.caption_model = AutoModel.from_pretrained(
+                minicpm_path, trust_remote_code=True
+            ).cuda()
+            self.caption_tokenizer = AutoTokenizer.from_pretrained(
+                minicpm_path, trust_remote_code=True
+            )
             self.caption_model.eval()
         else:
             self.caption_model = None
@@ -266,12 +270,21 @@ class VideoRAG:
         #     minicpm_path, 
         #     trust_remote_code=True
         # )
+        # caption_model = AutoModel.from_pretrained(
+        #     minicpm_path,
+        #     trust_remote_code=True
+        # )
+        # caption_tokenizer = AutoTokenizer.from_pretrained(
+        #     minicpm_path, 
+        #     trust_remote_code=True
+        # )
+        # caption_model.eval()
         caption_model = AutoModel.from_pretrained(
             minicpm_path,
             trust_remote_code=True
-        )
+        ).cuda()
         caption_tokenizer = AutoTokenizer.from_pretrained(
-            minicpm_path, 
+            minicpm_path,
             trust_remote_code=True
         )
         caption_model.eval()
