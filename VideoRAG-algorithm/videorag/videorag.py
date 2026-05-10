@@ -269,7 +269,7 @@ class VideoRAG:
         caption_model = AutoModel.from_pretrained(
             minicpm_path, 
             trust_remote_code=True,
-            device_map=None
+            device_map="auto"
         )
         caption_tokenizer = AutoTokenizer.from_pretrained(
             minicpm_path, 
