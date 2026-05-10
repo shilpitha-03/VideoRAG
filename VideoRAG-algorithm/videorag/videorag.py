@@ -265,7 +265,7 @@ class VideoRAG:
         caption_model = AutoModel.from_pretrained(
             minicpm_path, 
             trust_remote_code=True
-        ).cuda()
+        )
         caption_tokenizer = AutoTokenizer.from_pretrained(
             minicpm_path, 
             trust_remote_code=True
