@@ -262,9 +262,14 @@ class VideoRAG:
         minicpm_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'MiniCPM-V-2_6-int4')
         minicpm_path = os.path.normpath(minicpm_path)
         logger.info("Loading MiniCPM-V caption model...")
+        # caption_model = AutoModel.from_pretrained(
+        #     minicpm_path, 
+        #     trust_remote_code=True
+        # )
         caption_model = AutoModel.from_pretrained(
             minicpm_path, 
-            trust_remote_code=True
+            trust_remote_code=True,
+            device_map=None
         )
         caption_tokenizer = AutoTokenizer.from_pretrained(
             minicpm_path, 
