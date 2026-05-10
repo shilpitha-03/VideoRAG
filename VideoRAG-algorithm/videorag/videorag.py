@@ -259,10 +259,7 @@ class VideoRAG:
         # This avoids loading inside a forked subprocess which cannot initialize CUDA
         import os
         import torch
-        minicpm_path = os.path.join(
-            os.path.dirname(os.path.abspath(__file__)), 
-            'MiniCPM-V-2_6-int4'
-        )
+        minicpm_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'MiniCPM-V-2_6-int4')
         minicpm_path = os.path.normpath(minicpm_path)
         logger.info("Loading MiniCPM-V caption model...")
         caption_model = AutoModel.from_pretrained(
