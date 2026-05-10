@@ -20,15 +20,28 @@ def segment_caption(video_name, video_path, segment_index2name, transcripts, seg
         # tokenizer = AutoTokenizer.from_pretrained('./MiniCPM-V-2_6-int4', trust_remote_code=True)
         # model = model.cuda()
         # model.eval()
+        # import os
+        # minicpm_path = os.path.join(
+        #     os.path.dirname(os.path.abspath(__file__)), 
+        #     '..', '..', 'MiniCPM-V-2_6-int4'
+        # )
+        # minicpm_path = os.path.normpath(minicpm_path)
+        # model = AutoModel.from_pretrained(minicpm_path, trust_remote_code=True)
+        # tokenizer = AutoTokenizer.from_pretrained(minicpm_path, trust_remote_code=True)
+        # model = model.cuda()
+        # model.eval()
         import os
         minicpm_path = os.path.join(
             os.path.dirname(os.path.abspath(__file__)), 
             '..', '..', 'MiniCPM-V-2_6-int4'
         )
         minicpm_path = os.path.normpath(minicpm_path)
-        model = AutoModel.from_pretrained(minicpm_path, trust_remote_code=True)
+        model = AutoModel.from_pretrained(
+            minicpm_path, 
+            trust_remote_code=True,
+            device_map="cpu"        # must be here, inside from_pretrained
+        )
         tokenizer = AutoTokenizer.from_pretrained(minicpm_path, trust_remote_code=True)
-        model = model.cuda()
         model.eval()
         
         with VideoFileClip(video_path) as video:
