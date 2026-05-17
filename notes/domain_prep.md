@@ -1,0 +1,1 @@
+Domain Prep: Surgical Videos\n\nGoal: adapt VideoRAG pipeline to surgical clip data\nwith no audio, using phase/step annotations as text context.
