@@ -310,11 +310,19 @@ class VideoRAG:
             )
 
             # Step 2: ASR
+            # transcripts = speech_to_text(
+            #     video_name,
+            #     self.working_dir,
+            #     segment_index2name,
+            #     self.audio_output_format
+            # )
+
             transcripts = speech_to_text(
                 video_name,
                 self.working_dir,
                 segment_index2name,
-                self.audio_output_format
+                self.audio_output_format,
+                segment_times_info=segment_times_info
             )
 
             # Save transcripts for inspection

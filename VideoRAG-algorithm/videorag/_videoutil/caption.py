@@ -53,7 +53,8 @@ def segment_caption(video_name, video_path, segment_index2name, transcripts, seg
                 frame_times = segment_times_info[index]["frame_times"]
                 video_frames = encode_video(video, frame_times)
                 segment_transcript = transcripts[index]
-                query = f"The transcript of the current video:\n{segment_transcript}.\nNow provide a description (caption) of the video in English."
+                # query = f"The transcript of the current video:\n{segment_transcript}.\nNow provide a description (caption) of the video in English."
+                query = f"Surgical context: {segment_transcript}.\nProvide a detailed caption of this surgical video clip. Describe the visible instruments, anatomical structures, surgical actions being performed, and any notable findings or complications visible in the frames."
                 msgs = [{'role': 'user', 'content': video_frames + [query]}]
                 params = {}
                 params["use_image_id"] = False
