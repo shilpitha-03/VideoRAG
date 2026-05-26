@@ -5,8 +5,10 @@ behavior must be unchanged whether analysis instrumentation is on or off.
 """
 
 import json
+import time
+from contextlib import contextmanager
 from pathlib import Path
-from typing import Dict, List, Union
+from typing import Dict, List, Optional, Tuple, Union
 
 
 def dump_analysis(
@@ -135,3 +137,93 @@ def plan_entity_samples(
             if len(out) >= target:
                 return out
     return out
+
+
+def fmt_timestamp(seconds: float) -> str:
+    """Seconds -> H:MM:SS string. Matches videorag_query's CSV format."""
+    s = int(seconds)
+    h = s // 3600
+    m = (s % 3600) // 60
+    s = s % 60
+    return f"{h}:{m:02d}:{s:02d}"
+
+
+def split_caption_transcript(content: str) -> Tuple[str, str]:
+    """Split a clip's content field into (caption, transcript).
+
+    Content is written by merge_segment_information as:
+        "Caption:\\n{caption}\\nTranscript:\\n{transcript}\\n\\n"
+    """
+    parts = content.split("\nTranscript:\n", 1)
+    caption = parts[0]
+    if caption.startswith("Caption:\n"):
+        caption = caption[len("Caption:\n") :]
+    transcript = parts[1] if len(parts) > 1 else ""
+    return caption.rstrip(), transcript.rstrip()
+
+
+class QueryRecorder:
+    """Per-query instrumentation collector for retrieval-side analysis dumps.
+
+    Every method is a no-op when output_dir is None or query_id is None, so
+    callers can construct one unconditionally and let the recorder decide
+    whether to actually write to disk.
+
+    Stage timings are captured via a context manager:
+
+        with rec.stage("path1_entity_match"):
+            entity_results = await entities_vdb.query(...)
+
+    The recorder writes per-query files under <output_dir>/queries/<query_id>/.
+    """
+
+    def __init__(
+        self,
+        output_dir: Union[str, Path, None],
+        query_id: Optional[str],
+    ) -> None:
+        self.enabled = output_dir is not None and query_id is not None
+        self.output_dir = output_dir
+        self.query_id = query_id
+        self.subdir = f"queries/{query_id}" if self.enabled else None
+        self._timings: Dict[str, float] = {}
+        self._total_start: Optional[float] = None
+
+    def start_total(self) -> None:
+        """Mark the wall-clock start of the query. Call once before stages."""
+        if self.enabled:
+            self._total_start = time.time()
+
+    @contextmanager
+    def stage(self, name: str):
+        """Time the wrapped block and record the elapsed seconds under ``name``."""
+        if not self.enabled:
+            yield
+            return
+        start = time.time()
+        try:
+            yield
+        finally:
+            self._timings[name] = round(time.time() - start, 3)
+
+    def dump(self, filename: str, data) -> None:
+        """Write a JSON or text file to ``queries/<query_id>/<filename>``."""
+        if not self.enabled:
+            return
+        dump_analysis(self.subdir, filename, data, self.output_dir)
+
+    def finalize_timing(self) -> None:
+        """Write timing.json with total_seconds and the captured per-stage timings."""
+        if not self.enabled:
+            return
+        total = (
+            round(time.time() - self._total_start, 3)
+            if self._total_start is not None
+            else 0.0
+        )
+        dump_analysis(
+            self.subdir,
+            "timing.json",
+            {"total_seconds": total, "stages": self._timings},
+            self.output_dir,
+        )
