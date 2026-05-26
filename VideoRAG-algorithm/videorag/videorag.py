@@ -154,7 +154,12 @@ class VideoRAG:
     
     # entity extraction
     entity_extraction_func: callable = extract_entities
-    
+
+    # analysis instrumentation (no-op when analysis_output_dir is None)
+    analysis_output_dir: Optional[str] = None
+    subgraph_sample_chunk_ids: List[str] = field(default_factory=list)
+    merge_trace_entity_names: List[str] = field(default_factory=list)
+
     # storage
     key_string_value_json_storage_cls: Type[BaseKVStorage] = JsonKVStorage
     vector_db_storage_cls: Type[BaseVectorStorage] = NanoVectorDBStorage
