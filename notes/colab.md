@@ -46,3 +46,8 @@ Two skills I'm actively practicing:
 2. **Reviewing diffs intuitively and making informed decisions** — when presenting a diff, point out what to look at and why.
 
 ---
+
+## Build log
+
+- 2026-05-25 — `add analysis dump helper` — `videorag/_analysis.py` — new module housing `dump_analysis(subdir, filename, data, output_dir)`. No-op when `output_dir` is None; preserves additive-only constraint. Lives in its own module so Phase 3's sampling planner and Phase 5's timing/token helpers can land alongside it.
+- 2026-05-25 — `wire analysis_output_dir and sample list config` — `videorag/videorag.py` — added `analysis_output_dir: Optional[str]`, `subgraph_sample_chunk_ids: List[str]`, `merge_trace_entity_names: List[str]` to the `VideoRAG` dataclass. Threading is implicit: `asdict(self)` already flows to every callsite that needs `global_config`. Sample lists default empty so they're inert until Phase 3 populates them.
