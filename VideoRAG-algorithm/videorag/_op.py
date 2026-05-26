@@ -31,6 +31,12 @@ from .prompt import GRAPH_FIELD_SEP, PROMPTS
 from ._videoutil import (
     retrieved_segment_caption,
 )
+from ._analysis import (
+    dump_analysis,
+    plan_chunk_samples,
+    plan_entity_samples,
+    sanitize_for_path,
+)
 
 def chunking_by_token_size(
     tokens_list: list[list[int]],
@@ -254,32 +260,34 @@ async def _merge_nodes_then_upsert(
     nodes_data: list[dict],
     knowledge_graph_inst: BaseGraphStorage,
     global_config: dict,
+    *,
+    sample_set: set = None,
+    dump_dir: str = None,
 ):
     already_entitiy_types = []
     already_source_ids = []
     already_description = []
 
     already_node = await knowledge_graph_inst.get_node(entity_name)
-    if already_node is not None:
+    already_existed = already_node is not None
+    if already_existed:
         already_entitiy_types.append(already_node["entity_type"])
         already_source_ids.extend(
             split_string_by_multi_markers(already_node["source_id"], [GRAPH_FIELD_SEP])
         )
         already_description.append(already_node["description"])
 
-    entity_type = sorted(
-        Counter(
-            [dp["entity_type"] for dp in nodes_data] + already_entitiy_types
-        ).items(),
-        key=lambda x: x[1],
-        reverse=True,
-    )[0][0]
+    type_counter = Counter(
+        [dp["entity_type"] for dp in nodes_data] + already_entitiy_types
+    )
+    entity_type = sorted(type_counter.items(), key=lambda x: x[1], reverse=True)[0][0]
     description = GRAPH_FIELD_SEP.join(
         sorted(set([dp["description"] for dp in nodes_data] + already_description))
     )
     source_id = GRAPH_FIELD_SEP.join(
         set([dp["source_id"] for dp in nodes_data] + already_source_ids)
     )
+    description_pre_synthesis = description
     description = await _handle_entity_relation_summary(
         entity_name, description, global_config
     )
@@ -293,6 +301,50 @@ async def _merge_nodes_then_upsert(
         node_data=node_data,
     )
     node_data["entity_name"] = entity_name
+
+    if sample_set and entity_name in sample_set and dump_dir is not None:
+        summary_threshold = global_config["entity_summary_to_max_tokens"]
+        joined_tokens = encode_string_by_tiktoken(
+            description_pre_synthesis,
+            model_name=global_config["tiktoken_model_name"],
+        )
+        synthesis_triggered = len(joined_tokens) >= summary_threshold
+        source_id_union_sorted = sorted(
+            {dp["source_id"] for dp in nodes_data} | set(already_source_ids)
+        )
+        subdir = f"merge_traces/entity_{sanitize_for_path(entity_name)}"
+        dump_analysis(subdir, "merge_group.json", {
+            "entity_name": entity_name,
+            "extractions_before_merge": [
+                {
+                    "from_chunk": dp["source_id"],
+                    "extracted_type": dp["entity_type"],
+                    "extracted_description": dp["description"],
+                }
+                for dp in nodes_data
+            ],
+            "already_existed_in_graph": already_existed,
+        }, dump_dir)
+        dump_analysis(subdir, "resolution.json", {
+            "entity_name": entity_name,
+            "type_resolution": {
+                "vote_counts": dict(type_counter),
+                "winning_type": entity_type,
+            },
+            "description_resolution": {
+                "joined_description_token_count": len(joined_tokens),
+                "synthesis_threshold": summary_threshold,
+                "synthesis_triggered": synthesis_triggered,
+                "description_before_synthesis": description_pre_synthesis,
+                "description_after_synthesis": description,
+            },
+            "source_id_union": source_id_union_sorted,
+        }, dump_dir)
+        dump_analysis(subdir, "corpus_trace.json", {
+            "entity_name": entity_name,
+            "source_chunks": source_id_union_sorted,
+        }, dump_dir)
+
     return node_data
 
 
@@ -364,6 +416,16 @@ async def extract_entities(
     
     ordered_chunks = list(chunks.items())
 
+    # Analysis sampling planner — runs once per indexing pass. No-op when
+    # analysis is off (sample set stays empty so downstream guards skip).
+    analysis_dir = global_config.get("analysis_output_dir")
+    chunk_sample_set: set = set()
+    if analysis_dir is not None:
+        user_chunk_ids = global_config.get("subgraph_sample_chunk_ids") or []
+        chunk_sample_set = (
+            set(user_chunk_ids) if user_chunk_ids else set(plan_chunk_samples(chunks))
+        )
+
     entity_extract_prompt = PROMPTS["entity_extraction"]
     context_base = dict(
         tuple_delimiter=PROMPTS["DEFAULT_TUPLE_DELIMITER"],
@@ -383,21 +445,37 @@ async def extract_entities(
         chunk_key = chunk_key_dp[0]
         chunk_dp = chunk_key_dp[1]
         content = chunk_dp["content"]
+
+        is_sampled = chunk_key in chunk_sample_set
+        trace_parts: list = []
+        gleaning_iterations = 0
+        parsing_failures = 0
+
         hint_prompt = entity_extract_prompt.format(**context_base, input_text=content)
         final_result = await use_llm_func(hint_prompt)
+        if is_sampled:
+            trace_parts.append("=== Initial extraction ===")
+            trace_parts.append(final_result)
 
         history = pack_user_ass_to_openai_messages(hint_prompt, final_result)
         for now_glean_index in range(entity_extract_max_gleaning):
             glean_result = await use_llm_func(continue_prompt, history_messages=history)
+            gleaning_iterations += 1
 
             history += pack_user_ass_to_openai_messages(continue_prompt, glean_result)
             final_result += glean_result
+            if is_sampled:
+                trace_parts.append(f"=== Gleaning iteration {now_glean_index + 1} ===")
+                trace_parts.append(glean_result)
             if now_glean_index == entity_extract_max_gleaning - 1:
                 break
 
             if_loop_result: str = await use_llm_func(
                 if_loop_prompt, history_messages=history
             )
+            if is_sampled:
+                trace_parts.append(f"=== Loop check {now_glean_index + 1} response ===")
+                trace_parts.append(if_loop_result)
             if_loop_result = if_loop_result.strip().strip('"').strip("'").lower()
             if if_loop_result != "yes":
                 break
@@ -431,6 +509,9 @@ async def extract_entities(
                 maybe_edges[(if_relation["src_id"], if_relation["tgt_id"])].append(
                     if_relation
                 )
+            else:
+                parsing_failures += 1
+
         already_processed += 1
         already_entities += len(maybe_nodes)
         already_relations += len(maybe_edges)
@@ -442,6 +523,34 @@ async def extract_entities(
             end="",
             flush=True,
         )
+
+        if is_sampled:
+            bare_id = (
+                chunk_key.removeprefix("chunk-")
+                if chunk_key.startswith("chunk-")
+                else chunk_key
+            )
+            subdir = f"subgraph_samples/chunk_{bare_id}"
+            raw_text = "\n\n".join(trace_parts) + "\n"
+            dump_analysis(subdir, "raw_llm_response.txt", raw_text, analysis_dir)
+            dump_analysis(subdir, "parsed_subgraph.json", {
+                "chunk_id": chunk_key,
+                "parsed_entities": {k: v for k, v in maybe_nodes.items()},
+                "parsed_relationships": {
+                    f"[{k[0]}, {k[1]}]": v for k, v in maybe_edges.items()
+                },
+                "stats": {
+                    "entities_extracted": len(maybe_nodes),
+                    "relationships_extracted": len(maybe_edges),
+                    "gleaning_iterations": gleaning_iterations,
+                    "parsing_failures": parsing_failures,
+                },
+            }, analysis_dir)
+            dump_analysis(subdir, "chunk_corpus_info.json", {
+                "chunk_id": chunk_key,
+                "constituent_clips": chunk_dp.get("video_segment_id", []),
+            }, analysis_dir)
+
         return dict(maybe_nodes), dict(maybe_edges)
 
     # use_llm_func is wrapped in ascynio.Semaphore, limiting max_async callings
@@ -457,9 +566,31 @@ async def extract_entities(
         for k, v in m_edges.items():
             # it's undirected graph
             maybe_edges[tuple(sorted(k))].extend(v)
+
+    # Entity sampling planner — runs once, between parse and merge.
+    # No-op when analysis is off.
+    entity_sample_set: set = set()
+    if analysis_dir is not None:
+        user_entity_names = global_config.get("merge_trace_entity_names") or []
+        entity_sample_set = (
+            set(user_entity_names)
+            if user_entity_names
+            else set(
+                plan_entity_samples(
+                    dict(maybe_nodes),
+                    summary_max_tokens=global_config["entity_summary_to_max_tokens"],
+                    tiktoken_model_name=global_config["tiktoken_model_name"],
+                )
+            )
+        )
+
     all_entities_data = await asyncio.gather(
         *[
-            _merge_nodes_then_upsert(k, v, knowledge_graph_inst, global_config)
+            _merge_nodes_then_upsert(
+                k, v, knowledge_graph_inst, global_config,
+                sample_set=entity_sample_set,
+                dump_dir=analysis_dir,
+            )
             for k, v in maybe_nodes.items()
         ]
     )
