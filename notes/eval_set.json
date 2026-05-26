@@ -1,0 +1,137 @@
+{
+  "corpus": {
+    "videos": [
+      "3b1b_nn_1_neurons",
+      "3b1b_nn_2_gradient",
+      "3b1b_nn_3_backprop_intuition",
+      "3b1b_nn_4_backprop_calculus"
+    ],
+    "description": "3Blue1Brown neural network series, 4 videos covering: neurons and network structure (V1), gradient descent and the cost function (V2), backpropagation intuition (V3), backpropagation calculus / chain rule derivation (V4).",
+    "indexing_note": "Indexed locally on /content/ during analysis session. Eval set assumes corpus is fully indexed before queries are run."
+  },
+  "eval_design": {
+    "rationale": "Five queries, each testing one specific hypothesis about pipeline behavior. Each query has its expected behavior documented before running. Post-run analysis compares observed against expected.",
+    "hypotheses": [
+      "H1: Retrieval succeeds when the query maps cleanly to extracted entities (baseline).",
+      "H2: Cross-video synthesis actually works (the merged graph enables multi-video retrieval).",
+      "H3: The system fails systematically on pedagogical queries because the graph captures content, not teaching strategy.",
+      "H4: When Path 3 dominates (mathematical / dense-text content), the generator hallucinates citations.",
+      "H5: Dense embeddings and the generator preserve numerical precision through the pipeline."
+    ]
+  },
+  "queries": [
+    {
+      "query_id": "q001",
+      "query_text": "What does the cost function measure in a neural network, and why is it needed?",
+      "hypothesis_tested": "H1",
+      "query_type": "factual-single-video",
+      "expected_videos": ["3b1b_nn_2_gradient"],
+      "expected_clip_locations": "Early in Video 2, where the cost function is first introduced. Roughly the first 3-5 minutes.",
+      "expected_answer_summary": "The cost function quantifies how badly the network is performing on a training example, typically as the sum of squared differences between the actual output and the desired output. It's needed because the network needs a single number to minimize during training.",
+      "expected_pipeline_behavior": {
+        "path1_should_find_entities": "Entities like COST FUNCTION, NEURAL NETWORK, TRAINING, OUTPUT, possibly SQUARED DIFFERENCE.",
+        "path1_should_retrieve_clips": "Early Video 2 clips that introduce the cost function.",
+        "path2_contribution": "Weak. No strong visual signature distinct from generic 'presenter at whiteboard' visuals.",
+        "path3_contribution": "Moderate. Chunks mentioning 'cost' should surface directly via dense retrieval.",
+        "filter_behavior": "Should keep most clips from early Video 2.",
+        "response_quality": "Should be accurate, single-video grounded, with real citations to specific timestamps in Video 2."
+      },
+      "analysis_focus": "This is the sanity check. If retrieval can't surface a definition of the cost function from Video 2, the pipeline is fundamentally broken on this corpus. Verify success here before trusting any other result. Confirm citations [N] video_name, start_time, end_time are real (point at clips that actually discuss the cost function), not hallucinated.",
+      "what_pass_means": "Pipeline functions on its strongest case. Safe to interpret other queries.",
+      "what_fail_means": "Something is wrong with indexing, entity extraction, or the configured models. Stop and debug before running other queries."
+    },
+    {
+      "query_id": "q002",
+      "query_text": "How is the gradient of the cost function used to update weights during training?",
+      "hypothesis_tested": "H2",
+      "query_type": "cross-video-conceptual",
+      "expected_videos": [
+        "3b1b_nn_2_gradient",
+        "3b1b_nn_3_backprop_intuition",
+        "3b1b_nn_4_backprop_calculus"
+      ],
+      "expected_clip_locations": "Video 2 introduces the gradient and the geometric 'downhill' update intuition. Video 3 explains how each training example proposes weight changes (the intuition layer). Video 4 derives the explicit formula via chain rule. A genuinely good answer touches at least two of these videos.",
+      "expected_answer_summary": "The gradient indicates the direction of steepest increase of the cost function; updates move weights in the opposite direction by some scaled amount (learning rate). For neural networks specifically, the chain rule decomposes how each weight contributes to the gradient. Training averages updates across multiple examples (a batch) before stepping.",
+      "expected_pipeline_behavior": {
+        "path1_should_find_entities": "GRADIENT, COST FUNCTION, WEIGHTS, GRADIENT DESCENT, possibly CHAIN RULE. These should be shared across videos in the merged graph — same entity name from different chunks gets unified into one node.",
+        "path1_should_retrieve_clips": "Clips from AT LEAST 2 different videos. The key test: do retrieved entities have source_chunks lists that span multiple video names?",
+        "path2_contribution": "Moderate. Gradient descent visualizations (rolling ball, contour plots) have distinctive imagery ImageBind might surface.",
+        "path3_contribution": "Moderate. Chunks discussing 'gradient' and 'weight updates' should surface.",
+        "filter_behavior": "Should retain clips from multiple videos. If the filter drops all but one video's clips, that's a finding.",
+        "response_quality": "The real test: does the response integrate content from multiple videos, or does it pick one and ignore the others? Citations should span at least two video files if cross-video retrieval is working."
+      },
+      "analysis_focus": "This is the central architectural test for VideoRAG's main claim. Inspect path1.json carefully: for retrieved entities like GRADIENT or CHAIN RULE, check the source_chunks field — does it list chunks from multiple videos? If yes, merging worked. If no, the entities fragmented (same concept extracted under different names from different videos and never merged), which is a real failure of the cross-video claim.",
+      "what_pass_means": "Cross-video retrieval genuinely works on this corpus. The merged graph is doing its advertised job.",
+      "what_fail_means": "Either merging didn't unify entities across videos (graph fragmentation), or retrieval did find cross-video entities but the filter/generation collapsed to a single video. Either is a real finding about VideoRAG's limits."
+    },
+    {
+      "query_id": "q003",
+      "query_text": "What visual analogy does the narrator use to explain what the gradient vector means geometrically?",
+      "hypothesis_tested": "H3",
+      "query_type": "pedagogical-meta",
+      "expected_videos": ["3b1b_nn_2_gradient"],
+      "expected_clip_locations": "Video 2, the section explaining gradient descent visually — the 'ball rolling down a hill on a multi-dimensional surface' analogy, with the contour plot visualization showing the steepest descent direction.",
+      "expected_answer_summary": "The narrator uses a 'ball rolling down a hill' analogy on a high-dimensional surface. The gradient points uphill (steepest ascent), so the negative gradient points in the direction of steepest descent. A 2D contour-plot visualization shows the ball moving along this path.",
+      "expected_pipeline_behavior": {
+        "path1_should_find_entities": "GRADIENT, GRADIENT DESCENT — content entities. But probably NOT 'analogy' or 'visual example' as entities. The entity extraction prompt asks for things, people, concepts — not pedagogical structure.",
+        "path1_should_retrieve_clips": "Will probably surface gradient-related clips broadly, but may not specifically localize to the analogy moment.",
+        "path2_contribution": "Potentially the strongest path here. The contour plot visualization is visually distinctive. If Path 2 finds the right clip, it's the only path that did.",
+        "path3_contribution": "Depends on whether the transcript actually uses the words 'analogy,' 'hill,' or 'ball.' If yes, Path 3 might surface it. If the narrator uses different phrasing, Path 3 misses.",
+        "filter_behavior": "May reject relevant clips if the rough indexing-time caption doesn't mention 'analogy' explicitly, even though the clip contains the analogy visually.",
+        "response_quality": "Predicted to be one of: (a) vague answer about gradient descent in general without naming a specific analogy, (b) honest admission that no specific analogy was found, (c) reasonable answer if Path 2 saved the day. We saw pattern (b) in the earlier sigmoid query."
+      },
+      "analysis_focus": "Compare to the sigmoid analogy query from earlier exploration. If this query also produces a weak/honest-failure response, the failure mode is systematic, not a one-off. Inspect path2.json — did the visual retrieval find the contour plot clip? If yes, did the filter keep it? This separates 'retrieval failed' from 'filter failed.'",
+      "what_pass_means": "Surprising and interesting. Would mean either Path 2 is more useful than expected, or the entity extraction did capture pedagogical structure somehow.",
+      "what_fail_means": "Confirms a real limitation. The knowledge graph captures content but not teaching strategy. This is directly relevant to your application — surgical narration includes pedagogical explanation, so this matters."
+    },
+    {
+      "query_id": "q004",
+      "query_text": "Walk through the chain rule decomposition for computing the partial derivative of the cost with respect to a weight in the final layer.",
+      "hypothesis_tested": "H4",
+      "query_type": "mathematical-detail",
+      "expected_videos": ["3b1b_nn_4_backprop_calculus"],
+      "expected_clip_locations": "Video 4, the section deriving ∂C/∂w^L using the chain rule. Likely a multi-minute stretch with detailed equation derivation on screen.",
+      "expected_answer_summary": "The chain rule decomposes ∂C/∂w^L into ∂z^L/∂w^L × ∂a^L/∂z^L × ∂C/∂a^L, where z is the weighted sum, a is the activation, and C is the cost. Each factor: ∂z^L/∂w^L equals the previous layer's activation a^(L-1); ∂a^L/∂z^L is the derivative of the activation function (e.g., sigmoid'); ∂C/∂a^L equals 2(a^L - y) for squared-error cost.",
+      "expected_pipeline_behavior": {
+        "path1_should_find_entities": "CHAIN RULE, PARTIAL DERIVATIVE, WEIGHT, COST FUNCTION, ACTIVATION — conceptual entities that would be extracted.",
+        "path1_should_retrieve_clips": "Some Video 4 clips. But the specific mathematical detail may live in dense chunk text rather than at the entity level.",
+        "path2_contribution": "Weak. Math notation on a screen isn't a distinctive visual signature ImageBind handles well (it wasn't trained on math).",
+        "path3_contribution": "Expected to dominate. The actual chain rule derivation is dense text content. Path 3's direct chunk retrieval is likely the main source of the response content.",
+        "filter_behavior": "Moderate. Filter likely keeps Video 4 clips that mention 'chain rule' or 'derivative.'",
+        "response_quality": "The test: count citations. How many cite real V̂^t entries (with valid video name and timestamp)? How many cite generic 'Retrieved Text Chunks, 0:00:00, X:XX' fabricated entries? Predict: most citations will be hallucinated because the math content comes from Path 3, which has no per-clip metadata in the generator's context."
+      },
+      "analysis_focus": "Quantify the citation hallucination problem. In generation.json, look at the response. For each [N] citation, classify: (a) real citation pointing at a clip in V̂^t with valid timestamp, (b) hallucinated citation pointing at 'Retrieved Text Chunks' with fake timestamp. Compute the ratio. This is one of the most concrete failure modes of the current pipeline.",
+      "what_pass_means": "Either Path 3 surfaced enough metadata for real citations (unlikely given current code), or the response is so heavily based on V̂^t that chunk content barely matters (also informative).",
+      "what_fail_means": "Confirms the citation hallucination is systematic. Real architectural gap with a known fix (surface chunk-level metadata into the generator's context)."
+    },
+    {
+      "query_id": "q005",
+      "query_text": "How many neurons are in the input layer of the network used for handwritten digit recognition, and why exactly that number?",
+      "hypothesis_tested": "H5",
+      "query_type": "specific-numerical",
+      "expected_videos": ["3b1b_nn_1_neurons"],
+      "expected_clip_locations": "Video 1, very early — the introduction of the MNIST-style example with the 28×28 pixel image and 784-neuron input layer. Within the first 2-3 minutes.",
+      "expected_answer_summary": "784 neurons. The input is a 28×28 pixel grayscale image, so each pixel becomes one input neuron, giving 28 × 28 = 784 inputs. The activation of each input neuron corresponds to the grayscale value of its pixel.",
+      "expected_pipeline_behavior": {
+        "path1_should_find_entities": "NEURON, INPUT LAYER, HANDWRITTEN DIGIT RECOGNITION, possibly IMAGE or PIXEL. The specific number 784 typically does NOT get extracted as a standalone entity (entity extraction targets things, not numbers).",
+        "path1_should_retrieve_clips": "Early Video 1 clips. Should be clean — 'input layer' is unambiguous and lives in one location.",
+        "path2_contribution": "Potentially relevant if the visualization shows the 28x28 grid or the 784-neuron layer.",
+        "path3_contribution": "Moderate. Chunks discussing input layer setup should surface via dense retrieval.",
+        "filter_behavior": "Should keep early Video 1 clips.",
+        "response_quality": "Two-part test. (1) Does the response correctly state 784? (2) Does it correctly explain the 28×28 reasoning? Numerical accuracy matters here. A response that says 'around 700' or '784' but explains it wrong reveals different failure modes."
+      },
+      "analysis_focus": "Two diagnostic checks. First: did retrieval correctly localize to the right clip even though the relevant detail is a number that embeddings handle poorly? Inspect path1.json, path2.json, path3.json — which path surfaced the Video 1 early clips? Second: does the generator faithfully preserve the specific number, or does it confabulate something plausible? If retrieval found the right clip but the response says 800 or 'roughly 700,' the failure is at the generation step, not retrieval. If retrieval missed and the generator hallucinated 784 anyway (from its parametric knowledge of MNIST), that's also informative — and worth flagging.",
+      "what_pass_means": "Numerical precision survives the pipeline. Retrieval localizes correctly and generation faithfully reproduces the specific value.",
+      "what_fail_means": "Either retrieval missed the relevant clip (embedding smearing of numbers), or generation drifted from the retrieved content (faithfulness failure). Different fixes for each."
+    }
+  ],
+  "post_run_analysis_checklist": [
+    "For each query, verify the per-query analysis folder contains all expected files (query.json through timing.json).",
+    "For each query, walk through observed-vs-expected for each prediction in expected_pipeline_behavior.",
+    "For each query, classify the result against what_pass_means and what_fail_means.",
+    "For Q2 specifically: verify cross-video entity merging by inspecting source_chunks lists in path1.json.",
+    "For Q4 specifically: count real vs hallucinated citations in the response.",
+    "Identify patterns across queries — failure modes that show up in multiple queries are the most important findings.",
+    "Compare to indexing outputs: were the relevant entities actually in entities.json? If not, the failure originated at indexing, not retrieval."
+  ]
+}
