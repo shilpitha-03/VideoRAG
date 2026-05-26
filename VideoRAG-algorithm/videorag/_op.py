@@ -32,10 +32,13 @@ from ._videoutil import (
     retrieved_segment_caption,
 )
 from ._analysis import (
+    QueryRecorder,
     dump_analysis,
+    fmt_timestamp,
     plan_chunk_samples,
     plan_entity_samples,
     sanitize_for_path,
+    split_caption_transcript,
 )
 
 def chunking_by_token_size(
@@ -667,13 +670,28 @@ async def _find_most_related_segments_from_entities(
     sorted_text_units = sorted(
         all_text_units, key=lambda x: -x["relation_counts"]
     )[:topk_chunks]
-    
+
     chunk_related_segments = set()
     for _chunk_data in sorted_text_units:
         for s_id in _chunk_data['data']['video_segment_id']:
             chunk_related_segments.add(s_id)
-    
-    return chunk_related_segments
+
+    # Analysis trace — built from the same local state we just computed.
+    # Callers that don't care can ignore the second return value.
+    one_hop_neighbors = {
+        node_datas[i]["entity_name"]: [e[1] for e in (edges[i] or [])]
+        for i in range(len(node_datas))
+    }
+    chunk_scoring = [
+        {
+            "chunk_id": cid,
+            "relation_counts": info["relation_counts"],
+            "constituent_clip_ids": info["data"].get("video_segment_id", []),
+        }
+        for cid, info in all_text_units_lookup.items()
+    ]
+    trace = {"one_hop_neighbors": one_hop_neighbors, "chunk_scoring": chunk_scoring}
+    return chunk_related_segments, trace
 
 async def _refine_entity_retrieval_query(
     query,
@@ -724,12 +742,46 @@ async def videorag_query(
 ) -> str:
     use_model_func = global_config["llm"]["best_model_func"]
     query = query
-    
-    # naive chunks
-    results = await chunks_vdb.query(query, top_k=query_param.top_k)
-    if not len(results):
+
+    # Analysis recorder — no-op when output_dir or query_id is None.
+    rec = QueryRecorder(global_config.get("analysis_output_dir"), query_param.query_id)
+    rec.start_total()
+    rec.dump("query.json", {
+        "query_id": query_param.query_id,
+        "query_text": query,
+        "query_metadata": query_param.query_metadata or {},
+    })
+
+    # Helper used by several dump blocks — needs video_segments closure.
+    def _clip_to_timestamp(clip_id: str) -> str:
+        v = '_'.join(clip_id.split('_')[:-1])
+        idx = clip_id.split('_')[-1]
+        seg = video_segments._data.get(v, {}).get(idx, {})
+        t = seg.get("time", "")
+        if "-" not in t:
+            return ""
+        start_str, end_str = t.split("-", 1)
+        try:
+            return f"{fmt_timestamp(float(start_str))}-{fmt_timestamp(float(end_str))}"
+        except (TypeError, ValueError):
+            return t
+
+    # naive chunks (path 3) — fetch top_k+5 only when instrumented so the
+    # below-cutoff tail is visible. Pipeline still uses the first top_k items
+    # so retrieval behavior is identical with analysis off.
+    chunks_extra = 5 if rec.enabled else 0
+    with rec.stage("path3_chunk_retrieval"):
+        all_chunks_retrieved = await chunks_vdb.query(
+            query, top_k=query_param.top_k + chunks_extra
+        )
+    pipeline_chunk_results = all_chunks_retrieved[:query_param.top_k]
+    chunks_below_cutoff_raw = (
+        all_chunks_retrieved[query_param.top_k:] if rec.enabled else []
+    )
+    if not len(pipeline_chunk_results):
+        rec.finalize_timing()
         return PROMPTS["fail_response"]
-    chunks_ids = [r["id"] for r in results]
+    chunks_ids = [r["id"] for r in pipeline_chunk_results]
     chunks = await text_chunks_db.get_by_ids(chunks_ids)
 
     maybe_trun_chunks = truncate_list_by_token_size(
@@ -740,45 +792,95 @@ async def videorag_query(
     logger.info(f"Truncate {len(chunks)} to {len(maybe_trun_chunks)} chunks")
     section = "-----New Chunk-----\n".join([c["content"] for c in maybe_trun_chunks])
     retreived_chunk_context = section
-    
-    # visual retrieval
-    query_for_entity_retrieval = await _refine_entity_retrieval_query(
-        query,
-        query_param,
-        global_config,
+
+    if rec.enabled:
+        # truncate_list_by_token_size returns the surviving prefix; everything
+        # past kept_count was dropped by the token budget.
+        kept_count = len(maybe_trun_chunks)
+        retrieved_chunks_dump = []
+        for i, (r, ch) in enumerate(zip(pipeline_chunk_results, chunks)):
+            if ch is None:
+                continue
+            retrieved_chunks_dump.append({
+                "chunk_id": r["id"],
+                "similarity_score": r.get("distance"),
+                "content": ch.get("content", ""),
+                "constituent_clips": [
+                    {"system_clip_id": cid, "timestamp": _clip_to_timestamp(cid)}
+                    for cid in ch.get("video_segment_id", [])
+                ],
+                "was_truncated_out": i >= kept_count,
+            })
+        chunks_truncated_out_dump = [
+            {"chunk_id": r["id"], "reason": "exceeded naive_max_token_for_text_unit"}
+            for i, r in enumerate(pipeline_chunk_results) if i >= kept_count
+        ]
+        for r in chunks_below_cutoff_raw:
+            chunks_truncated_out_dump.append({
+                "chunk_id": r["id"],
+                "reason": "below similarity cutoff (top_k+5 tail)",
+            })
+        rec.dump("path3.json", {
+            "original_query": query,
+            "retrieved_chunks": retrieved_chunks_dump,
+            "chunks_truncated_out": chunks_truncated_out_dump,
+        })
+
+    # entity retrieval (path 1)
+    with rec.stage("path1_reformulation"):
+        query_for_entity_retrieval = await _refine_entity_retrieval_query(
+            query,
+            query_param,
+            global_config,
+        )
+    entity_extra = 5 if rec.enabled else 0
+    with rec.stage("path1_entity_match"):
+        all_entity_results = await entities_vdb.query(
+            query_for_entity_retrieval, top_k=query_param.top_k + entity_extra
+        )
+    entity_results = all_entity_results[:query_param.top_k]
+    below_cutoff_entities_raw = (
+        all_entity_results[query_param.top_k:] if rec.enabled else []
     )
-    entity_results = await entities_vdb.query(query_for_entity_retrieval, top_k=query_param.top_k)
+
     entity_retrieved_segments = set()
+    path1_trace = {"one_hop_neighbors": {}, "chunk_scoring": []}
+    all_node_datas_raw: list = []
+    all_node_degrees_raw: list = []
     if len(entity_results):
-        node_datas = await asyncio.gather(
+        all_node_datas_raw = await asyncio.gather(
             *[knowledge_graph_inst.get_node(r["entity_name"]) for r in entity_results]
         )
-        if not all([n is not None for n in node_datas]):
+        if not all([n is not None for n in all_node_datas_raw]):
             logger.warning("Some nodes are missing, maybe the storage is damaged")
-        node_degrees = await asyncio.gather(
+        all_node_degrees_raw = await asyncio.gather(
             *[knowledge_graph_inst.node_degree(r["entity_name"]) for r in entity_results]
         )
         node_datas = [
             {**n, "entity_name": k["entity_name"], "rank": d}
-            for k, n, d in zip(entity_results, node_datas, node_degrees)
+            for k, n, d in zip(entity_results, all_node_datas_raw, all_node_degrees_raw)
             if n is not None
         ]
-        entity_retrieved_segments = entity_retrieved_segments.union(await _find_most_related_segments_from_entities(
-            global_config["retrieval_topk_chunks"], node_datas, text_chunks_db, knowledge_graph_inst
-        ))
-    
-    # visual retrieval
-    query_for_visual_retrieval = await _refine_visual_retrieval_query(
-        query,
-        query_param,
-        global_config,
-    )
-    segment_results = await video_segment_feature_vdb.query(query_for_visual_retrieval)
+        with rec.stage("path1_chunk_scoring"):
+            _segs, path1_trace = await _find_most_related_segments_from_entities(
+                global_config["retrieval_topk_chunks"], node_datas, text_chunks_db, knowledge_graph_inst
+            )
+            entity_retrieved_segments = entity_retrieved_segments.union(_segs)
+
+    # visual retrieval (path 2)
+    with rec.stage("path2_reformulation"):
+        query_for_visual_retrieval = await _refine_visual_retrieval_query(
+            query,
+            query_param,
+            global_config,
+        )
+    with rec.stage("path2_visual_match"):
+        segment_results = await video_segment_feature_vdb.query(query_for_visual_retrieval)
     visual_retrieved_segments = set()
     if len(segment_results):
         for n in segment_results:
             visual_retrieved_segments.add(n['__id__'])
-    
+
     # caption
     retrieved_segments = list(entity_retrieved_segments.union(visual_retrieved_segments))
     retrieved_segments = sorted(
@@ -792,7 +894,55 @@ async def videorag_query(
     print(f"Retrieved Text Segments {entity_retrieved_segments}")
     print(query_for_visual_retrieval)
     print(f"Retrieved Visual Segments {visual_retrieved_segments}")
-    
+
+    # ── Path 1 / Path 2 dumps now that we have the full picture ──
+    if rec.enabled:
+        retrieved_entities_dump = []
+        for k, n, d in zip(entity_results, all_node_datas_raw, all_node_degrees_raw):
+            retrieved_entities_dump.append({
+                "entity_name": k.get("entity_name", k.get("__id__")),
+                "similarity_score": k.get("distance"),
+                "entity_type": (n or {}).get("entity_type"),
+                "description": (n or {}).get("description"),
+                "node_degree": d,
+                "source_chunks": [
+                    s for s in (n or {}).get("source_id", "").split(GRAPH_FIELD_SEP) if s
+                ] if n else [],
+            })
+        entities_below_cutoff_dump = [
+            {
+                "entity_name": k.get("entity_name", k.get("__id__")),
+                "similarity_score": k.get("distance"),
+            }
+            for k in below_cutoff_entities_raw
+        ]
+        rec.dump("path1.json", {
+            "reformulated_query": query_for_entity_retrieval,
+            "retrieved_entities": retrieved_entities_dump,
+            "entities_below_cutoff": entities_below_cutoff_dump,
+            "one_hop_neighbors": path1_trace["one_hop_neighbors"],
+            "chunk_scoring": path1_trace["chunk_scoring"],
+            "retrieved_clip_ids": sorted(entity_retrieved_segments),
+        })
+
+        visual_dump = []
+        for n in segment_results:
+            cid = n["__id__"]
+            video_name = '_'.join(cid.split('_')[:-1])
+            visual_dump.append({
+                "system_clip_id": cid,
+                "similarity_score": n.get("distance"),
+                "video_name": video_name,
+                "timestamp": _clip_to_timestamp(cid),
+            })
+        rec.dump("path2.json", {
+            "visual_scene_query": query_for_visual_retrieval,
+            "retrieved_clips": visual_dump,
+            # Visual VDB uses better_than_threshold=-1, so all returned clips
+            # are "above cutoff" by definition. No tail to capture.
+            "clips_below_cutoff": [],
+        })
+
     already_processed = 0
     async def _filter_single_segment(knowledge: str, segment_key_dp: tuple[str, str]):
         nonlocal use_model_func, already_processed
@@ -811,38 +961,93 @@ async def videorag_query(
             flush=True,
         )
         return (segment_key, result)
-    
+
     rough_captions = {}
     for s_id in retrieved_segments:
         video_name = '_'.join(s_id.split('_')[:-1])
         index = s_id.split('_')[-1]
         rough_captions[s_id] = video_segments._data[video_name][index]["content"]
-    results = await asyncio.gather(
-        *[_filter_single_segment(query, (s_id, rough_captions[s_id])) for s_id in rough_captions]
-    )
-    remain_segments = [x[0] for x in results if 'yes' in x[1].lower()]
+    with rec.stage("filtering"):
+        filter_results = await asyncio.gather(
+            *[_filter_single_segment(query, (s_id, rough_captions[s_id])) for s_id in rough_captions]
+        )
+    remain_segments = [x[0] for x in filter_results if 'yes' in x[1].lower()]
     print(f"{len(remain_segments)} Video Segments remain after filtering")
-    if len(remain_segments) == 0:
+    fallback_triggered = len(remain_segments) == 0
+    if fallback_triggered:
         print("Since no segments remain after filtering, we utilized all the retrieved segments.")
         remain_segments = retrieved_segments
     print(f"Remain segments {remain_segments}")
-    
-    # visual retrieval
-    keywords_for_caption = await _extract_keywords_query(
-        query,
-        query_param,
-        global_config,
-    )
+
+    if rec.enabled:
+        rec.dump("filter.json", {
+            "union_of_paths_1_and_2": sorted(retrieved_segments),
+            "filter_decisions": [
+                {
+                    "system_clip_id": s_id,
+                    "rough_caption": rough_captions[s_id],
+                    "filter_response": resp,
+                    "parsed_decision": "yes" if "yes" in resp.lower() else "no",
+                    "kept": "yes" in resp.lower(),
+                }
+                for s_id, resp in filter_results
+            ],
+            "clips_after_filter": sorted(remain_segments),
+            "fallback_triggered": fallback_triggered,
+        })
+
+    # keyword extraction (used by recaptioning, also part of reformulations.json)
+    with rec.stage("keyword_extraction"):
+        keywords_for_caption = await _extract_keywords_query(
+            query,
+            query_param,
+            global_config,
+        )
     print(f"Keywords: {keywords_for_caption}")
-    caption_results = retrieved_segment_caption(
-        caption_model,
-        caption_tokenizer,
-        keywords_for_caption,
-        remain_segments,
-        video_path_db,
-        video_segments,
-        num_sampled_frames=global_config['fine_num_frames_per_segment']
-    )
+    extracted_keywords_list = [
+        k.strip() for k in keywords_for_caption.split(",") if k.strip()
+    ]
+
+    if rec.enabled:
+        rec.dump("reformulations.json", {
+            "original_query": query,
+            "entity_retrieval_query": query_for_entity_retrieval,
+            "visual_retrieval_query": query_for_visual_retrieval,
+            "extracted_keywords": extracted_keywords_list,
+        })
+
+    with rec.stage("recaptioning"):
+        caption_results = retrieved_segment_caption(
+            caption_model,
+            caption_tokenizer,
+            keywords_for_caption,
+            remain_segments,
+            video_path_db,
+            video_segments,
+            num_sampled_frames=global_config['fine_num_frames_per_segment']
+        )
+
+    if rec.enabled:
+        recaption_entries = []
+        for s_id, recap_content in caption_results.items():
+            video_name = '_'.join(s_id.split('_')[:-1])
+            idx = s_id.split('_')[-1]
+            seg = video_segments._data.get(video_name, {}).get(idx, {})
+            recap_caption, _ = split_caption_transcript(recap_content)
+            orig_caption, _ = split_caption_transcript(seg.get("content", ""))
+            recaption_entries.append({
+                "system_clip_id": s_id,
+                "video_name": video_name,
+                "timestamp": _clip_to_timestamp(s_id),
+                "transcript_used": seg.get("transcript", ""),
+                "frames_sampled": global_config['fine_num_frames_per_segment'],
+                "recaption": recap_caption,
+                "indexing_time_caption": orig_caption,
+            })
+        rec.dump("recaption.json", {
+            "keywords_injected": extracted_keywords_list,
+            "recaptions": recaption_entries,
+        })
 
     ## data table
     text_units_section_list = [["video_name", "start_time", "end_time", "content"]]
@@ -857,21 +1062,47 @@ async def videorag_query(
     text_units_context = list_of_list_to_csv(text_units_section_list)
 
     retreived_video_context = f"\n-----Retrieved Knowledge From Videos-----\n```csv\n{text_units_context}\n```\n"
-    
+
     if query_param.wo_reference:
         sys_prompt_temp = PROMPTS["videorag_response_wo_reference"]
     else:
         sys_prompt_temp = PROMPTS["videorag_response"]
-        
+
     sys_prompt = sys_prompt_temp.format(
         video_data=retreived_video_context,
         chunk_data=retreived_chunk_context,
         response_type=query_param.response_type
     )
-    response = await use_model_func(
-        query,
-        system_prompt=sys_prompt,
-    )
+    with rec.stage("generation"):
+        response = await use_model_func(
+            query,
+            system_prompt=sys_prompt,
+        )
+
+    if rec.enabled:
+        tiktoken_model = global_config.get("tiktoken_model_name", "gpt-4o")
+        try:
+            est_input = len(encode_string_by_tiktoken(
+                (sys_prompt or "") + (query or ""), model_name=tiktoken_model
+            ))
+            est_output = len(encode_string_by_tiktoken(
+                response or "", model_name=tiktoken_model
+            ))
+        except Exception:
+            est_input, est_output = None, None
+        rec.dump("generation.json", {
+            "video_data_csv": text_units_context,
+            "chunk_data_text": retreived_chunk_context,
+            "full_system_prompt": sys_prompt,
+            "response": response,
+            "token_counts": {
+                "estimated_input_tokens": est_input,
+                "estimated_output_tokens": est_output,
+                "_note": "Estimated locally via tiktoken; not from the API response.",
+            },
+        })
+
+    rec.finalize_timing()
     return response
 
 async def videorag_query_multiple_choice(
