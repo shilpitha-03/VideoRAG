@@ -1,5 +1,5 @@
 from dataclasses import dataclass, field
-from typing import TypedDict, Union, Literal, Generic, TypeVar
+from typing import Optional, TypedDict, Union, Literal, Generic, TypeVar
 
 import numpy as np
 
@@ -17,6 +17,12 @@ class QueryParam:
     naive_max_token_for_text_unit = 12000
     # videorag search
     only_need_context: bool = False
+
+    # analysis instrumentation (used by videorag_query when analysis_output_dir
+    # is set; ignored otherwise). query_id labels the queries/<id>/ subfolder.
+    # query_metadata carries the eval-set row (expected_clips, query_type, etc.).
+    query_id: Optional[str] = None
+    query_metadata: Optional[dict] = None
 
 
 TextChunkSchema = TypedDict(
