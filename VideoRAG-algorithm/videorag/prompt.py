@@ -15,6 +15,14 @@ Given a text document that is potentially relevant to this activity and a list o
 1. Identify all entities. For each identified entity, extract the following information:
 - entity_name: Name of the entity, capitalized
 - entity_type: One of the following types: [{entity_types}]
+- IMPORTANT (domain guidance for surgical video transcripts):
+  - This text is ASR-transcribed surgical narration and contains misspelled/mangled medical terms. Normalize each entity_name to its correct canonical surgical term. For example: "unsinit"/"unsinate"/"unscinate"/"uncernet"/"antonet" → "uncinate process"; "carrison"/"kerosene"/"keros" (when referring to the punch) → "Kerrison punch"; "ethymidectomy"/"admoidectomy" → "ethmoidectomy"; "lamina papricia"/"paparatia" → "lamina papyracea"; "agonazi"/"agronazi"/"aganese" → "agger nasi".
+  - Use entity_type "anatomy" for tissues/structures being operated on (e.g. middle turbinate, maxillary sinus, ethmoid bulla).
+  - Use entity_type "anatomical_landmark" for structures used as navigation boundaries or limits of dissection (e.g. skull base, lamina papyracea, basal lamella, maxillary line).
+  - Use entity_type "instrument" for surgical tools (e.g. backbiter, microdebrider, Kerrison punch, ball probe, Blakesley forceps).
+  - Use entity_type "procedure" for named operations (e.g. FESS, uncinectomy, maxillary antrostomy, anterior ethmoidectomy, sphenoidotomy, frontal sinusotomy).
+  - Use entity_type "surgical_step" for granular intraoperative actions (e.g. reflecting the uncinate, fracturing the bulla forward, raising the axilla, widening the ostium). When a term is both a named operation and a step, prefer "procedure".
+  - Use entity_type "pathology" for disease findings (e.g. chronic rhinosinusitis, eosinophilic mucin, polyps, septal spur). These are rare but clinically important — extract them whenever present.
 - entity_description: Comprehensive description of the entity's attributes and activities
 Format each entity as ("entity"{tuple_delimiter}<entity_name>{tuple_delimiter}<entity_type>{tuple_delimiter}<entity_description>
 
@@ -35,70 +43,78 @@ For each pair of related entities, extract the following information:
 ######################
 Example 1:
 
-Entity_types: [person, technology, mission, organization, location]
+Entity_types: [anatomy, instrument, procedure, surgical_step, anatomical_landmark, pathology]
 Text:
-while Alex clenched his jaw, the buzz of frustration dull against the backdrop of Taylor's authoritarian certainty. It was this competitive undercurrent that kept him alert, the sense that his and Jordan's shared commitment to discovery was an unspoken rebellion against Cruz's narrowing vision of control and order.
-
-Then Taylor did something unexpected. They paused beside Jordan and, for a moment, observed the device with something akin to reverence. "If this tech can be understood..." Taylor said, their voice quieter, "It could change the game for us. For all of us."
-
-The underlying dismissal earlier seemed to falter, replaced by a glimpse of reluctant respect for the gravity of what lay in their hands. Jordan looked up, and for a fleeting heartbeat, their eyes locked with Taylor's, a wordless clash of wills softening into an uneasy truce.
-
-It was a small transformation, barely perceptible, but one that Alex noted with an inward nod. They had all been brought here by different paths
+A backbiter is then placed in the maxillary oss at the inferior aspect of the unsinit and is used to resect the inferior aspect.
 ################
 Output:
-("entity"{tuple_delimiter}"Alex"{tuple_delimiter}"person"{tuple_delimiter}"Alex is a character who experiences frustration and is observant of the dynamics among other characters."){record_delimiter}
-("entity"{tuple_delimiter}"Taylor"{tuple_delimiter}"person"{tuple_delimiter}"Taylor is portrayed with authoritarian certainty and shows a moment of reverence towards a device, indicating a change in perspective."){record_delimiter}
-("entity"{tuple_delimiter}"Jordan"{tuple_delimiter}"person"{tuple_delimiter}"Jordan shares a commitment to discovery and has a significant interaction with Taylor regarding a device."){record_delimiter}
-("entity"{tuple_delimiter}"Cruz"{tuple_delimiter}"person"{tuple_delimiter}"Cruz is associated with a vision of control and order, influencing the dynamics among other characters."){record_delimiter}
-("entity"{tuple_delimiter}"The Device"{tuple_delimiter}"technology"{tuple_delimiter}"The Device is central to the story, with potential game-changing implications, and is revered by Taylor."){record_delimiter}
-("relationship"{tuple_delimiter}"Alex"{tuple_delimiter}"Taylor"{tuple_delimiter}"Alex is affected by Taylor's authoritarian certainty and observes changes in Taylor's attitude towards the device."{tuple_delimiter}7){record_delimiter}
-("relationship"{tuple_delimiter}"Alex"{tuple_delimiter}"Jordan"{tuple_delimiter}"Alex and Jordan share a commitment to discovery, which contrasts with Cruz's vision."{tuple_delimiter}6){record_delimiter}
-("relationship"{tuple_delimiter}"Taylor"{tuple_delimiter}"Jordan"{tuple_delimiter}"Taylor and Jordan interact directly regarding the device, leading to a moment of mutual respect and an uneasy truce."{tuple_delimiter}8){record_delimiter}
-("relationship"{tuple_delimiter}"Jordan"{tuple_delimiter}"Cruz"{tuple_delimiter}"Jordan's commitment to discovery is in rebellion against Cruz's vision of control and order."{tuple_delimiter}5){record_delimiter}
-("relationship"{tuple_delimiter}"Taylor"{tuple_delimiter}"The Device"{tuple_delimiter}"Taylor shows reverence towards the device, indicating its importance and potential impact."{tuple_delimiter}9){completion_delimiter}
+("entity"{tuple_delimiter}"backbiter"{tuple_delimiter}"instrument"{tuple_delimiter}"The backbiter is a surgical instrument introduced into the maxillary ostium and used to resect the inferior aspect of the uncinate process."){record_delimiter}
+("entity"{tuple_delimiter}"maxillary ostium"{tuple_delimiter}"anatomy"{tuple_delimiter}"The maxillary ostium is the natural opening of the maxillary sinus and serves as the placement site for the backbiter."){record_delimiter}
+("entity"{tuple_delimiter}"uncinate process"{tuple_delimiter}"anatomy"{tuple_delimiter}"The uncinate process is a thin bony structure of the lateral nasal wall whose inferior aspect is being resected in this step."){record_delimiter}
+("entity"{tuple_delimiter}"resection of inferior uncinate"{tuple_delimiter}"surgical_step"{tuple_delimiter}"The intraoperative action of resecting the inferior aspect of the uncinate process with a backbiter."){record_delimiter}
+("relationship"{tuple_delimiter}"backbiter"{tuple_delimiter}"uncinate process"{tuple_delimiter}"The backbiter is the instrument used to resect the inferior aspect of the uncinate process."{tuple_delimiter}9){record_delimiter}
+("relationship"{tuple_delimiter}"backbiter"{tuple_delimiter}"maxillary ostium"{tuple_delimiter}"The backbiter is placed at the maxillary ostium prior to performing the resection."{tuple_delimiter}7){completion_delimiter}
 #############################
 Example 2:
 
-Entity_types: [person, technology, mission, organization, location]
+Entity_types: [anatomy, instrument, procedure, surgical_step, anatomical_landmark, pathology]
 Text:
-They were no longer mere operatives; they had become guardians of a threshold, keepers of a message from a realm beyond stars and stripes. This elevation in their mission could not be shackled by regulations and established protocols—it demanded a new perspective, a new resolve.
-
-Tension threaded through the dialogue of beeps and static as communications with Washington buzzed in the background. The team stood, a portentous air enveloping them. It was clear that the decisions they made in the ensuing hours could redefine humanity's place in the cosmos or condemn them to ignorance and potential peril.
-
-Their connection to the stars solidified, the group moved to address the crystallizing warning, shifting from passive recipients to active participants. Mercer's latter instincts gained precedence— the team's mandate had evolved, no longer solely to observe and report but to interact and prepare. A metamorphosis had begun, and Operation: Dulce hummed with the newfound frequency of their daring, a tone set not by the earthly
-#############
+a complete fess, which includes a maxillary introsomy, anterior ethymodectomy, posterior ethymonectomy, sphenodomy, and frontal sinusotomy.
+################
 Output:
-("entity"{tuple_delimiter}"Washington"{tuple_delimiter}"location"{tuple_delimiter}"Washington is a location where communications are being received, indicating its importance in the decision-making process."){record_delimiter}
-("entity"{tuple_delimiter}"Operation: Dulce"{tuple_delimiter}"mission"{tuple_delimiter}"Operation: Dulce is described as a mission that has evolved to interact and prepare, indicating a significant shift in objectives and activities."){record_delimiter}
-("entity"{tuple_delimiter}"The team"{tuple_delimiter}"organization"{tuple_delimiter}"The team is portrayed as a group of individuals who have transitioned from passive observers to active participants in a mission, showing a dynamic change in their role."){record_delimiter}
-("relationship"{tuple_delimiter}"The team"{tuple_delimiter}"Washington"{tuple_delimiter}"The team receives communications from Washington, which influences their decision-making process."{tuple_delimiter}7){record_delimiter}
-("relationship"{tuple_delimiter}"The team"{tuple_delimiter}"Operation: Dulce"{tuple_delimiter}"The team is directly involved in Operation: Dulce, executing its evolved objectives and activities."{tuple_delimiter}9){completion_delimiter}
+("entity"{tuple_delimiter}"FESS"{tuple_delimiter}"procedure"{tuple_delimiter}"FESS (Functional Endoscopic Sinus Surgery) is the comprehensive operation composed of several sub-procedures addressing the paranasal sinuses."){record_delimiter}
+("entity"{tuple_delimiter}"maxillary antrostomy"{tuple_delimiter}"procedure"{tuple_delimiter}"Maxillary antrostomy is the surgical opening of the maxillary sinus and is one of the component sub-procedures of a complete FESS."){record_delimiter}
+("entity"{tuple_delimiter}"anterior ethmoidectomy"{tuple_delimiter}"procedure"{tuple_delimiter}"Anterior ethmoidectomy is the surgical removal of the anterior ethmoid air cells and is one of the component sub-procedures of a complete FESS."){record_delimiter}
+("entity"{tuple_delimiter}"posterior ethmoidectomy"{tuple_delimiter}"procedure"{tuple_delimiter}"Posterior ethmoidectomy is the surgical removal of the posterior ethmoid air cells and is one of the component sub-procedures of a complete FESS."){record_delimiter}
+("entity"{tuple_delimiter}"sphenoidotomy"{tuple_delimiter}"procedure"{tuple_delimiter}"Sphenoidotomy is the surgical opening of the sphenoid sinus and is one of the component sub-procedures of a complete FESS."){record_delimiter}
+("entity"{tuple_delimiter}"frontal sinusotomy"{tuple_delimiter}"procedure"{tuple_delimiter}"Frontal sinusotomy is the surgical opening of the frontal sinus and is one of the component sub-procedures of a complete FESS."){record_delimiter}
+("relationship"{tuple_delimiter}"maxillary antrostomy"{tuple_delimiter}"FESS"{tuple_delimiter}"Maxillary antrostomy is a component sub-procedure of a complete FESS."{tuple_delimiter}9){record_delimiter}
+("relationship"{tuple_delimiter}"anterior ethmoidectomy"{tuple_delimiter}"FESS"{tuple_delimiter}"Anterior ethmoidectomy is a component sub-procedure of a complete FESS."{tuple_delimiter}9){record_delimiter}
+("relationship"{tuple_delimiter}"posterior ethmoidectomy"{tuple_delimiter}"FESS"{tuple_delimiter}"Posterior ethmoidectomy is a component sub-procedure of a complete FESS."{tuple_delimiter}9){record_delimiter}
+("relationship"{tuple_delimiter}"sphenoidotomy"{tuple_delimiter}"FESS"{tuple_delimiter}"Sphenoidotomy is a component sub-procedure of a complete FESS."{tuple_delimiter}9){record_delimiter}
+("relationship"{tuple_delimiter}"frontal sinusotomy"{tuple_delimiter}"FESS"{tuple_delimiter}"Frontal sinusotomy is a component sub-procedure of a complete FESS."{tuple_delimiter}9){completion_delimiter}
 #############################
 Example 3:
 
-Entity_types: [person, role, technology, organization, event, location, concept]
+Entity_types: [anatomy, instrument, procedure, surgical_step, anatomical_landmark, pathology]
 Text:
-their voice slicing through the buzz of activity. "Control may be an illusion when facing an intelligence that literally writes its own rules," they stated stoically, casting a watchful eye over the flurry of data.
-
-"It's like it's learning to communicate," offered Sam Rivera from a nearby interface, their youthful energy boding a mix of awe and anxiety. "This gives talking to strangers' a whole new meaning."
-
-Alex surveyed his team—each face a study in concentration, determination, and not a small measure of trepidation. "This might well be our first contact," he acknowledged, "And we need to be ready for whatever answers back."
-
-Together, they stood on the edge of the unknown, forging humanity's response to a message from the heavens. The ensuing silence was palpable—a collective introspection about their role in this grand cosmic play, one that could rewrite human history.
-
-The encrypted dialogue continued to unfold, its intricate patterns showing an almost uncanny anticipation
-#############
+one can see the lamina papricia laterally, which is the medial wall of the orbit, and the skull base superiorly. It is important not to violate either structure as they are the borders of your dissection.
+################
 Output:
-("entity"{tuple_delimiter}"Sam Rivera"{tuple_delimiter}"person"{tuple_delimiter}"Sam Rivera is a member of a team working on communicating with an unknown intelligence, showing a mix of awe and anxiety."){record_delimiter}
-("entity"{tuple_delimiter}"Alex"{tuple_delimiter}"person"{tuple_delimiter}"Alex is the leader of a team attempting first contact with an unknown intelligence, acknowledging the significance of their task."){record_delimiter}
-("entity"{tuple_delimiter}"Control"{tuple_delimiter}"concept"{tuple_delimiter}"Control refers to the ability to manage or govern, which is challenged by an intelligence that writes its own rules."){record_delimiter}
-("entity"{tuple_delimiter}"Intelligence"{tuple_delimiter}"concept"{tuple_delimiter}"Intelligence here refers to an unknown entity capable of writing its own rules and learning to communicate."){record_delimiter}
-("entity"{tuple_delimiter}"First Contact"{tuple_delimiter}"event"{tuple_delimiter}"First Contact is the potential initial communication between humanity and an unknown intelligence."){record_delimiter}
-("entity"{tuple_delimiter}"Humanity's Response"{tuple_delimiter}"event"{tuple_delimiter}"Humanity's Response is the collective action taken by Alex's team in response to a message from an unknown intelligence."){record_delimiter}
-("relationship"{tuple_delimiter}"Sam Rivera"{tuple_delimiter}"Intelligence"{tuple_delimiter}"Sam Rivera is directly involved in the process of learning to communicate with the unknown intelligence."{tuple_delimiter}9){record_delimiter}
-("relationship"{tuple_delimiter}"Alex"{tuple_delimiter}"First Contact"{tuple_delimiter}"Alex leads the team that might be making the First Contact with the unknown intelligence."{tuple_delimiter}10){record_delimiter}
-("relationship"{tuple_delimiter}"Alex"{tuple_delimiter}"Humanity's Response"{tuple_delimiter}"Alex and his team are the key figures in Humanity's Response to the unknown intelligence."{tuple_delimiter}8){record_delimiter}
-("relationship"{tuple_delimiter}"Control"{tuple_delimiter}"Intelligence"{tuple_delimiter}"The concept of Control is challenged by the Intelligence that writes its own rules."{tuple_delimiter}7){completion_delimiter}
+("entity"{tuple_delimiter}"lamina papyracea"{tuple_delimiter}"anatomical_landmark"{tuple_delimiter}"The lamina papyracea is a thin bony plate seen laterally that forms the medial wall of the orbit and serves as a lateral boundary of the dissection."){record_delimiter}
+("entity"{tuple_delimiter}"skull base"{tuple_delimiter}"anatomical_landmark"{tuple_delimiter}"The skull base is the superior boundary of the dissection whose integrity must not be violated."){record_delimiter}
+("entity"{tuple_delimiter}"medial orbital wall"{tuple_delimiter}"anatomy"{tuple_delimiter}"The medial orbital wall is the anatomic structure separating the orbit from the ethmoid sinus and is formed by the lamina papyracea."){record_delimiter}
+("relationship"{tuple_delimiter}"lamina papyracea"{tuple_delimiter}"skull base"{tuple_delimiter}"The lamina papyracea and skull base are both borders of the dissection that must not be violated."{tuple_delimiter}8){record_delimiter}
+("relationship"{tuple_delimiter}"lamina papyracea"{tuple_delimiter}"medial orbital wall"{tuple_delimiter}"The lamina papyracea forms the medial wall of the orbit."{tuple_delimiter}9){completion_delimiter}
+#############################
+Example 4:
+
+Entity_types: [anatomy, instrument, procedure, surgical_step, anatomical_landmark, pathology]
+Text:
+Once we remove that with the Housmans, we're able to use an olive tip sucker and you can see all that eocynophilic mucin in the frontal sinus.
+################
+Output:
+("entity"{tuple_delimiter}"Housman's punch"{tuple_delimiter}"instrument"{tuple_delimiter}"Housman's punch is a surgical instrument used to remove tissue prior to suctioning the surgical field."){record_delimiter}
+("entity"{tuple_delimiter}"olive tip sucker"{tuple_delimiter}"instrument"{tuple_delimiter}"The olive tip sucker is a suction instrument used to clear secretions and pathologic material from the surgical field."){record_delimiter}
+("entity"{tuple_delimiter}"eosinophilic mucin"{tuple_delimiter}"pathology"{tuple_delimiter}"Eosinophilic mucin is a thick eosinophil-laden secretion found within the frontal sinus and characteristic of certain inflammatory sinus diseases."){record_delimiter}
+("entity"{tuple_delimiter}"frontal sinus"{tuple_delimiter}"anatomy"{tuple_delimiter}"The frontal sinus is the paranasal sinus located in the frontal bone, here containing pathologic eosinophilic mucin."){record_delimiter}
+("relationship"{tuple_delimiter}"olive tip sucker"{tuple_delimiter}"eosinophilic mucin"{tuple_delimiter}"The olive tip sucker is used to remove the eosinophilic mucin from the surgical field."{tuple_delimiter}8){record_delimiter}
+("relationship"{tuple_delimiter}"eosinophilic mucin"{tuple_delimiter}"frontal sinus"{tuple_delimiter}"The eosinophilic mucin is located within the frontal sinus."{tuple_delimiter}7){completion_delimiter}
+#############################
+Example 5:
+
+Entity_types: [anatomy, instrument, procedure, surgical_step, anatomical_landmark, pathology]
+Text:
+Next, a backbiter is used to bring the unsteenectomy to its anterior limit. The reflected unsinit is removed with an upbiting kerosene.
+################
+Output:
+("entity"{tuple_delimiter}"backbiter"{tuple_delimiter}"instrument"{tuple_delimiter}"The backbiter is a surgical instrument used here to advance the uncinectomy to its anterior limit."){record_delimiter}
+("entity"{tuple_delimiter}"uncinectomy"{tuple_delimiter}"procedure"{tuple_delimiter}"Uncinectomy is the surgical removal of the uncinate process, here advanced to its anterior limit with a backbiter."){record_delimiter}
+("entity"{tuple_delimiter}"uncinate process"{tuple_delimiter}"anatomy"{tuple_delimiter}"The uncinate process is the thin bony structure being removed; the reflected remnant is taken with an upbiting Kerrison punch."){record_delimiter}
+("entity"{tuple_delimiter}"Kerrison punch"{tuple_delimiter}"instrument"{tuple_delimiter}"The Kerrison punch is a bone-biting instrument used in an upbiting configuration to remove the reflected uncinate process."){record_delimiter}
+("entity"{tuple_delimiter}"removal of reflected uncinate"{tuple_delimiter}"surgical_step"{tuple_delimiter}"The intraoperative step of removing the previously reflected uncinate process using a Kerrison punch."){record_delimiter}
+("relationship"{tuple_delimiter}"backbiter"{tuple_delimiter}"uncinectomy"{tuple_delimiter}"The backbiter is used to advance the uncinectomy to its anterior limit."{tuple_delimiter}9){record_delimiter}
+("relationship"{tuple_delimiter}"Kerrison punch"{tuple_delimiter}"uncinate process"{tuple_delimiter}"The Kerrison punch removes the reflected uncinate process."{tuple_delimiter}8){completion_delimiter}
 #############################
 -Real Data-
 ######################
@@ -134,7 +150,7 @@ PROMPTS[
 ] = """It appears some entities may have still been missed.  Answer YES | NO if there are still entities that need to be added.
 """
 
-PROMPTS["DEFAULT_ENTITY_TYPES"] = ["organization", "person", "geo", "event"]
+PROMPTS["DEFAULT_ENTITY_TYPES"] = ["anatomy", "instrument", "procedure", "surgical_step", "anatomical_landmark", "pathology"]
 PROMPTS["DEFAULT_TUPLE_DELIMITER"] = "<|>"
 PROMPTS["DEFAULT_RECORD_DELIMITER"] = "##"
 PROMPTS["DEFAULT_COMPLETION_DELIMITER"] = "<|COMPLETE|>"
