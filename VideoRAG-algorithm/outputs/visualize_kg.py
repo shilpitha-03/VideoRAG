@@ -134,13 +134,14 @@ def generate_html(elements):
                         'transition-duration': '0.15s'
                     }}
                 }},
-                {{ selector: 'node[type="CONCEPT"]', style: {{ 'background-color': '#e3f2fd' }} }},      
-                {{ selector: 'node[type="PERSON"]', style: {{ 'background-color': '#fce4ec' }} }},       
-                {{ selector: 'node[type="ORGANIZATION"]', style: {{ 'background-color': '#e8f5e9' }} }}, 
-                {{ selector: 'node[type="EVENT"]', style: {{ 'background-color': '#fff3e0' }} }},        
-                {{ selector: 'node[type="GEO"]', style: {{ 'background-color': '#f3e5f5' }} }},          
-                {{ selector: 'node[type="UNKNOWN"]', style: {{ 'background-color': '#f5f5f5' }} }},      
-                {{
+                {{ selector: 'node[type="ANATOMY"]', style: {{ 'background-color': '#4A90D9' }} }},
+                {{ selector: 'node[type="INSTRUMENT"]', style: {{ 'background-color': '#E8743B' }} }},
+                {{ selector: 'node[type="PROCEDURE"]', style: {{ 'background-color': '#48A23F' }} }},
+                {{ selector: 'node[type="SURGICAL_STEP"]', style: {{ 'background-color': '#9B59B6' }} }},
+                {{ selector: 'node[type="ANATOMICAL_LANDMARK"]', style: {{ 'background-color': '#E84393' }} }},
+                {{ selector: 'node[type="PATHOLOGY"]', style: {{ 'background-color': '#E74C3C' }} }},
+                {{ selector: 'node[type="UNKNOWN"]', style: {{ 'background-color': '#bbb' }} }},
+                                {{
                     selector: 'edge',
                     style: {{
                         'label': 'data(short_label)',
@@ -241,7 +242,7 @@ def main():
         cy_elements = parse_kg_json(args.file)
         html_content = generate_html(cy_elements)
 
-        output_filename = "index.html"
+        output_filename = "run003.html"
         with open(output_filename, "w", encoding="utf-8") as out_file:
             out_file.write(html_content)
 
