@@ -15,4 +15,3 @@ def complete(prompt, system=None):
     messages.append({"role":"user","content":prompt})
     resp = client.chat.completions.create(model = "deepseek-chat", message=messages)
     return resp.choices[0].message.content
-print(complete("Say hi!"))
