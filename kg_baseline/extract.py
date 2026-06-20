@@ -53,10 +53,10 @@ def extract_chunk(chunk):
     # --- attach provenance to every entity and relation (WE do this, not the model) ---
     for e in entities:
         e["source_chunks"] = [chunk["chunk_id"]]
-        e["source_windows"] = chunk["window_idxs"]
+        e["source_windows"] = chunk["window_idx"]
     for r in relations:
         r["source_chunks"] = [chunk["chunk_id"]]
-        r["source_windows"] = chunk["window_idxs"]
+        r["source_windows"] = chunk["window_idx"]
 
     return {
         "chunk_id": chunk["chunk_id"],
