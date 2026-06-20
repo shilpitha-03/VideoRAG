@@ -11,8 +11,8 @@ def get_chunks(json_path, windows_per_chunk):
         idxs = []
         descs = []
         for i in group:
-            idxs.append(w["window_idx"])
-            descs.append(f"[w{w["window_idx"]}]{w["description"]}")
+            idxs.append(i["window_idx"])
+            descs.append(f"[w{i["window_idx"]}]{i["description"]}")
 
         chunk = {}
 
