@@ -13,5 +13,5 @@ def complete(prompt, system=None):
     if system:
         messages.append({"role":"system", "content":system})
     messages.append({"role":"user","content":prompt})
-    resp = client.chat.completions.create(model = "deepseek-chat", message=messages)
+    resp = client.chat.completions.create(model = "deepseek-chat", messages=messages)
     return resp.choices[0].message.content
