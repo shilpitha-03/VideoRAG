@@ -160,7 +160,7 @@ def extract_chunk(chunk):
     entities = parsed["entities"]
     events = parsed["events"]
 
-    valid_windows = chunk["window_idxs"]          # the real windows in THIS chunk
+    valid_windows = chunk["window_idx"]          # the real windows in THIS chunk
 
     # provenance for entities (whole-chunk range, same as baseline)
     for e in entities:
