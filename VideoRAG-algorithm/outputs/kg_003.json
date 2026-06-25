@@ -1,0 +1,4188 @@
+{
+  "entities": {
+    "\"BACKBITER\"": {
+      "entity_type": "\"INSTRUMENT\""
+    },
+    "\"UNCINATE PROCESS\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"UNCINECTOMY\"": {
+      "entity_type": "\"PROCEDURE\""
+    },
+    "\"SICKLE KNIFE\"": {
+      "entity_type": "\"INSTRUMENT\""
+    },
+    "\"BACKBITING FORCEPS\"": {
+      "entity_type": "\"INSTRUMENT\""
+    },
+    "\"FRONTAL PROCESS OF MAXILLA\"": {
+      "entity_type": "\"ANATOMICAL_LANDMARK\""
+    },
+    "\"DOUBLE RIGHT-ANGLED BALL PROBE\"": {
+      "entity_type": "\"INSTRUMENT\""
+    },
+    "\"FRACTURING THE UNCINATE PROCESS FORWARD\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"MIDDLE TURBINE\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"OLYMPUS ACADEMY\"": {
+      "entity_type": "\"INSTRUMENT\""
+    },
+    "\"ENDOSCOPIC CAMERA\"": {
+      "entity_type": "\"INSTRUMENT\""
+    },
+    "\"NASAL CAVITY\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"TURBINATE STRUCTURES\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"INSERTION OF BACKBITER BETWEEN MIDDLE TURBINATE AND UNCINATE PROCESS\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"TWISTING THE BACKBITER\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"NARROW CLEFT\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"SUPERIOR CUT OF UNCINATE PROCESS\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"TAKING SEVERAL BITES ALONG UNCINATE PROCESS\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"PROF A SIMON CARNEY\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"THROUGH-BITING 45-DEGREE BLAKESLEY-WELLS FORCEPS\"": {
+      "entity_type": "\"INSTRUMENT\""
+    },
+    "\"LATERAL NASAL WALL\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"AMPUTATION OF UNCINATE PROCESS\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"KERRISON PUNCH\"": {
+      "entity_type": "\"INSTRUMENT\""
+    },
+    "\"MICRODEBRIDER\"": {
+      "entity_type": "\"INSTRUMENT\""
+    },
+    "\"NATURAL OSTIUM OF THE MAXILLARY SINUS\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"DOUBLE RIGHT ANGLE BALL PROBE\"": {
+      "entity_type": "\"INSTRUMENT\""
+    },
+    "\"MAXILLARY SINUS\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"THICK SECRETIONS\"": {
+      "entity_type": "\"PATHOLOGY\""
+    },
+    "\"BLAKESLEY FORCEPS\"": {
+      "entity_type": "\"INSTRUMENT\""
+    },
+    "\"SMALL MEATAL ANTROSTOMY\"": {
+      "entity_type": "\"PROCEDURE\""
+    },
+    "\"MUCOSA\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"ENDOSCOPIC SURGICAL PROCEDURE\"": {
+      "entity_type": "\"PROCEDURE\""
+    },
+    "\"GLOVED HAND\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"NASAL MUCOSA\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"BLOOD VESSELS\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"SMALL FRAGMENTS OF UNCINATE PROCESS\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"TIDYING UP FRAGMENTS WITH FORCEPS\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"JUDICIOUS USE OF MICRODEBRIDER\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"HORIZONTAL PART OF THE UNCINATE PROCESS\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"DISSECTING THE HORIZONTAL UNCINATE\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"REMOVING BONE FRAGMENTS\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"FRACTURING INFERIOR UNCINATE FROM LATERAL WALL\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"NATURAL MAXILLARY SINUS OSTIUM\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"SUCTION DEVICE\"": {
+      "entity_type": "\"INSTRUMENT\""
+    },
+    "\"BONE FRAGMENTS\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"MUCOSAL EDGES\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"AMPUTATION OF UNCINATE REMNANT\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"ALIGNMENT OF MUCOSAL EDGES\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"REMOVAL OF BONE\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"BLOOD\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"MUCOUS MEMBRANE\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"TISSUE\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"ENDOSCOPIC SINUS SURGERY\"": {
+      "entity_type": "\"PROCEDURE\""
+    },
+    "\"OPENING INTO MAXILLARY SINUS\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"SUCTIONING SECRETIONS\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"POST-OPERATIVE CARE\"": {
+      "entity_type": "\"PROCEDURE\""
+    },
+    "\"COMMON DRAINAGE PATHWAY\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"INSTRUMENT FOR MANIPULATING TISSUE\"": {
+      "entity_type": "\"INSTRUMENT\""
+    },
+    "\"ANTONECTOMY\"": {
+      "entity_type": "\"PROCEDURE\""
+    },
+    "\"ANTERIOR ETHMOIDECTOMY\"": {
+      "entity_type": "\"PROCEDURE\""
+    },
+    "\"BULLA ETHMOIDALIS\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"NATURAL OSTIUM\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"DIEGO ELITE TYPE A BLADE\"": {
+      "entity_type": "\"INSTRUMENT\""
+    },
+    "\"FRACTURING THE BULLA ANTERIORLY\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"REMOVAL OF ANTERIOR BULLA FRAGMENTS\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"LAMINA PAPYRACEA\"": {
+      "entity_type": "\"ANATOMICAL_LANDMARK\""
+    },
+    "\"SUPRABULLAR CELLS\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"EAR CANAL\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"INTERNAL CAVITY\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"SURGICAL INSTRUMENT\"": {
+      "entity_type": "\"INSTRUMENT\""
+    },
+    "\"FLUID\"": {
+      "entity_type": "\"PATHOLOGY\""
+    },
+    "\"MICRODEBRIDER BLADE\"": {
+      "entity_type": "\"INSTRUMENT\""
+    },
+    "\"LARGE FRAGMENTS\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"TOP PART OF THE BULLER\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"GROUND LAMELLA OF THE MIDDLE TURBINATE\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"POSTERIOR ETHMOIDECTOMY\"": {
+      "entity_type": "\"PROCEDURE\""
+    },
+    "\"EXPOSURE OF THE GROUND LAMELLA\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"PENETRATION OF THE GROUND LAMELLA\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"WHITE SUBSTANCE\"": {
+      "entity_type": "\"PATHOLOGY\""
+    },
+    "\"FRONTAL RECESS\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"AGGER NASI CELL\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"INFUNDIBULUM\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"MEDIAL WALL OF AGGER NASI CELL\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"FRONTAL SINUS\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"AXILLA OF MIDDLE TURBINATE\"": {
+      "entity_type": "\"ANATOMICAL_LANDMARK\""
+    },
+    "\"UNCINATE REMOVAL\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"FRACTURING SUPERIOR UNCINATE\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"RAISING THE AXILLA\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"FRACTURING MEDIAL WALL OF AGGER NASI\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"TRANSAXILLARY APPROACH\"": {
+      "entity_type": "\"PROCEDURE\""
+    },
+    "\"KERRISON PUNCH 2MM 130\u00b0 UPWARDS CUTTING\"": {
+      "entity_type": "\"INSTRUMENT\""
+    },
+    "\"DIEGO ELITE MICRODEBRIDER\"": {
+      "entity_type": "\"INSTRUMENT\""
+    },
+    "\"OLYMPUS TYPE A BLADE\"": {
+      "entity_type": "\"INSTRUMENT\""
+    },
+    "\"FRONTAL SINUS SEEKER\"": {
+      "entity_type": "\"INSTRUMENT\""
+    },
+    "\"ETHMOID BULLA\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"AXILLARY FLAP\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"FRESHENING MUCOSAL EDGES\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"REMOVING PORTION OF AGGER NASI\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"FLINDERS UNIVERSITY\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"ADELAIDE\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"SOUTH AUSTRALIA\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"3D LOGO ANIMATION\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"UPWARD TURNING FRONTAL PUNCH\"": {
+      "entity_type": "\"INSTRUMENT\""
+    },
+    "\"HOUSMAN'S FRONTAL 70-DEGREE PUNCH\"": {
+      "entity_type": "\"INSTRUMENT\""
+    },
+    "\"AGGER NASI\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"MEDIAL WALL OF THE AGGER NASI\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"OLIVE TIP SUCKER\"": {
+      "entity_type": "\"INSTRUMENT\""
+    },
+    "\"EOSINOPHILIC MUCIN\"": {
+      "entity_type": "\"PATHOLOGY\""
+    },
+    "\"REMOVAL OF MEDIAL WALL OF AGGER NASI\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"REMOVAL OF EOSINOPHILIC MUCIN FROM FRONTAL SINUS\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"IRRIGATION OF FRONTAL SINUS\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"INFLAMMATORY CASCADE\"": {
+      "entity_type": "\"PATHOLOGY\""
+    },
+    "\"MUCOUS MEMBRANES\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"MUCUS\"": {
+      "entity_type": "\"PATHOLOGY\""
+    },
+    "\"METAL INSTRUMENT\"": {
+      "entity_type": "\"INSTRUMENT\""
+    },
+    "\"NOSTRIL\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"NASAL LINING\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"INFLAMMATORY REACTION\"": {
+      "entity_type": "\"PATHOLOGY\""
+    },
+    "\"ENDOSCOPIC SURGERY\"": {
+      "entity_type": "\"PROCEDURE\""
+    },
+    "\"CIRCUMFERENTIAL SCAR\"": {
+      "entity_type": "\"PATHOLOGY\""
+    },
+    "\"40-DEGREE ANGLED MICRODEBRIDER BLADE\"": {
+      "entity_type": "\"INSTRUMENT\""
+    },
+    "\"DIEGO ELITE\"": {
+      "entity_type": "\"INSTRUMENT\""
+    },
+    "\"HOSEMAN'S PUNCH\"": {
+      "entity_type": "\"INSTRUMENT\""
+    },
+    "\"HOUSMAN'S PUNCH\"": {
+      "entity_type": "\"INSTRUMENT\""
+    },
+    "\"MEDIAL WALL\"": {
+      "entity_type": "\"ANATOMICAL_LANDMARK\""
+    },
+    "\"POSTERIOR WALL\"": {
+      "entity_type": "\"ANATOMICAL_LANDMARK\""
+    },
+    "\"THIN BONY PARTITIONS\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"IATROGENIC FRONTAL DISEASE\"": {
+      "entity_type": "\"PATHOLOGY\""
+    },
+    "\"40 DEGREE MARKER\"": {
+      "entity_type": "\"INSTRUMENT\""
+    },
+    "\"OPENING INTO FRONTAL RECESS\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"ENDOSCOPIC PROCEDURE\"": {
+      "entity_type": "\"PROCEDURE\""
+    },
+    "\"GASTROINTESTINAL SURGERY\"": {
+      "entity_type": "\"PROCEDURE\""
+    },
+    "\"COLON\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"DIGESTIVE TRACT\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"MUCOSAL SURFACES\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"SURGICAL INSTRUMENTS\"": {
+      "entity_type": "\"INSTRUMENT\""
+    },
+    "\"TISSUES\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"PRECISE SURGICAL ACTIONS\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"HOSES\"": {
+      "entity_type": "\"INSTRUMENT\""
+    },
+    "\"LESION\"": {
+      "entity_type": "\"PATHOLOGY\""
+    },
+    "\"GROWTH\"": {
+      "entity_type": "\"PATHOLOGY\""
+    },
+    "\"CAVITY\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"NASAL PASSAGE\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"SINUS PASSAGE\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"POSTERIOR WALLS\"": {
+      "entity_type": "\"ANATOMICAL_LANDMARK\""
+    },
+    "\"STRUCTURAL INTEGRITY\"": {
+      "entity_type": "\"ANATOMICAL_LANDMARK\""
+    },
+    "\"OPENING\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"CICATRIZATION\"": {
+      "entity_type": "\"PATHOLOGY\""
+    },
+    "\"BIOABSORBABLE DRESSING\"": {
+      "entity_type": "\"INSTRUMENT\""
+    },
+    "\"DEXAMETHASONE\"": {
+      "entity_type": "\"INSTRUMENT\""
+    },
+    "\"MIDDLE MEATUS\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"MIDDLE MEATAL ANTROSTOMY\"": {
+      "entity_type": "\"PROCEDURE\""
+    },
+    "\"FRONTAL DRAINAGE PATHWAY\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"PLACEMENT OF BIOABSORBABLE DRESSING\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"FORCEPS\"": {
+      "entity_type": "\"INSTRUMENT\""
+    },
+    "\"FLUID ACCUMULATION\"": {
+      "entity_type": "\"PATHOLOGY\""
+    },
+    "\"HEALTHY MUCOSA\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"FUNCTIONAL ENDOSCOPIC SINUS SURGERY (FESS)\"": {
+      "entity_type": "\"PROCEDURE\""
+    },
+    "\"CHRONIC RHINOSINUSITIS\"": {
+      "entity_type": "\"PATHOLOGY\""
+    },
+    "\"ETHMOID SINUS\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"SPHENOID SINUS\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"PARANASAL SINUSES\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"SINUS AIR CELLS\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"NATURAL DRAINAGE PATHWAYS\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"HEALTHY NASAL MUCOSA\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"TOPICAL MEDICATIONS\"": {
+      "entity_type": "\"INSTRUMENT\""
+    },
+    "\"MOUNT SINAI OTOLARYNGOLOGY SURGICAL VIDEO SERIES\"": {
+      "entity_type": "\"PROCEDURE\""
+    },
+    "\"KEVIN WONG\"": {
+      "entity_type": "\"INSTRUMENT\""
+    },
+    "\"ZACHARY G. SCHWAMM\"": {
+      "entity_type": "\"INSTRUMENT\""
+    },
+    "\"MADELEINE SCHABERG\"": {
+      "entity_type": "\"INSTRUMENT\""
+    },
+    "\"JANKI SHAH\"": {
+      "entity_type": "\"INSTRUMENT\""
+    },
+    "\"CALVIN WEI\"": {
+      "entity_type": "\"INSTRUMENT\""
+    },
+    "\"KERNEL DIAGRAM\"": {
+      "entity_type": "\"ANATOMICAL_LANDMARK\""
+    },
+    "\"SAGITTAL DIAGRAM\"": {
+      "entity_type": "\"ANATOMICAL_LANDMARK\""
+    },
+    "\"PARANASAL SINUSES (DIAGRAM)\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"OPENING SINUS AIR CELLS\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"WIDENING NATURAL DRAINAGE PATHWAYS\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"IMPROVING VENTILATION\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"RESTORING HEALTHY MUCOSA\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"IMPROVING ACCESS FOR TOPICAL MEDICATIONS\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"FESS\"": {
+      "entity_type": "\"PROCEDURE\""
+    },
+    "\"MAXILLARY ANTROSTOMY\"": {
+      "entity_type": "\"PROCEDURE\""
+    },
+    "\"SPHENOIDOTOMY\"": {
+      "entity_type": "\"PROCEDURE\""
+    },
+    "\"FRONTAL SINUSOTOMY\"": {
+      "entity_type": "\"PROCEDURE\""
+    },
+    "\"LEFT NASAL CAVITY\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"INFERIOR TURBINATE\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"SEPTUM\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"SEPTAL SPUR\"": {
+      "entity_type": "\"PATHOLOGY\""
+    },
+    "\"BALL TIP PROBE\"": {
+      "entity_type": "\"INSTRUMENT\""
+    },
+    "\"NATURAL MAXILLARY OSTIUM\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"MAXILLARY LINE\"": {
+      "entity_type": "\"ANATOMICAL_LANDMARK\""
+    },
+    "\"LACRIMAL BONE\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"NASOLACRIMAL DUCT\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"REMOVAL OF REFLECTED UNCINATE\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"MUCOSAL LINING\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"MAXILLARY ANTROSTOMY AREA\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"HALF-MOON SHAPE\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"FREE EDGE\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"REMAINING PORTIONS\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"STRAIGHT THROUGH CUTTING INSTRUMENT\"": {
+      "entity_type": "\"INSTRUMENT\""
+    },
+    "\"TAPPING MOTION\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"ETHMOIDECTOMY\"": {
+      "entity_type": "\"PROCEDURE\""
+    },
+    "\"J-CURETTE\"": {
+      "entity_type": "\"INSTRUMENT\""
+    },
+    "\"RETROBULLAR SPACE\"": {
+      "entity_type": "\"ANATOMICAL_LANDMARK\""
+    },
+    "\"THROUGH-CUTTING INSTRUMENTS\"": {
+      "entity_type": "\"INSTRUMENT\""
+    },
+    "\"PARTIAL ETHMOIDECTOMY\"": {
+      "entity_type": "\"PROCEDURE\""
+    },
+    "\"TOTAL ETHMOIDECTOMY\"": {
+      "entity_type": "\"PROCEDURE\""
+    },
+    "\"ANTERIOR ETHMOID CELLS\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"POSTERIOR ETHMOID CELLS\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"DEBREEDER\"": {
+      "entity_type": "\"INSTRUMENT\""
+    },
+    "\"HANGING TISSUE\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"MUCOSAL SURFACE\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"BLEEDING\"": {
+      "entity_type": "\"PATHOLOGY\""
+    },
+    "\"ENDOSCOPE\"": {
+      "entity_type": "\"INSTRUMENT\""
+    },
+    "\"MICROSCOPE\"": {
+      "entity_type": "\"INSTRUMENT\""
+    },
+    "\"UNDERLYING STRUCTURES\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"CURETTE\"": {
+      "entity_type": "\"INSTRUMENT\""
+    },
+    "\"REMOVAL OF REMAINING PARTITIONS\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"IDENTIFICATION OF ETHMOID BULLA\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"RESECTION OF ETHMOID BULLA\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"FRACTURING THE BULLA FORWARD\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"ENLARGEMENT OF MAXILLARY ANTROSTOMY\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"BONY FRAGMENTS\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"ETHMOID BONY PARTITIONS\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"MEDIAL ORBITAL WALL\"": {
+      "entity_type": "\"ANATOMICAL_LANDMARK\""
+    },
+    "\"BASAL LAMELLA\"": {
+      "entity_type": "\"ANATOMICAL_LANDMARK\""
+    },
+    "\"SPHENOID OS\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"FRACTURING THE ETHMOID BULLA\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"REMOVAL OF BONY FRAGMENTS\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"STRAIGHT MICRODEBRIDER\"": {
+      "entity_type": "\"INSTRUMENT\""
+    },
+    "\"CUTTING INSTRUMENTS\"": {
+      "entity_type": "\"INSTRUMENT\""
+    },
+    "\"ORBIT\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"GENUS\"": {
+      "entity_type": "\"ANATOMICAL_LANDMARK\""
+    },
+    "\"MUCOSA-SPARING TECHNIQUES\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"IDENTIFYING MEDIAL ORBITAL WALL AND BASAL LAMELLA\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"ENTERING THE BASAL LAMELLA\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"SUPERIOR TURBINATE\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"MAXILLARY ROOF\"": {
+      "entity_type": "\"ANATOMICAL_LANDMARK\""
+    },
+    "\"NATURAL SPHENOID OS\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"FREER\"": {
+      "entity_type": "\"INSTRUMENT\""
+    },
+    "\"SKULL BASE\"": {
+      "entity_type": "\"ANATOMICAL_LANDMARK\""
+    },
+    "\"ETHMOID CELLS\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"MUSHROOM PUNCH\"": {
+      "entity_type": "\"INSTRUMENT\""
+    },
+    "\"ETHMOID PARTITIONS\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"AXILLA OF THE MIDDLE TURBINATE\"": {
+      "entity_type": "\"ANATOMICAL_LANDMARK\""
+    },
+    "\"PARTIAL RESECTION OF SUPERIOR TURBINATE\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"INSERTION OF FREER\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"WIDENING OF OPENING\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"DISSECTION OF ETHMOID PARTITIONS\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"OPENING OF AXILLA OF MIDDLE TURBINATE\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"REMOVAL OF POSTERIOR MIDDLE TURBINATE\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"SUPRABULLAR RECESS\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"SPHENOID\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"ANTERIOR ETHMOID ARTERY\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"TRANSITION ZONE\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"ANGLED ENDOSCOPE\"": {
+      "entity_type": "\"INSTRUMENT\""
+    },
+    "\"ZERO DEGREE INSTRUMENTS\"": {
+      "entity_type": "\"INSTRUMENT\""
+    },
+    "\"INFLAMMATION\"": {
+      "entity_type": "\"PATHOLOGY\""
+    },
+    "\"CLEARED ETHMOID AIR CELLS\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"IDENTIFYING ANTERIOR ETHMOID ARTERY\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"IDENTIFYING NATURAL DRAINAGE PATHWAY\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"EXAMINING MAXILLARY ANTROSTOMY\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"TRIMMING MUCOSAL EDGES\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"SURGICAL FIELD\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"SHADOW RECESS\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"NASAL SEPTUM\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"SUTURE BETWEEN NASAL SEPTUM AND LATERAL NASAL WALL\"": {
+      "entity_type": "\"ANATOMICAL_LANDMARK\""
+    },
+    "\"INSTRUMENTS\"": {
+      "entity_type": "\"INSTRUMENT\""
+    },
+    "\"DISSECTION AND REMOVAL OF TISSUES\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"COMPREHENSIVE EXPLORATION OF NASAL CAVITY\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"POST-OPERATIVE RECOVERY\"": {
+      "entity_type": "\"PATHOLOGY\""
+    },
+    "\"REDUNDANT MUCOSA\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"SUPERORBITAL ETHMOID\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"POSTERIOR BONY WALL\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"ORBIT (LAMINA PAPYRACEA)\"": {
+      "entity_type": "\"ANATOMICAL_LANDMARK\""
+    },
+    "\"FRONTAL OUTFLOW TRACT\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"CURVED MICRODEBRIDER\"": {
+      "entity_type": "\"INSTRUMENT\""
+    },
+    "\"FRONTAL KERRISON PUNCH\"": {
+      "entity_type": "\"INSTRUMENT\""
+    },
+    "\"THROUGHCUTTING INSTRUMENT\"": {
+      "entity_type": "\"INSTRUMENT\""
+    },
+    "\"SUCTIONING\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"PROBING\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"REMOVAL OF REMNANT AGGER NASI\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"OPENING THE POSTERIOR BONY WALL\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"ENLARGING THE FRONTAL RECESS\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"INFLAMED TISSUE\"": {
+      "entity_type": "\"PATHOLOGY\""
+    },
+    "\"BLOOD CLOTS\"": {
+      "entity_type": "\"PATHOLOGY\""
+    },
+    "\"OBSTRUCTIVE MATERIAL\"": {
+      "entity_type": "\"PATHOLOGY\""
+    },
+    "\"DEBRIS\"": {
+      "entity_type": "\"PATHOLOGY\""
+    },
+    "\"SOFT TISSUES\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"FRONTAL BONE\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"POLYPS\"": {
+      "entity_type": "\"PATHOLOGY\""
+    },
+    "\"RIGHT NASAL CAVITY\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"MAXILLARY SEEKER\"": {
+      "entity_type": "\"INSTRUMENT\""
+    },
+    "\"MAXILLARY OSTIUM\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"LATERAL WALL\"": {
+      "entity_type": "\"ANATOMICAL_LANDMARK\""
+    },
+    "\"REFLECTING THE UNCINATE\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"RESECTION OF INFERIOR UNCINATE\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"REMOVAL OF UNCINATE FLUSH TO LATERAL WALL\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"MICRODEBRIDEMENT OF UNCINATE\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"RHINOLOGY/ANTERIOR SKULL BASE SURGERY\"": {
+      "entity_type": "\"PROCEDURE\""
+    },
+    "\"GENERAL OTOLARYNGOLOGY\"": {
+      "entity_type": "\"PROCEDURE\""
+    },
+    "\"ZACHARY SCHWAMM\"": {
+      "entity_type": "\"INSTRUMENT\""
+    },
+    "\"PLEDGET WITH CONCENTRATED EPINEPHRINE\"": {
+      "entity_type": "\"INSTRUMENT\""
+    },
+    "\"MAXILLARY PROBE\"": {
+      "entity_type": "\"INSTRUMENT\""
+    },
+    "\"DOWNBITER\"": {
+      "entity_type": "\"INSTRUMENT\""
+    },
+    "\"REFLECTION OF LATERAL MAXILLARY WALL\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"RESECTION WITH DOWNBITER\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"ZERO DEGREE SCOPE\"": {
+      "entity_type": "\"INSTRUMENT\""
+    },
+    "\"DISSECTION OF ANTERIOR ETHMOID AIR CELLS\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"MICRODEBRIDEMENT OF ANTERIOR ETHMOID AIR CELLS\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"UNCINATE REMNANT\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"HEMOSTASIS\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"LATERAL WALL OF MAXILLARY SINUS\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"COMPONENT\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"MAXILLARY SINUS PARTIAL OPENING\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"NEW VIEW WITH ZERO DEGREE SCOPE\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"CLEAVAGE PLANE\"": {
+      "entity_type": "\"ANATOMICAL_LANDMARK\""
+    },
+    "\"HORIZONTAL ATTACHMENT OF MIDDLE TURBINATE\"": {
+      "entity_type": "\"ANATOMICAL_LANDMARK\""
+    },
+    "\"DIVIDING LINE BETWEEN ANTERIOR AND POSTERIOR ETHMOID AIR CELLS\"": {
+      "entity_type": "\"ANATOMICAL_LANDMARK\""
+    },
+    "\"POSTERIOR ETHMOID AIR CELLS\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"70-DEGREE SCOPE\"": {
+      "entity_type": "\"INSTRUMENT\""
+    },
+    "\"TRUE MAXILLARY OSTIUM\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"LATERAL NASAL SIDEWALL\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"ANTERIOR ETHMOID AIR CELL\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"FRONTAL SIDE-BITING INSTRUMENT\"": {
+      "entity_type": "\"INSTRUMENT\""
+    },
+    "\"DISSECTION BETWEEN AIR CELL AND MIDDLE TURBINATE\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"LATERAL WALL OF NASAL CAVITY\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"REMOVAL OF LATERAL WALL\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"USE OF 70-DEGREE SCOPE FOR MAXILLARY ANTROSTOMY\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"REMOVAL OF LAST BIT OF LATERAL WALL\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"EXPOSURE OF TRUE MAXILLARY OSTIUM\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"EXTENSION UP TO NASOLACRIMAL DUCT\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"DISSECTION OF FRONTAL SINUS\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"TAKING DOWN ANTERIOR ETHMOID AIR CELL\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"ENDOSCOPIC EXAMINATION\"": {
+      "entity_type": "\"PROCEDURE\""
+    },
+    "\"FRONTAL CURETTE\"": {
+      "entity_type": "\"INSTRUMENT\""
+    },
+    "\"LATERAL PTERYGOID MUSCLE\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"POSTERIOR TABLE\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"FRONTAL KERRISON\"": {
+      "entity_type": "\"INSTRUMENT\""
+    },
+    "\"STENT\"": {
+      "entity_type": "\"INSTRUMENT\""
+    },
+    "\"ROOF OF FRONTAL SINUS\"": {
+      "entity_type": "\"ANATOMICAL_LANDMARK\""
+    },
+    "\"SINUS CAVITY\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"MIDDLE MEATAL SPACER\"": {
+      "entity_type": "\"INSTRUMENT\""
+    },
+    "\"HEMOSTATIC MATERIAL\"": {
+      "entity_type": "\"INSTRUMENT\""
+    },
+    "\"BONE FORMATION\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"FRONTAL SINUSATOMY\"": {
+      "entity_type": "\"PROCEDURE\""
+    },
+    "\"ANTERIOR LIMIT\"": {
+      "entity_type": "\"ANATOMICAL_LANDMARK\""
+    },
+    "\"MUCOSA OVERLYING POSTERIOR TABLE\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"CURRENT OUTLINE OF FRONTAL SINUSATOMY\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"EXPANDING THE SINUS\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"SALINE SOLUTION\"": {
+      "entity_type": "\"INSTRUMENT\""
+    },
+    "\"SINUS AREA\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"REFLECTIVE SURFACE\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"TURBINATE BONES\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"ADHESIONS\"": {
+      "entity_type": "\"PATHOLOGY\""
+    },
+    "\"CLEAN OUT\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"SUCTION\"": {
+      "entity_type": "\"INSTRUMENT\""
+    },
+    "\"INCISION\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"CIRCULAR INCISION\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"SURGICAL TOOL\"": {
+      "entity_type": "\"INSTRUMENT\""
+    },
+    "\"INTERNAL STRUCTURES\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"PARTITIONS\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"SPHENOID OSTIUM\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"SUPERIOR TURBINATE RECESS\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"POSTERIOR ETHMOID\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"FREER'S ELEVATOR\"": {
+      "entity_type": "\"INSTRUMENT\""
+    },
+    "\"FUNCTIONAL ENDOSCOPIC SINUS SURGERY\"": {
+      "entity_type": "\"PROCEDURE\""
+    },
+    "\"SPHENOID SINUS DRAINAGE\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"DISSECTION OF UNCINATE PROCESS\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"ELEVATION OF UNCINATE PROCESS MUCOSA\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"BONE\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"BLIND SAC OF UNCINATE PROCESS\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"SPHENOID BONE\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"OSTIUM ENLARGEMENT\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"LATERAL DISPLACEMENT OF MIDDLE TURBINATE\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"LATERAL DISPLACEMENT OF SUPERIOR TURBINATE\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"MUCOSAL ELEVATION\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"OSTEOMEATAL COMPLEX\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"BLIND SAC\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"MAXILLARY ALVEOLAR CREST\"": {
+      "entity_type": "\"ANATOMICAL_LANDMARK\""
+    },
+    "\"SURGICAL FORCEPS\"": {
+      "entity_type": "\"INSTRUMENT\""
+    },
+    "\"RETROGRADE UNCINECTOMY\"": {
+      "entity_type": "\"PROCEDURE\""
+    },
+    "\"REMOVAL OF INFERIOR UNCINATE PROCESS\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"DISSECTION OF BLIND SAC\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"OMC RECESS\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"BALL PROBE\"": {
+      "entity_type": "\"INSTRUMENT\""
+    },
+    "\"NASAL POLYPS\"": {
+      "entity_type": "\"PATHOLOGY\""
+    },
+    "\"ANTERIOR ETHMOIDS\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"GROUND LAMELLA\"": {
+      "entity_type": "\"ANATOMICAL_LANDMARK\""
+    },
+    "\"VERTICAL PORTION\"": {
+      "entity_type": "\"ANATOMICAL_LANDMARK\""
+    },
+    "\"HORIZONTAL PORTION\"": {
+      "entity_type": "\"ANATOMICAL_LANDMARK\""
+    },
+    "\"POSTERIOR ETHMOIDS\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"POWERED INSTRUMENT\"": {
+      "entity_type": "\"INSTRUMENT\""
+    },
+    "\"CUTTING FORCEPS\"": {
+      "entity_type": "\"INSTRUMENT\""
+    },
+    "\"REMOVAL OF UPPER BULLA\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"EXCISION OF GROUND LAMELLA\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"ENTERING POSTERIOR ETHMOIDS\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"METALLIC TOOL\"": {
+      "entity_type": "\"INSTRUMENT\""
+    },
+    "\"AIR CELL\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"SINGLE AIR CELL\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"ETHMOID BONES\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"MUCOSA OF THE POSTERIOR ETHMOIDS\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"POSTERIOR ETHMOIDAL ARTERY\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"SPHENOID ANTERIOR WALL\"": {
+      "entity_type": "\"ANATOMICAL_LANDMARK\""
+    },
+    "\"CADAVERIC DISSECTION\"": {
+      "entity_type": "\"PROCEDURE\""
+    },
+    "\"STRIPPING OF POSTERIOR ETHMOID MUCOSA\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"REMOVAL OF GROUND LAMELLA\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"ETHMOID SINUSES\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"GATE NUMBER FOUR\"": {
+      "entity_type": "\"ANATOMICAL_LANDMARK\""
+    },
+    "\"VISUALIZATION OF POSTERIOR ETHMOIDS\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"APPRECIATION OF ANATOMY\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"BONY LEDGES\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"VERTICAL LEDGES\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"ETHMOIDS\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"ANTERIOR WALL OF THE SPHENOID\"": {
+      "entity_type": "\"ANATOMICAL_LANDMARK\""
+    },
+    "\"REMOVAL OF ETHMOID BULLA\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"REMOVAL OF BONY LEDGES\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"EXPOSURE OF LAMINA PAPYRACEA\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"VISUALIZATION OF POSTERIOR ETHMOIDAL ARTERY\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"POSTERIOR WALL OF THE FRONTAL SINUS\"": {
+      "entity_type": "\"ANATOMICAL_LANDMARK\""
+    },
+    "\"ANTERIOR ETHMOIDAL ARTERY\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"FRONTAL SINUS OSTIUM\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"FRONTAL LOBE\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"ANTERIOR ETHMOID\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"FLEXIBLE TUBE OR CATHETER\"": {
+      "entity_type": "\"INSTRUMENT\""
+    },
+    "\"METALLIC INSTRUMENT\"": {
+      "entity_type": "\"INSTRUMENT\""
+    },
+    "\"PRESERVATION OF MUCOSAL TISSUE\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"CLEANING UP THE FRONTAL SINUS OSTIUM\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"IDENTIFICATION OF THE FRONTAL SINUS\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"REMOVAL OF MUCOSA OVER THE SKULL BASE\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"OPENING THE FRONTAL SINUS\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"DISSECTION\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"REMOVAL OF MUCOSA\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"MYOIDAL ARTERY\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"ANTERIOR AND MYOIDAL ARTERY\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"BULGE OF THE POSTERIOR WALL\"": {
+      "entity_type": "\"ANATOMICAL_LANDMARK\""
+    },
+    "\"ORBITAL APEX\"": {
+      "entity_type": "\"ANATOMICAL_LANDMARK\""
+    },
+    "\"PEELING MUCOSA FROM POSTERIOR ETHMOIDAL ARTERY\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"REMOVAL OF SUPERIOR LEGIONS OF BONE\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"REMOVAL OF MUCOSA FROM SKULL BASE\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"ETHMOIDAL SINUS\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"ETHMOIDAL CAVITY\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"TURBINATE\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"EXAMINATION\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"CONFIRMING POSTERIOR ETHMOIDAL ARTERY\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"POSTERIOR ETHMOIDAL MUCOSA\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"MIDDLE ETHMOIDAL ARTERY\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"TRANSETHMOIDAL SPHENOIDOTOMY\"": {
+      "entity_type": "\"PROCEDURE\""
+    },
+    "\"ANTERIOR WALL OF THE SPHENOID SINUS\"": {
+      "entity_type": "\"ANATOMICAL_LANDMARK\""
+    },
+    "\"SPHENOETHMOIDAL RECESS\"": {
+      "entity_type": "\"ANATOMICAL_LANDMARK\""
+    },
+    "\"REMOVAL OF POSTERIOR ETHMOIDAL MUCOSA\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"BONE REMOVAL FROM TURBINATE\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"ENTERING THE SPHENOID SINUS MEDIALLY AND INFERIORLY\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"CYLINDRICAL METAL INSTRUMENT\"": {
+      "entity_type": "\"INSTRUMENT\""
+    },
+    "\"SCALPEL\"": {
+      "entity_type": "\"INSTRUMENT\""
+    },
+    "\"SPHENOID ANTRUM\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"IRRITATION\"": {
+      "entity_type": "\"PATHOLOGY\""
+    },
+    "\"BIOPSY\"": {
+      "entity_type": "\"PROCEDURE\""
+    },
+    "\"EXCISION\"": {
+      "entity_type": "\"PROCEDURE\""
+    },
+    "\"EXPLORATION\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"MANIPULATION OF TISSUE\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"IMPROVING VISIBILITY\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"MODEL ARTERY\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"ANTERIOR WALL OF SPHENOID SINUS\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"SPHENOID MONOVER CELLS\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"SEPTAL FLAP\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"SPHENOID Q\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"POSTULATE AND MODEL ARTERY\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"PITUITARY GLAND\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"SPHINOCINUS\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"BREAKING OPEN ANTERIOR WALL OF SPHENOID SINUS\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"LOOKING INTO SPHENOID SINUS THROUGH POSTERIOR ETHMOIDS\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"GOING MEDIAL TO MIDDLE TURBINATE\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"DISSECTING THE IDENTIFIED PARTS\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"REMOVING MUCOSA FROM SPHENOID SINUS\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"VISUALIZING THE PITUITARY GLAND\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"TRANSSPHENOIDAL VIEW\"": {
+      "entity_type": "\"PROCEDURE\""
+    },
+    "\"SPHENOID SINUS AREA\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"INNER LINING OF THE SINUS\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"BACK WALL OF THE NASAL CAVITY\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"SUBPOITUBINATE\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"LAST LEMNON\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"PINKISH MUCOSAL TISSUES\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"SELLA TURCICA\"": {
+      "entity_type": "\"ANATOMICAL_LANDMARK\""
+    },
+    "\"SPHENOPALATINE ARTERY\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"INFLAMED MUCOSA\"": {
+      "entity_type": "\"PATHOLOGY\""
+    },
+    "\"DISSECTING THE SPHENOID SINUS\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"CONFIRMING STRUCTURES BY GOING MEDIAL TO MIDDLE TURBINATE\"": {
+      "entity_type": "\"SURGICAL_STEP\""
+    },
+    "\"MIDDLE TURBINATE\"": {
+      "entity_type": "\"ANATOMY\""
+    },
+    "\"SECRETIONS\"": {
+      "entity_type": "\"UNKNOWN\""
+    }
+  },
+  "relationships": [
+    {
+      "source": "\"BACKBITER\"",
+      "target": "\"UNCINATE PROCESS\"",
+      "weight": 44.0,
+      "description": "\"The backbiter is inserted between the middle turbinate and the free edge of the uncinate process to initiate the uncinectomy.\"<SEP>\"The backbiter is used to extend the incision on the uncinate process anteriorly.\"<SEP>\"The backbiter is used to further remove a portion of the uncinate process remnant.\"<SEP>\"The backbiter is used to remove the inferior portion of the uncinate process.\"<SEP>\"The backbiter is used to resect the inferior aspect of the uncinate process.\""
+    },
+    {
+      "source": "\"BACKBITER\"",
+      "target": "\"MIDDLE TURBINATE\"",
+      "weight": 8.0,
+      "description": "\"The backbiter is placed between the middle turbinate and the uncinate process during the first step of uncinectomy.\""
+    },
+    {
+      "source": "\"BACKBITER\"",
+      "target": "\"UNCINECTOMY\"",
+      "weight": 18.0,
+      "description": "\"The backbiter is the primary instrument used to perform the initial cuts of the uncinectomy.\"<SEP>\"The backbiter is used to bring the uncinectomy to its anterior limit.\""
+    },
+    {
+      "source": "\"BACKBITER\"",
+      "target": "\"MAXILLARY OSTIUM\"",
+      "weight": 8.0,
+      "description": "\"The backbiter is placed at the maxillary ostium to perform the resection.\""
+    },
+    {
+      "source": "\"BACKBITER\"",
+      "target": "\"UNCINATE REMNANT\"",
+      "weight": 9.0,
+      "description": "\"The backbiter is used to further remove the uncinate remnant.\""
+    },
+    {
+      "source": "\"BACKBITER\"",
+      "target": "\"RETROGRADE UNCINECTOMY\"",
+      "weight": 9.0,
+      "description": "\"The backbiter is the instrument used to perform the retrograde uncinectomy.\""
+    },
+    {
+      "source": "\"UNCINATE PROCESS\"",
+      "target": "\"SICKLE KNIFE\"",
+      "weight": 6.0,
+      "description": "\"A sickle knife can be used to make the superior cut of the uncinate process, though backbiting forceps are preferred.\""
+    },
+    {
+      "source": "\"UNCINATE PROCESS\"",
+      "target": "\"BACKBITING FORCEPS\"",
+      "weight": 8.0,
+      "description": "\"Backbiting forceps are used to make the superior cut of the uncinate process, offering a safer alternative to the sickle knife.\""
+    },
+    {
+      "source": "\"UNCINATE PROCESS\"",
+      "target": "\"DOUBLE RIGHT-ANGLED BALL PROBE\"",
+      "weight": 9.0,
+      "description": "\"The double right-angled ball probe is used to fracture the uncinate process forward after the cuts are made.\""
+    },
+    {
+      "source": "\"UNCINATE PROCESS\"",
+      "target": "\"MIDDLE TURBINE\"",
+      "weight": 7.0,
+      "description": "\"The angle of the superior cut of the uncinate process is influenced by the position of the middle turbine.\""
+    },
+    {
+      "source": "\"UNCINATE PROCESS\"",
+      "target": "\"THROUGH-BITING 45-DEGREE BLAKESLEY-WELLS FORCEPS\"",
+      "weight": 9.0,
+      "description": "\"The through-biting 45-degree Blakesley-Wells forceps are used to amputate the uncinate process.\""
+    },
+    {
+      "source": "\"UNCINATE PROCESS\"",
+      "target": "\"LATERAL NASAL WALL\"",
+      "weight": 8.0,
+      "description": "\"The uncinate process is fractured away from the lateral nasal wall during the procedure.\""
+    },
+    {
+      "source": "\"UNCINATE PROCESS\"",
+      "target": "\"KERRISON PUNCH\"",
+      "weight": 33.0,
+      "description": "\"The Kerrison punch is used to remove the bony uncinate process.\"<SEP>\"The Kerrison punch is used to remove the reflected uncinate process.\"<SEP>\"The Kerrison punch is used to remove tissue from the uncinate process area.\"<SEP>\"The Kerrison punch is used to take the uncinate process flush to the lateral wall.\""
+    },
+    {
+      "source": "\"UNCINATE PROCESS\"",
+      "target": "\"DOUBLE RIGHT ANGLE BALL PROBE\"",
+      "weight": 9.0,
+      "description": "\"The double right angle ball probe is used to dissect the horizontal part of the uncinate process away from the mucosa.\""
+    },
+    {
+      "source": "\"UNCINATE PROCESS\"",
+      "target": "\"BLAKESLEY FORCEPS\"",
+      "weight": 8.0,
+      "description": "\"Blakesley forceps are used to remove bone fragments of the uncinate process.\""
+    },
+    {
+      "source": "\"UNCINATE PROCESS\"",
+      "target": "\"NASAL CAVITY\"",
+      "weight": 16.0,
+      "description": "\"The uncinate process is located within the nasal cavity.\""
+    },
+    {
+      "source": "\"UNCINATE PROCESS\"",
+      "target": "\"FRACTURING THE UNCINATE PROCESS FORWARD\"",
+      "weight": 9.0,
+      "description": "\"The step involves pulling the uncinate process forward to fracture it.\""
+    },
+    {
+      "source": "\"UNCINATE PROCESS\"",
+      "target": "\"NASAL MUCOSA\"",
+      "weight": 6.0,
+      "description": "\"The nasal mucosa surrounds and is manipulated near the uncinate process.\""
+    },
+    {
+      "source": "\"UNCINATE PROCESS\"",
+      "target": "\"SMALL FRAGMENTS OF UNCINATE PROCESS\"",
+      "weight": 9.0,
+      "description": "\"The small fragments are remnants of the uncinate process after amputation.\""
+    },
+    {
+      "source": "\"UNCINATE PROCESS\"",
+      "target": "\"HORIZONTAL PART OF THE UNCINATE PROCESS\"",
+      "weight": 9.0,
+      "description": "\"The horizontal part is a specific portion of the uncinate process.\""
+    },
+    {
+      "source": "\"UNCINATE PROCESS\"",
+      "target": "\"REMOVING BONE FRAGMENTS\"",
+      "weight": 8.0,
+      "description": "\"The bone fragments removed are from the uncinate process.\""
+    },
+    {
+      "source": "\"UNCINATE PROCESS\"",
+      "target": "\"FRACTURING INFERIOR UNCINATE FROM LATERAL WALL\"",
+      "weight": 9.0,
+      "description": "\"The step involves fracturing the inferior part of the uncinate process.\""
+    },
+    {
+      "source": "\"UNCINATE PROCESS\"",
+      "target": "\"AMPUTATION OF UNCINATE REMNANT\"",
+      "weight": 9.0,
+      "description": "\"The amputation removes the remaining portion of the uncinate process.\""
+    },
+    {
+      "source": "\"UNCINATE PROCESS\"",
+      "target": "\"MAXILLARY SINUS\"",
+      "weight": 14.0,
+      "description": "\"The uncinate process forms part of the middle wall of the maxillary sinus.\"<SEP>\"The uncinate process is located adjacent to the maxillary sinus and is removed to access it.\""
+    },
+    {
+      "source": "\"UNCINATE PROCESS\"",
+      "target": "\"UNCINATE REMOVAL\"",
+      "weight": 9.0,
+      "description": "\"The surgical step of uncinate removal involves resecting the uncinate process.\""
+    },
+    {
+      "source": "\"UNCINATE PROCESS\"",
+      "target": "\"FRACTURING SUPERIOR UNCINATE\"",
+      "weight": 9.0,
+      "description": "\"Fracturing the superior part of the uncinate process is a specific step in completing the uncinate removal.\""
+    },
+    {
+      "source": "\"UNCINATE PROCESS\"",
+      "target": "\"BALL TIP PROBE\"",
+      "weight": 9.0,
+      "description": "\"The ball tip probe is inserted posterior to the uncinate process.\""
+    },
+    {
+      "source": "\"UNCINATE PROCESS\"",
+      "target": "\"HALF-MOON SHAPE\"",
+      "weight": 7.0,
+      "description": "\"The half-moon shape is the characteristic curvature of the uncinate process.\""
+    },
+    {
+      "source": "\"UNCINATE PROCESS\"",
+      "target": "\"FREE EDGE\"",
+      "weight": 9.0,
+      "description": "\"The free edge is the anterior portion of the uncinate process that is reflected.\""
+    },
+    {
+      "source": "\"UNCINATE PROCESS\"",
+      "target": "\"REMAINING PORTIONS\"",
+      "weight": 8.0,
+      "description": "\"The remaining portions are the residual parts of the uncinate process after initial removal.\""
+    },
+    {
+      "source": "\"UNCINATE PROCESS\"",
+      "target": "\"MIDDLE TURBINATE\"",
+      "weight": 16.0,
+      "description": "\"The middle turbinate is located medial to the uncinate process and is a key anatomical relationship.\"<SEP>\"The uncinate process is located just lateral to the middle turbinate.\""
+    },
+    {
+      "source": "\"UNCINATE PROCESS\"",
+      "target": "\"UNCINECTOMY\"",
+      "weight": 10.0,
+      "description": "\"Uncinectomy is the surgical procedure to remove the uncinate process.\""
+    },
+    {
+      "source": "\"UNCINATE PROCESS\"",
+      "target": "\"MAXILLARY SEEKER\"",
+      "weight": 9.0,
+      "description": "\"The maxillary seeker is used to reflect the uncinate process towards the surgeon.\""
+    },
+    {
+      "source": "\"UNCINATE PROCESS\"",
+      "target": "\"MICRODEBRIDER\"",
+      "weight": 9.0,
+      "description": "\"The microdebrider is used to remove softer parts of the uncinate process.\""
+    },
+    {
+      "source": "\"UNCINATE PROCESS\"",
+      "target": "\"FREER'S ELEVATOR\"",
+      "weight": 9.0,
+      "description": "\"Freer's elevator is used to dissect and elevate the uncinate process and its mucosa.\""
+    },
+    {
+      "source": "\"UNCINATE PROCESS\"",
+      "target": "\"MIDDLE MEATUS\"",
+      "weight": 7.0,
+      "description": "\"The uncinate process attachment is observed in the middle meatus.\""
+    },
+    {
+      "source": "\"UNCINATE PROCESS\"",
+      "target": "\"OSTEOMEATAL COMPLEX\"",
+      "weight": 8.0,
+      "description": "\"The uncinate process folds over the osteomeatal complex, forming part of this anatomical region.\""
+    },
+    {
+      "source": "\"UNCINATE PROCESS\"",
+      "target": "\"BLIND SAC\"",
+      "weight": 9.0,
+      "description": "\"The blind sac is covered by the mucosa of the uncinate process and is an associated structure.\""
+    },
+    {
+      "source": "\"UNCINATE PROCESS\"",
+      "target": "\"DISSECTION OF BLIND SAC\"",
+      "weight": 8.0,
+      "description": "\"The dissection of the blind sac is performed on the remnant of the uncinate process.\""
+    },
+    {
+      "source": "\"UNCINATE PROCESS\"",
+      "target": "\"AGGER NASI\"",
+      "weight": 7.0,
+      "description": "\"The agger nasi is located anterior and superior to the uncinate process.\""
+    },
+    {
+      "source": "\"UNCINATE PROCESS\"",
+      "target": "\"ETHMOID BULLA\"",
+      "weight": 7.0,
+      "description": "\"The ethmoid bulla is located posterior to the uncinate process.\""
+    },
+    {
+      "source": "\"UNCINECTOMY\"",
+      "target": "\"FRONTAL PROCESS OF MAXILLA\"",
+      "weight": 9.0,
+      "description": "\"The frontal process of the maxilla marks the anterior limit of the uncinectomy dissection.\""
+    },
+    {
+      "source": "\"UNCINECTOMY\"",
+      "target": "\"MAXILLARY SINUS\"",
+      "weight": 7.0,
+      "description": "\"After uncinectomy, the maxillary sinus comes into view.\""
+    },
+    {
+      "source": "\"UNCINECTOMY\"",
+      "target": "\"FESS\"",
+      "weight": 9.0,
+      "description": "\"Uncinectomy is a component procedure of a complete FESS.\""
+    },
+    {
+      "source": "\"DOUBLE RIGHT-ANGLED BALL PROBE\"",
+      "target": "\"FRACTURING THE UNCINATE PROCESS FORWARD\"",
+      "weight": 9.0,
+      "description": "\"The double right-angled ball probe is the instrument used to perform the step of fracturing the uncinate process forward.\""
+    },
+    {
+      "source": "\"ENDOSCOPIC CAMERA\"",
+      "target": "\"MAXILLARY SINUS\"",
+      "weight": 8.0,
+      "description": "\"The endoscopic camera provides visualization of the maxillary sinus during the procedure.\""
+    },
+    {
+      "source": "\"ENDOSCOPIC CAMERA\"",
+      "target": "\"NASAL CAVITY\"",
+      "weight": 16.0,
+      "description": "\"The endoscopic camera is used to capture views of the nasal cavity and surrounding structures.\"<SEP>\"The endoscopic camera is used to visualize the interior of the nasal cavity during the procedure.\""
+    },
+    {
+      "source": "\"ENDOSCOPIC CAMERA\"",
+      "target": "\"NASAL MUCOSA\"",
+      "weight": 7.0,
+      "description": "\"The endoscopic camera captures close-up views of the nasal mucosa.\""
+    },
+    {
+      "source": "\"NASAL CAVITY\"",
+      "target": "\"ENDOSCOPIC SURGICAL PROCEDURE\"",
+      "weight": 9.0,
+      "description": "\"The endoscopic surgical procedure is performed on the nasal cavity.\""
+    },
+    {
+      "source": "\"NASAL CAVITY\"",
+      "target": "\"SURGICAL INSTRUMENT\"",
+      "weight": 7.0,
+      "description": "\"The surgical instrument is being manipulated within the nasal cavity space.\""
+    },
+    {
+      "source": "\"NASAL CAVITY\"",
+      "target": "\"BLOOD\"",
+      "weight": 12.0,
+      "description": "\"Blood is present within the nasal cavity during the surgical procedure.\"<SEP>\"Blood is present within the nasal cavity, indicating bleeding during the procedure.\""
+    },
+    {
+      "source": "\"NASAL CAVITY\"",
+      "target": "\"MUCOUS MEMBRANES\"",
+      "weight": 13.0,
+      "description": "\"Mucous membranes line the nasal cavity and are visualized during surgery.\"<SEP>\"The nasal cavity is lined with mucous membranes that appear red and pink due to blood and inflammation.\""
+    },
+    {
+      "source": "\"NASAL CAVITY\"",
+      "target": "\"MUCUS\"",
+      "weight": 7.0,
+      "description": "\"Thick white mucus is present in the nasal cavity, obstructing the passage.\""
+    },
+    {
+      "source": "\"NASAL CAVITY\"",
+      "target": "\"ENDOSCOPIC SURGERY\"",
+      "weight": 8.0,
+      "description": "\"Endoscopic surgery is performed within the nasal cavity to address sinus pathology.\""
+    },
+    {
+      "source": "\"NASAL CAVITY\"",
+      "target": "\"FREER\"",
+      "weight": 7.0,
+      "description": "\"A freer is inserted into the nasal cavity for further manipulation or exploration.\""
+    },
+    {
+      "source": "\"NASAL CAVITY\"",
+      "target": "\"INFLAMED TISSUE\"",
+      "weight": 7.0,
+      "description": "\"Inflamed tissue is located within the nasal cavity as observed in the endoscopic view.\""
+    },
+    {
+      "source": "\"NASAL CAVITY\"",
+      "target": "\"BLOOD CLOTS\"",
+      "weight": 6.0,
+      "description": "\"Blood clots are present in the nasal cavity as a result of tissue damage.\""
+    },
+    {
+      "source": "\"NASAL CAVITY\"",
+      "target": "\"FLUID\"",
+      "weight": 6.0,
+      "description": "\"Fluid is observed within the nasal cavity during the procedure.\""
+    },
+    {
+      "source": "\"NASAL CAVITY\"",
+      "target": "\"OBSTRUCTIVE MATERIAL\"",
+      "weight": 7.0,
+      "description": "\"Obstructive material blocks drainage pathways in the nasal cavity and is cleared surgically.\""
+    },
+    {
+      "source": "\"NASAL CAVITY\"",
+      "target": "\"DEBRIS\"",
+      "weight": 7.0,
+      "description": "\"Debris within the nasal cavity is extracted during the surgical procedure.\""
+    },
+    {
+      "source": "\"NASAL CAVITY\"",
+      "target": "\"BLOOD VESSELS\"",
+      "weight": 6.0,
+      "description": "\"Blood vessels are visible in the nasal cavity and surrounding tissues.\""
+    },
+    {
+      "source": "\"NASAL CAVITY\"",
+      "target": "\"FRONTAL CURETTE\"",
+      "weight": 8.0,
+      "description": "\"The frontal curette is used to break down partitions within the nasal cavity.\""
+    },
+    {
+      "source": "\"NASAL CAVITY\"",
+      "target": "\"SKULL BASE\"",
+      "weight": 8.0,
+      "description": "\"The skull base is a superior anatomical landmark within the nasal cavity that must not be violated.\""
+    },
+    {
+      "source": "\"NASAL CAVITY\"",
+      "target": "\"ENDOSCOPIC EXAMINATION\"",
+      "weight": 8.0,
+      "description": "\"Endoscopic examination is performed on the nasal cavity.\""
+    },
+    {
+      "source": "\"NASAL CAVITY\"",
+      "target": "\"ENDOSCOPE\"",
+      "weight": 8.0,
+      "description": "\"The endoscope is inserted into the nasal cavity to provide visualization.\""
+    },
+    {
+      "source": "\"NASAL CAVITY\"",
+      "target": "\"MUCOSA\"",
+      "weight": 6.0,
+      "description": "\"Mucosa lines the nasal cavity and is preserved as much as possible in real-life procedures.\""
+    },
+    {
+      "source": "\"NASAL CAVITY\"",
+      "target": "\"FLEXIBLE TUBE OR CATHETER\"",
+      "weight": 7.0,
+      "description": "\"The flexible tube or catheter is maneuvered within the nasal passage.\""
+    },
+    {
+      "source": "\"NASAL CAVITY\"",
+      "target": "\"METALLIC INSTRUMENT\"",
+      "weight": 7.0,
+      "description": "\"The metallic instrument is introduced into the cavity for exploration or intervention.\""
+    },
+    {
+      "source": "\"NASAL CAVITY\"",
+      "target": "\"SPHENOID SINUS\"",
+      "weight": 7.0,
+      "description": "\"The nasal cavity provides the entry point for endoscopic access to the sphenoid sinus.\""
+    },
+    {
+      "source": "\"NASAL CAVITY\"",
+      "target": "\"NASAL SEPTUM\"",
+      "weight": 7.0,
+      "description": "\"The nasal septum divides the nasal cavity and is visible during the endoscopic view.\""
+    },
+    {
+      "source": "\"NASAL CAVITY\"",
+      "target": "\"BACK WALL OF THE NASAL CAVITY\"",
+      "weight": 7.0,
+      "description": "\"The back wall forms the posterior boundary of the nasal cavity.\""
+    },
+    {
+      "source": "\"NASAL CAVITY\"",
+      "target": "\"MUCOUS MEMBRANE\"",
+      "weight": 8.0,
+      "description": "\"The mucous membrane lines the nasal cavity and sinuses.\""
+    },
+    {
+      "source": "\"TURBINATE STRUCTURES\"",
+      "target": "\"LEFT NASAL CAVITY\"",
+      "weight": 8.0,
+      "description": "\"Turbinate structures are located within the left nasal cavity.\""
+    },
+    {
+      "source": "\"PROF A SIMON CARNEY\"",
+      "target": "\"EAR CANAL\"",
+      "weight": 5.0,
+      "description": "\"Prof A Simon Carney is the surgeon operating on the ear canal during the procedure.\""
+    },
+    {
+      "source": "\"PROF A SIMON CARNEY\"",
+      "target": "\"BULLA ETHMOIDALIS\"",
+      "weight": 7.0,
+      "description": "\"Prof A Simon Carney performs the fracturing and removal of the bulla ethmoidalis.\""
+    },
+    {
+      "source": "\"PROF A SIMON CARNEY\"",
+      "target": "\"FLINDERS UNIVERSITY\"",
+      "weight": 9.0,
+      "description": "\"Prof A Simon Carney is an ENT Surgeon affiliated with Flinders University.\""
+    },
+    {
+      "source": "\"THROUGH-BITING 45-DEGREE BLAKESLEY-WELLS FORCEPS\"",
+      "target": "\"LATERAL NASAL WALL\"",
+      "weight": 7.0,
+      "description": "\"The forceps are used to cut the uncinate process as flush with the lateral nasal wall as possible.\""
+    },
+    {
+      "source": "\"LATERAL NASAL WALL\"",
+      "target": "\"FRACTURING INFERIOR UNCINATE FROM LATERAL WALL\"",
+      "weight": 9.0,
+      "description": "\"The step fractures the uncinate process away from the lateral nasal wall.\""
+    },
+    {
+      "source": "\"LATERAL NASAL WALL\"",
+      "target": "\"AGGER NASI\"",
+      "weight": 8.0,
+      "description": "\"The agger nasi is located on the lateral nasal wall.\""
+    },
+    {
+      "source": "\"LATERAL NASAL WALL\"",
+      "target": "\"MIDDLE MEATAL SPACER\"",
+      "weight": 9.0,
+      "description": "\"The middle meatal spacer prevents the middle turbinate from scarring to the lateral nasal wall.\""
+    },
+    {
+      "source": "\"KERRISON PUNCH\"",
+      "target": "\"REMOVAL OF REFLECTED UNCINATE\"",
+      "weight": 9.0,
+      "description": "\"The Kerrison punch is the instrument used in the step of removing the reflected uncinate.\""
+    },
+    {
+      "source": "\"KERRISON PUNCH\"",
+      "target": "\"LAMINA PAPYRACEA\"",
+      "weight": 9.0,
+      "description": "\"The Kerrison punch is used to widen the opening laterally to the lamina papyracea.\""
+    },
+    {
+      "source": "\"KERRISON PUNCH\"",
+      "target": "\"ETHMOID PARTITIONS\"",
+      "weight": 8.0,
+      "description": "\"The Kerrison punch is used to dissect ethmoid partitions off the skull base.\""
+    },
+    {
+      "source": "\"KERRISON PUNCH\"",
+      "target": "\"LATERAL WALL\"",
+      "weight": 8.0,
+      "description": "\"The Kerrison punch removes the uncinate process flush against the lateral wall.\""
+    },
+    {
+      "source": "\"MICRODEBRIDER\"",
+      "target": "\"DIEGO ELITE TYPE A BLADE\"",
+      "weight": 8.0,
+      "description": "\"The Diego Elite Type A Blade is a specific blade type used with the microdebrider.\""
+    },
+    {
+      "source": "\"MICRODEBRIDER\"",
+      "target": "\"REMOVAL OF ANTERIOR BULLA FRAGMENTS\"",
+      "weight": 9.0,
+      "description": "\"The microdebrider is used to remove the bony fragments of the anterior wall of the bulla ethmoidalis.\""
+    },
+    {
+      "source": "\"MICRODEBRIDER\"",
+      "target": "\"LAMINA PAPYRACEA\"",
+      "weight": 8.0,
+      "description": "\"The microdebrider tip must be kept visible at all times to avoid damaging the lamina papyracea.\""
+    },
+    {
+      "source": "\"MICRODEBRIDER\"",
+      "target": "\"MICRODEBRIDER BLADE\"",
+      "weight": 9.0,
+      "description": "\"The microdebrider blade is the cutting component attached to the microdebrider instrument.\""
+    },
+    {
+      "source": "\"MICRODEBRIDER\"",
+      "target": "\"LARGE FRAGMENTS\"",
+      "weight": 8.0,
+      "description": "\"The microdebrider is used to remove the large fragments from the surgical site.\""
+    },
+    {
+      "source": "\"MICRODEBRIDER\"",
+      "target": "\"AGGER NASI\"",
+      "weight": 6.0,
+      "description": "\"The microdebrider attempts to access the agger nasi area but has difficulty gaining proper access.\""
+    },
+    {
+      "source": "\"MICRODEBRIDER\"",
+      "target": "\"TAPPING MOTION\"",
+      "weight": 9.0,
+      "description": "\"The microdebrider is used with a tapping motion in short intervals as a safer surgical technique.\""
+    },
+    {
+      "source": "\"MICRODEBRIDER\"",
+      "target": "\"MAXILLARY ANTROSTOMY\"",
+      "weight": 7.0,
+      "description": "\"The microdebrider is used while maintaining visibility of the maxillary antrostomy.\""
+    },
+    {
+      "source": "\"MICRODEBRIDER\"",
+      "target": "\"ETHMOID BULLA\"",
+      "weight": 7.0,
+      "description": "\"The microdebrider is used in combination with through-cutting instruments to remove remaining partitions of the ethmoid bulla.\""
+    },
+    {
+      "source": "\"MICRODEBRIDER\"",
+      "target": "\"BONY FRAGMENTS\"",
+      "weight": 8.0,
+      "description": "\"The microdebrider is used to remove bony fragments.\""
+    },
+    {
+      "source": "\"MICRODEBRIDER\"",
+      "target": "\"ETHMOID PARTITIONS\"",
+      "weight": 8.0,
+      "description": "\"The microdebrider is used in combination to dissect ethmoid partitions off the skull base.\""
+    },
+    {
+      "source": "\"MICRODEBRIDER\"",
+      "target": "\"ANTERIOR ETHMOID CELLS\"",
+      "weight": 9.0,
+      "description": "\"The microdebrider is used to remove the dissected anterior ethmoid cells.\""
+    },
+    {
+      "source": "\"MICRODEBRIDER\"",
+      "target": "\"MICRODEBRIDEMENT OF ANTERIOR ETHMOID AIR CELLS\"",
+      "weight": 9.0,
+      "description": "\"The microdebrider is used to remove the dissected anterior ethmoid air cells.\""
+    },
+    {
+      "source": "\"MICRODEBRIDER\"",
+      "target": "\"ETHMOIDECTOMY\"",
+      "weight": 8.0,
+      "description": "\"The microdebrider is commonly used to perform ethmoidectomy.\""
+    },
+    {
+      "source": "\"NATURAL OSTIUM OF THE MAXILLARY SINUS\"",
+      "target": "\"DOUBLE RIGHT ANGLE BALL PROBE\"",
+      "weight": 6.0,
+      "description": "\"The probe is used after the natural ostium is visible to manipulate the uncinate process.\""
+    },
+    {
+      "source": "\"NATURAL OSTIUM OF THE MAXILLARY SINUS\"",
+      "target": "\"MAXILLARY SINUS\"",
+      "weight": 9.0,
+      "description": "\"The natural ostium is the opening of the maxillary sinus that becomes visible during surgery.\""
+    },
+    {
+      "source": "\"DOUBLE RIGHT ANGLE BALL PROBE\"",
+      "target": "\"BULLA ETHMOIDALIS\"",
+      "weight": 9.0,
+      "description": "\"The double right angle ball probe is inserted into the natural ostium of the bulla ethmoidalis to initiate fracturing.\""
+    },
+    {
+      "source": "\"DOUBLE RIGHT ANGLE BALL PROBE\"",
+      "target": "\"NATURAL OSTIUM\"",
+      "weight": 9.0,
+      "description": "\"The double right angle ball probe is inserted into the natural ostium of the bulla ethmoidalis.\""
+    },
+    {
+      "source": "\"MAXILLARY SINUS\"",
+      "target": "\"THICK SECRETIONS\"",
+      "weight": 8.0,
+      "description": "\"The thick secretions are located within the maxillary sinus.\""
+    },
+    {
+      "source": "\"MAXILLARY SINUS\"",
+      "target": "\"SUCTION DEVICE\"",
+      "weight": 8.0,
+      "description": "\"The suction device is used to clear secretions from the maxillary sinus.\""
+    },
+    {
+      "source": "\"MAXILLARY SINUS\"",
+      "target": "\"NATURAL MAXILLARY SINUS OSTIUM\"",
+      "weight": 9.0,
+      "description": "\"The natural maxillary sinus ostium is the opening into the maxillary sinus.\""
+    },
+    {
+      "source": "\"MAXILLARY SINUS\"",
+      "target": "\"FUNCTIONAL ENDOSCOPIC SINUS SURGERY (FESS)\"",
+      "weight": 8.0,
+      "description": "\"The maxillary sinus is one of the sinuses that may be opened during FESS.\""
+    },
+    {
+      "source": "\"MAXILLARY SINUS\"",
+      "target": "\"BASAL LAMELLA\"",
+      "weight": 8.0,
+      "description": "\"The root of the maxillary sinus serves as both the point of entry of the basal lamella and a reference for height.\""
+    },
+    {
+      "source": "\"MAXILLARY SINUS\"",
+      "target": "\"SPHENOID OS\"",
+      "weight": 7.0,
+      "description": "\"The height of the sphenoid os is used as a reference point for the maxillary sinus depth.\""
+    },
+    {
+      "source": "\"MAXILLARY SINUS\"",
+      "target": "\"MAXILLARY ANTROSTOMY\"",
+      "weight": 17.0,
+      "description": "\"Maxillary antrostomy is the surgical opening of the maxillary sinus.\"<SEP>\"The maxillary sinus is the target of maxillary antrostomy, which opens it for drainage.\""
+    },
+    {
+      "source": "\"MAXILLARY SINUS\"",
+      "target": "\"INFLAMMATION\"",
+      "weight": 7.0,
+      "description": "\"Inflammation is observed in the maxillary sinus area, consistent with chronic rhinosinusitis.\""
+    },
+    {
+      "source": "\"MAXILLARY SINUS\"",
+      "target": "\"MAXILLARY PROBE\"",
+      "weight": 9.0,
+      "description": "\"The maxillary probe is used to reflect the lateral wall of the maxillary sinus.\""
+    },
+    {
+      "source": "\"MAXILLARY SINUS\"",
+      "target": "\"DOWNBITER\"",
+      "weight": 8.0,
+      "description": "\"The downbiter is used to resect a component of the maxillary sinus after reflection.\""
+    },
+    {
+      "source": "\"MAXILLARY SINUS\"",
+      "target": "\"REFLECTION OF LATERAL MAXILLARY WALL\"",
+      "weight": 9.0,
+      "description": "\"The reflection step prepares the lateral wall of the maxillary sinus for resection.\""
+    },
+    {
+      "source": "\"BLAKESLEY FORCEPS\"",
+      "target": "\"BONY FRAGMENTS\"",
+      "weight": 9.0,
+      "description": "\"Blakesley forceps are used to remove bony fragments from the surgical field.\""
+    },
+    {
+      "source": "\"BLAKESLEY FORCEPS\"",
+      "target": "\"ETHMOID BONY PARTITIONS\"",
+      "weight": 8.0,
+      "description": "\"Blakesley forceps are used to cut and remove ethmoid bony partitions.\""
+    },
+    {
+      "source": "\"BLAKESLEY FORCEPS\"",
+      "target": "\"MUCOSA\"",
+      "weight": 7.0,
+      "description": "\"Blakesley forceps are used to remove mucosa but should be used sparingly to prevent stripping.\""
+    },
+    {
+      "source": "\"BLAKESLEY FORCEPS\"",
+      "target": "\"NASAL POLYPS\"",
+      "weight": 7.0,
+      "description": "\"Blakesley forceps are used to grasp and remove nasal polyps.\""
+    },
+    {
+      "source": "\"SMALL MEATAL ANTROSTOMY\"",
+      "target": "\"MUCOSA\"",
+      "weight": 8.0,
+      "description": "\"During a small meatal antrostomy, the goal is to preserve as much mucosa as possible.\""
+    },
+    {
+      "source": "\"MUCOSA\"",
+      "target": "\"DISSECTING THE HORIZONTAL UNCINATE\"",
+      "weight": 8.0,
+      "description": "\"The dissection separates the horizontal uncinate from the mucosa.\""
+    },
+    {
+      "source": "\"MUCOSA\"",
+      "target": "\"REMOVAL OF MEDIAL WALL OF AGGER NASI\"",
+      "weight": 8.0,
+      "description": "\"During removal of the medial wall of the agger nasi, it is extremely important not to strip the mucosa.\""
+    },
+    {
+      "source": "\"MUCOSA\"",
+      "target": "\"FLUID ACCUMULATION\"",
+      "weight": 6.0,
+      "description": "\"The fluid accumulation is observed near the mucosa, indicating recent intervention.\""
+    },
+    {
+      "source": "\"MUCOSA\"",
+      "target": "\"LEFT NASAL CAVITY\"",
+      "weight": 8.0,
+      "description": "\"The mucosa lines the left nasal cavity.\""
+    },
+    {
+      "source": "\"MUCOSA\"",
+      "target": "\"POSTERIOR TABLE\"",
+      "weight": 9.0,
+      "description": "\"The mucosa overlies the posterior table of the frontal sinus.\""
+    },
+    {
+      "source": "\"MUCOSA\"",
+      "target": "\"FRONTAL SINUSATOMY\"",
+      "weight": 7.0,
+      "description": "\"The mucosa overlying the posterior table is part of the anatomy associated with the frontal sinusatomy.\""
+    },
+    {
+      "source": "\"MUCOSA\"",
+      "target": "\"SKULL BASE\"",
+      "weight": 15.0,
+      "description": "\"Mucosa is removed over the skull base to identify the anterior ethmoidal artery and other structures.\"<SEP>\"The mucosa is being removed from the skull base to improve visualization.\""
+    },
+    {
+      "source": "\"MUCOSA\"",
+      "target": "\"PRESERVATION OF MUCOSAL TISSUE\"",
+      "weight": 8.0,
+      "description": "\"The surgical step of preserving mucosal tissue directly involves the mucosa.\""
+    },
+    {
+      "source": "\"MUCOSA\"",
+      "target": "\"REMOVAL OF MUCOSA\"",
+      "weight": 9.0,
+      "description": "\"The step of removing mucosa directly involves the mucosa.\""
+    },
+    {
+      "source": "\"MUCOSA\"",
+      "target": "\"ENDOSCOPE\"",
+      "weight": 7.0,
+      "description": "\"The endoscope is used to visualize the mucosa being peeled away.\""
+    },
+    {
+      "source": "\"MUCOSA\"",
+      "target": "\"SPHENOID SINUS\"",
+      "weight": 9.0,
+      "description": "\"The mucosa lines the sphenoid sinus and is removed to visualize structures within.\""
+    },
+    {
+      "source": "\"MUCOSA\"",
+      "target": "\"SUCTION\"",
+      "weight": 8.0,
+      "description": "\"The suction device is used to remove mucosa from the sphenoid sinus.\""
+    },
+    {
+      "source": "\"MUCOSA\"",
+      "target": "\"REMOVING MUCOSA FROM SPHENOID SINUS\"",
+      "weight": 9.0,
+      "description": "\"The surgical step removes the mucosa from the sphenoid sinus.\""
+    },
+    {
+      "source": "\"GLOVED HAND\"",
+      "target": "\"METALLIC TOOL\"",
+      "weight": 8.0,
+      "description": "\"The gloved hand holds and manipulates the metallic surgical tool during the procedure.\""
+    },
+    {
+      "source": "\"NASAL MUCOSA\"",
+      "target": "\"INFLAMMATION\"",
+      "weight": 8.0,
+      "description": "\"The nasal mucosa shows visible signs of inflammation or swelling.\""
+    },
+    {
+      "source": "\"NASAL MUCOSA\"",
+      "target": "\"RIGHT NASAL CAVITY\"",
+      "weight": 7.0,
+      "description": "\"The nasal mucosa lines the right nasal cavity and is visible during endoscopy.\""
+    },
+    {
+      "source": "\"NASAL MUCOSA\"",
+      "target": "\"METALLIC TOOL\"",
+      "weight": 7.0,
+      "description": "\"The metallic tool interacts with and manipulates the nasal mucosa during surgery.\""
+    },
+    {
+      "source": "\"BLOOD VESSELS\"",
+      "target": "\"TISSUE\"",
+      "weight": 6.0,
+      "description": "\"Tissue contains blood vessels, both visible in the surgical field.\""
+    },
+    {
+      "source": "\"BLOOD VESSELS\"",
+      "target": "\"RIGHT NASAL CAVITY\"",
+      "weight": 6.0,
+      "description": "\"Blood vessels are visible within the right nasal cavity during endoscopic examination.\""
+    },
+    {
+      "source": "\"BLOOD VESSELS\"",
+      "target": "\"MUCOUS MEMBRANE\"",
+      "weight": 7.0,
+      "description": "\"Blood vessels are visible within the mucous membrane of the sinus.\""
+    },
+    {
+      "source": "\"SMALL FRAGMENTS OF UNCINATE PROCESS\"",
+      "target": "\"TIDYING UP FRAGMENTS WITH FORCEPS\"",
+      "weight": 9.0,
+      "description": "\"The step involves removing the small fragments using forceps.\""
+    },
+    {
+      "source": "\"HORIZONTAL PART OF THE UNCINATE PROCESS\"",
+      "target": "\"DISSECTING THE HORIZONTAL UNCINATE\"",
+      "weight": 9.0,
+      "description": "\"The step involves dissecting the horizontal part of the uncinate process.\""
+    },
+    {
+      "source": "\"NATURAL MAXILLARY SINUS OSTIUM\"",
+      "target": "\"ALIGNMENT OF MUCOSAL EDGES\"",
+      "weight": 8.0,
+      "description": "\"The mucosal edges are aligned around the natural maxillary sinus ostium.\""
+    },
+    {
+      "source": "\"SUCTION DEVICE\"",
+      "target": "\"SECRETIONS\"",
+      "weight": 7.0,
+      "description": "\"The suction device removes secretions from the maxillary sinus.\""
+    },
+    {
+      "source": "\"SUCTION DEVICE\"",
+      "target": "\"MUCUS\"",
+      "weight": 7.0,
+      "description": "\"The suction device is used to remove mucus and other obstructive material from the nasal cavity.\""
+    },
+    {
+      "source": "\"SUCTION DEVICE\"",
+      "target": "\"BLOOD\"",
+      "weight": 6.0,
+      "description": "\"The suction device is used to remove blood from the surgical field.\""
+    },
+    {
+      "source": "\"BONE FRAGMENTS\"",
+      "target": "\"REMOVAL OF BONE\"",
+      "weight": 8.0,
+      "description": "\"The surgical step removes bone fragments from the field.\""
+    },
+    {
+      "source": "\"BONE FRAGMENTS\"",
+      "target": "\"BULLA ETHMOIDALIS\"",
+      "weight": 9.0,
+      "description": "\"The bone fragments are pieces of the bulla ethmoidalis being removed during surgery.\""
+    },
+    {
+      "source": "\"BONE FRAGMENTS\"",
+      "target": "\"MAXILLARY ANTROSTOMY\"",
+      "weight": 8.0,
+      "description": "\"Bone fragments are removed during shaping of the maxillary antrostomy.\""
+    },
+    {
+      "source": "\"MUCOSAL EDGES\"",
+      "target": "\"FRESHENING MUCOSAL EDGES\"",
+      "weight": 9.0,
+      "description": "\"The surgical step freshens the mucosal edges of the surgical site.\""
+    },
+    {
+      "source": "\"MUCOSAL EDGES\"",
+      "target": "\"MAXILLARY ANTROSTOMY\"",
+      "weight": 8.0,
+      "description": "\"Mucosal edges are trimmed to achieve the ideal pear-shaped maxillary antrostomy.\""
+    },
+    {
+      "source": "\"BLOOD\"",
+      "target": "\"FLUID\"",
+      "weight": 7.0,
+      "description": "\"Blood is a type of fluid present in the surgical cavity.\""
+    },
+    {
+      "source": "\"BLOOD\"",
+      "target": "\"SUCTION\"",
+      "weight": 7.0,
+      "description": "\"Suction is used to remove blood from the surgical field.\""
+    },
+    {
+      "source": "\"MUCOUS MEMBRANE\"",
+      "target": "\"INCISION\"",
+      "weight": 8.0,
+      "description": "\"An incision is made into the mucous membrane near the frontal sinusotomy.\""
+    },
+    {
+      "source": "\"MUCOUS MEMBRANE\"",
+      "target": "\"MUCUS\"",
+      "weight": 6.0,
+      "description": "\"Mucus is a secretion on the mucous membrane.\""
+    },
+    {
+      "source": "\"MUCOUS MEMBRANE\"",
+      "target": "\"INFLAMED MUCOSA\"",
+      "weight": 7.0,
+      "description": "\"Inflamed mucosa indicates areas of inflammation on the mucous membrane.\""
+    },
+    {
+      "source": "\"ANTONECTOMY\"",
+      "target": "\"ANTERIOR ETHMOIDECTOMY\"",
+      "weight": 8.0,
+      "description": "\"The Antonectomy (uncinectomy) is completed before moving on to the anterior ethmoidectomy.\""
+    },
+    {
+      "source": "\"ANTERIOR ETHMOIDECTOMY\"",
+      "target": "\"FESS\"",
+      "weight": 9.0,
+      "description": "\"Anterior ethmoidectomy is a component sub-procedure of a complete FESS.\""
+    },
+    {
+      "source": "\"ANTERIOR ETHMOIDECTOMY\"",
+      "target": "\"ETHMOID BULLA\"",
+      "weight": 9.0,
+      "description": "\"Identifying and resecting the ethmoid bulla is the first step in anterior ethmoidectomy.\""
+    },
+    {
+      "source": "\"ANTERIOR ETHMOIDECTOMY\"",
+      "target": "\"ETHMOIDECTOMY\"",
+      "weight": 17.0,
+      "description": "\"Anterior ethmoidectomy is a part of the overall ethmoidectomy procedure.\"<SEP>\"Anterior ethmoidectomy is a type of ethmoidectomy, specifically addressing the anterior ethmoid cells.\""
+    },
+    {
+      "source": "\"ANTERIOR ETHMOIDECTOMY\"",
+      "target": "\"FUNCTIONAL ENDOSCOPIC SINUS SURGERY (FESS)\"",
+      "weight": 9.0,
+      "description": "\"Anterior ethmoidectomy is a component sub-procedure of a complete FESS.\""
+    },
+    {
+      "source": "\"ANTERIOR ETHMOIDECTOMY\"",
+      "target": "\"CURETTE\"",
+      "weight": 9.0,
+      "description": "\"The curette is used to perform the anterior ethmoidectomy procedure.\""
+    },
+    {
+      "source": "\"BULLA ETHMOIDALIS\"",
+      "target": "\"FRACTURING THE BULLA ANTERIORLY\"",
+      "weight": 9.0,
+      "description": "\"The surgical step involves fracturing the bulla ethmoidalis by pulling it forward.\""
+    },
+    {
+      "source": "\"BULLA ETHMOIDALIS\"",
+      "target": "\"ANTERIOR ETHMOIDS\"",
+      "weight": 8.0,
+      "description": "\"Removal of the bulla ethmoidalis provides complete access to the anterior ethmoids.\""
+    },
+    {
+      "source": "\"NATURAL OSTIUM\"",
+      "target": "\"WIDENING OF OPENING\"",
+      "weight": 9.0,
+      "description": "\"The opening of the natural ostium is widened up to the skull base and laterally to the lamina papyracea.\""
+    },
+    {
+      "source": "\"NATURAL OSTIUM\"",
+      "target": "\"MAXILLARY ANTROSTOMY\"",
+      "weight": 9.0,
+      "description": "\"The maxillary antrostomy aims to incorporate the natural ostium if it was not reached.\""
+    },
+    {
+      "source": "\"REMOVAL OF ANTERIOR BULLA FRAGMENTS\"",
+      "target": "\"SUPRABULLAR CELLS\"",
+      "weight": 7.0,
+      "description": "\"The removal of fragments extends to the suprabullar cells above the bulla ethmoidalis.\""
+    },
+    {
+      "source": "\"LAMINA PAPYRACEA\"",
+      "target": "\"MEDIAL ORBITAL WALL\"",
+      "weight": 9.0,
+      "description": "\"The medial orbital wall is formed by the lamina papyracea.\""
+    },
+    {
+      "source": "\"LAMINA PAPYRACEA\"",
+      "target": "\"MUSHROOM PUNCH\"",
+      "weight": 8.0,
+      "description": "\"The mushroom punch is used alongside the Kerrison punch to widen the opening laterally to the lamina papyracea.\""
+    },
+    {
+      "source": "\"LAMINA PAPYRACEA\"",
+      "target": "\"WIDENING OF OPENING\"",
+      "weight": 8.0,
+      "description": "\"The opening is widened laterally to the lamina papyracea.\""
+    },
+    {
+      "source": "\"LAMINA PAPYRACEA\"",
+      "target": "\"SKULL BASE\"",
+      "weight": 16.0,
+      "description": "\"The lamina papyracea and skull base are both anatomical boundaries of the dissection in sinus surgery.\"<SEP>\"The lamina papyracea and skull base are both boundaries of the dissection, with lamina papyracea laterally and skull base superiorly.\""
+    },
+    {
+      "source": "\"LAMINA PAPYRACEA\"",
+      "target": "\"POSTERIOR ETHMOIDS\"",
+      "weight": 8.0,
+      "description": "\"The lamina papyracea is located lateral to the posterior ethmoids and serves as a boundary.\""
+    },
+    {
+      "source": "\"SUPRABULLAR CELLS\"",
+      "target": "\"LARGE FRAGMENTS\"",
+      "weight": 7.0,
+      "description": "\"The large fragments are also present in the suprabullar cells.\""
+    },
+    {
+      "source": "\"EAR CANAL\"",
+      "target": "\"INTERNAL CAVITY\"",
+      "weight": 6.0,
+      "description": "\"The ear canal leads into the internal cavity where the surgical procedure is performed.\""
+    },
+    {
+      "source": "\"SURGICAL INSTRUMENT\"",
+      "target": "\"WHITE SUBSTANCE\"",
+      "weight": 6.0,
+      "description": "\"The surgical instrument is manipulating the white substance visible in the surgical field.\""
+    },
+    {
+      "source": "\"LARGE FRAGMENTS\"",
+      "target": "\"TOP PART OF THE BULLER\"",
+      "weight": 8.0,
+      "description": "\"The large fragments are located at the top part of the bulla ethmoidalis.\""
+    },
+    {
+      "source": "\"GROUND LAMELLA OF THE MIDDLE TURBINATE\"",
+      "target": "\"MIDDLE TURBINATE\"",
+      "weight": 9.0,
+      "description": "\"The ground lamella is the attachment plate of the middle turbinate to the lateral nasal wall.\""
+    },
+    {
+      "source": "\"GROUND LAMELLA OF THE MIDDLE TURBINATE\"",
+      "target": "\"POSTERIOR ETHMOIDECTOMY\"",
+      "weight": 9.0,
+      "description": "\"The ground lamella must be penetrated to access the posterior ethmoid sinuses for a posterior ethmoidectomy.\""
+    },
+    {
+      "source": "\"GROUND LAMELLA OF THE MIDDLE TURBINATE\"",
+      "target": "\"EXPOSURE OF THE GROUND LAMELLA\"",
+      "weight": 9.0,
+      "description": "\"The surgical step of exposing the ground lamella is performed directly on this anatomical structure.\""
+    },
+    {
+      "source": "\"GROUND LAMELLA OF THE MIDDLE TURBINATE\"",
+      "target": "\"PENETRATION OF THE GROUND LAMELLA\"",
+      "weight": 9.0,
+      "description": "\"The surgical step of penetrating the ground lamella is performed directly on this anatomical structure.\""
+    },
+    {
+      "source": "\"POSTERIOR ETHMOIDECTOMY\"",
+      "target": "\"PENETRATION OF THE GROUND LAMELLA\"",
+      "weight": 8.0,
+      "description": "\"Penetrating the ground lamella is a prerequisite step to performing a posterior ethmoidectomy.\""
+    },
+    {
+      "source": "\"POSTERIOR ETHMOIDECTOMY\"",
+      "target": "\"FESS\"",
+      "weight": 9.0,
+      "description": "\"Posterior ethmoidectomy is a component sub-procedure of a complete FESS.\""
+    },
+    {
+      "source": "\"POSTERIOR ETHMOIDECTOMY\"",
+      "target": "\"MIDDLE TURBINATE\"",
+      "weight": 9.0,
+      "description": "\"During posterior ethmoidectomy, the posterior portion of the middle turbinate is removed to facilitate visualization of the superior turbinate.\""
+    },
+    {
+      "source": "\"POSTERIOR ETHMOIDECTOMY\"",
+      "target": "\"SUPERIOR TURBINATE\"",
+      "weight": 8.0,
+      "description": "\"Posterior ethmoidectomy involves removing the posterior middle turbinate to better visualize the superior turbinate.\""
+    },
+    {
+      "source": "\"POSTERIOR ETHMOIDECTOMY\"",
+      "target": "\"FUNCTIONAL ENDOSCOPIC SINUS SURGERY (FESS)\"",
+      "weight": 9.0,
+      "description": "\"Posterior ethmoidectomy is a component sub-procedure of a complete FESS.\""
+    },
+    {
+      "source": "\"POSTERIOR ETHMOIDECTOMY\"",
+      "target": "\"ETHMOIDECTOMY\"",
+      "weight": 8.0,
+      "description": "\"Posterior ethmoidectomy is a part of the overall ethmoidectomy procedure.\""
+    },
+    {
+      "source": "\"FRONTAL RECESS\"",
+      "target": "\"UNCINATE REMOVAL\"",
+      "weight": 8.0,
+      "description": "\"The uncinate removal is performed to approach the frontal recess.\""
+    },
+    {
+      "source": "\"FRONTAL RECESS\"",
+      "target": "\"TRANSAXILLARY APPROACH\"",
+      "weight": 9.0,
+      "description": "\"The transaxillary approach is used to access the frontal recess.\""
+    },
+    {
+      "source": "\"FRONTAL RECESS\"",
+      "target": "\"FRONTAL SINUS SEEKER\"",
+      "weight": 8.0,
+      "description": "\"The frontal sinus seeker identifies the location of the frontal recess.\""
+    },
+    {
+      "source": "\"FRONTAL RECESS\"",
+      "target": "\"DIEGO ELITE MICRODEBRIDER\"",
+      "weight": 7.0,
+      "description": "\"The microdebrider is used to clean up the frontal recess area after access is established.\""
+    },
+    {
+      "source": "\"FRONTAL RECESS\"",
+      "target": "\"AGGER NASI CELL\"",
+      "weight": 8.0,
+      "description": "\"The agger nasi cell is adjacent to and provides access to the frontal recess.\""
+    },
+    {
+      "source": "\"FRONTAL RECESS\"",
+      "target": "\"FRONTAL SINUS\"",
+      "weight": 17.0,
+      "description": "\"The frontal recess is the drainage pathway connecting the frontal sinus to the nasal cavity, visualized clearly in the endoscopic view.\"<SEP>\"The frontal recess is the pathway leading to the frontal sinus.\""
+    },
+    {
+      "source": "\"FRONTAL RECESS\"",
+      "target": "\"MEDIAL WALL\"",
+      "weight": 8.0,
+      "description": "\"The medial wall is a boundary of the frontal recess that must not be touched during surgery.\""
+    },
+    {
+      "source": "\"FRONTAL RECESS\"",
+      "target": "\"POSTERIOR WALL\"",
+      "weight": 8.0,
+      "description": "\"The posterior wall is a boundary of the frontal recess that must not be touched during surgery.\""
+    },
+    {
+      "source": "\"FRONTAL RECESS\"",
+      "target": "\"THIN BONY PARTITIONS\"",
+      "weight": 7.0,
+      "description": "\"Thin bony partitions within the frontal recess are opened out during the procedure to widen the opening.\""
+    },
+    {
+      "source": "\"FRONTAL RECESS\"",
+      "target": "\"CIRCUMFERENTIAL SCAR\"",
+      "weight": 8.0,
+      "description": "\"A circumferential scar can form in the frontal recess if proper surgical technique is not followed.\""
+    },
+    {
+      "source": "\"FRONTAL RECESS\"",
+      "target": "\"IATROGENIC FRONTAL DISEASE\"",
+      "weight": 8.0,
+      "description": "\"Iatrogenic frontal disease can result from scarring in the frontal recess after surgery.\""
+    },
+    {
+      "source": "\"FRONTAL RECESS\"",
+      "target": "\"OPENING INTO FRONTAL RECESS\"",
+      "weight": 9.0,
+      "description": "\"The surgical step involves creating a wide opening into the frontal recess.\""
+    },
+    {
+      "source": "\"FRONTAL RECESS\"",
+      "target": "\"FRONTAL DRAINAGE PATHWAY\"",
+      "weight": 8.0,
+      "description": "\"The frontal drainage pathway is the anatomical continuation of the frontal recess, ensuring free drainage.\""
+    },
+    {
+      "source": "\"FRONTAL RECESS\"",
+      "target": "\"HEALTHY MUCOSA\"",
+      "weight": 8.0,
+      "description": "\"The healthy mucosa is part of the intact frontal recess lining.\""
+    },
+    {
+      "source": "\"FRONTAL RECESS\"",
+      "target": "\"FRONTAL SINUSOTOMY\"",
+      "weight": 8.0,
+      "description": "\"The frontal sinusotomy involves the frontal recess, as the anterior ethmoid artery is posterior to it.\""
+    },
+    {
+      "source": "\"FRONTAL RECESS\"",
+      "target": "\"ANTERIOR ETHMOID ARTERY\"",
+      "weight": 9.0,
+      "description": "\"The anterior ethmoid artery lies posterior to the frontal recess.\""
+    },
+    {
+      "source": "\"FRONTAL RECESS\"",
+      "target": "\"CURVED MICRODEBRIDER\"",
+      "weight": 8.0,
+      "description": "\"The curved microdebrider is used to navigate and remove tissue in the frontal recess.\""
+    },
+    {
+      "source": "\"FRONTAL RECESS\"",
+      "target": "\"OPENING THE POSTERIOR BONY WALL\"",
+      "weight": 9.0,
+      "description": "\"Opening the posterior bony wall directly enlarges the frontal recess.\""
+    },
+    {
+      "source": "\"FRONTAL RECESS\"",
+      "target": "\"ENLARGING THE FRONTAL RECESS\"",
+      "weight": 9.0,
+      "description": "\"The surgical step results in enlargement of the frontal recess.\""
+    },
+    {
+      "source": "\"FRONTAL RECESS\"",
+      "target": "\"POSTERIOR BONY WALL\"",
+      "weight": 8.0,
+      "description": "\"The posterior bony wall separates the superorbital ethmoid from the frontal recess.\""
+    },
+    {
+      "source": "\"FRONTAL RECESS\"",
+      "target": "\"ANTERIOR ETHMOIDAL ARTERY\"",
+      "weight": 7.0,
+      "description": "\"The anterior ethmoidal artery is visible in the frontal recess area.\""
+    },
+    {
+      "source": "\"AGGER NASI CELL\"",
+      "target": "\"FRONTAL SINUS SEEKER\"",
+      "weight": 8.0,
+      "description": "\"The frontal sinus seeker is used to identify and fracture the medial wall of the agger nasi cell.\""
+    },
+    {
+      "source": "\"AGGER NASI CELL\"",
+      "target": "\"MEDIAL WALL OF AGGER NASI CELL\"",
+      "weight": 9.0,
+      "description": "\"The medial wall is part of the agger nasi cell structure.\""
+    },
+    {
+      "source": "\"AGGER NASI CELL\"",
+      "target": "\"REMOVING PORTION OF AGGER NASI\"",
+      "weight": 9.0,
+      "description": "\"The surgical step involves removing a portion of the agger nasi cell.\""
+    },
+    {
+      "source": "\"AGGER NASI CELL\"",
+      "target": "\"HOSEMAN'S PUNCH\"",
+      "weight": 9.0,
+      "description": "\"The Hoseman's punch is used to remove the upper part of the agger nasi cell.\""
+    },
+    {
+      "source": "\"AGGER NASI CELL\"",
+      "target": "\"HOUSMAN'S PUNCH\"",
+      "weight": 9.0,
+      "description": "\"The Housman's punch is used to manipulate and remove tissue from the agger nasi cell.\""
+    },
+    {
+      "source": "\"INFUNDIBULUM\"",
+      "target": "\"UNCINATE REMOVAL\"",
+      "weight": 8.0,
+      "description": "\"Completing the uncinate removal opens the infundibulum for frontal recess access.\""
+    },
+    {
+      "source": "\"MEDIAL WALL OF AGGER NASI CELL\"",
+      "target": "\"FRACTURING MEDIAL WALL OF AGGER NASI\"",
+      "weight": 9.0,
+      "description": "\"The surgical step involves fracturing the medial wall of the agger nasi cell.\""
+    },
+    {
+      "source": "\"FRONTAL SINUS\"",
+      "target": "\"REMOVING PORTION OF AGGER NASI\"",
+      "weight": 8.0,
+      "description": "\"Removing the agger nasi portion provides access to the frontal sinus.\""
+    },
+    {
+      "source": "\"FRONTAL SINUS\"",
+      "target": "\"HOUSMAN'S FRONTAL 70-DEGREE PUNCH\"",
+      "weight": 7.0,
+      "description": "\"The Housman's frontal 70-degree punch is used in the frontal sinus area for tissue removal.\""
+    },
+    {
+      "source": "\"FRONTAL SINUS\"",
+      "target": "\"EOSINOPHILIC MUCIN\"",
+      "weight": 9.0,
+      "description": "\"The eosinophilic mucin is located within the frontal sinus.\""
+    },
+    {
+      "source": "\"FRONTAL SINUS\"",
+      "target": "\"IRRIGATION OF FRONTAL SINUS\"",
+      "weight": 8.0,
+      "description": "\"Irrigation of the frontal sinus is performed to further clean out mucin if suction is insufficient.\""
+    },
+    {
+      "source": "\"FRONTAL SINUS\"",
+      "target": "\"FUNCTIONAL ENDOSCOPIC SINUS SURGERY (FESS)\"",
+      "weight": 8.0,
+      "description": "\"The frontal sinus is one of the sinuses that may be opened during FESS.\""
+    },
+    {
+      "source": "\"FRONTAL SINUS\"",
+      "target": "\"STENT\"",
+      "weight": 9.0,
+      "description": "\"The stent is placed in the frontal sinus to help keep it open.\""
+    },
+    {
+      "source": "\"FRONTAL SINUS\"",
+      "target": "\"POSTERIOR WALL OF THE FRONTAL SINUS\"",
+      "weight": 9.0,
+      "description": "\"The posterior wall is the bony boundary of the frontal sinus, used as a landmark to identify the sinus.\""
+    },
+    {
+      "source": "\"FRONTAL SINUS\"",
+      "target": "\"FRONTAL SINUS OSTIUM\"",
+      "weight": 8.0,
+      "description": "\"The frontal sinus ostium is the natural opening of the frontal sinus, visualized and cleaned during the procedure.\""
+    },
+    {
+      "source": "\"FRONTAL SINUS\"",
+      "target": "\"IDENTIFICATION OF THE FRONTAL SINUS\"",
+      "weight": 9.0,
+      "description": "\"The step of identifying the frontal sinus is based on the bulge of its posterior wall.\""
+    },
+    {
+      "source": "\"FRONTAL SINUS\"",
+      "target": "\"OPENING THE FRONTAL SINUS\"",
+      "weight": 9.0,
+      "description": "\"The step of opening the frontal sinus directly targets the frontal sinus.\""
+    },
+    {
+      "source": "\"AXILLA OF MIDDLE TURBINATE\"",
+      "target": "\"RAISING THE AXILLA\"",
+      "weight": 9.0,
+      "description": "\"The surgical step of raising the axilla targets the axilla of the middle turbinate.\""
+    },
+    {
+      "source": "\"AXILLA OF MIDDLE TURBINATE\"",
+      "target": "\"TRANSAXILLARY APPROACH\"",
+      "weight": 9.0,
+      "description": "\"The transaxillary approach involves raising the axilla of the middle turbinate.\""
+    },
+    {
+      "source": "\"RAISING THE AXILLA\"",
+      "target": "\"KERRISON PUNCH 2MM 130\u00b0 UPWARDS CUTTING\"",
+      "weight": 9.0,
+      "description": "\"The Kerrison punch is the instrument used to raise the axilla of the middle turbinate.\""
+    },
+    {
+      "source": "\"FRACTURING MEDIAL WALL OF AGGER NASI\"",
+      "target": "\"FRONTAL SINUS SEEKER\"",
+      "weight": 8.0,
+      "description": "\"The frontal sinus seeker is used to fracture the medial wall of the agger nasi cell.\""
+    },
+    {
+      "source": "\"TRANSAXILLARY APPROACH\"",
+      "target": "\"AXILLARY FLAP\"",
+      "weight": 7.0,
+      "description": "\"Raising an axillary flap is an alternative technique within the transaxillary approach that the surgeon chooses not to use.\""
+    },
+    {
+      "source": "\"DIEGO ELITE MICRODEBRIDER\"",
+      "target": "\"OLYMPUS TYPE A BLADE\"",
+      "weight": 9.0,
+      "description": "\"The DIEGO ELITE Microdebrider uses the Olympus type A blade for tissue removal.\""
+    },
+    {
+      "source": "\"DIEGO ELITE MICRODEBRIDER\"",
+      "target": "\"FRESHENING MUCOSAL EDGES\"",
+      "weight": 9.0,
+      "description": "\"The DIEGO ELITE Microdebrider with Olympus type A blade is used to freshen the mucosal edges.\""
+    },
+    {
+      "source": "\"OLYMPUS TYPE A BLADE\"",
+      "target": "\"FRESHENING MUCOSAL EDGES\"",
+      "weight": 9.0,
+      "description": "\"The Olympus type A blade is the specific blade used to freshen mucosal edges.\""
+    },
+    {
+      "source": "\"ETHMOID BULLA\"",
+      "target": "\"J-CURETTE\"",
+      "weight": 9.0,
+      "description": "\"The J-curette is used to enter the ethmoid bulla starting in the retrobullar space and fracturing it forward.\""
+    },
+    {
+      "source": "\"ETHMOID BULLA\"",
+      "target": "\"THROUGH-CUTTING INSTRUMENTS\"",
+      "weight": 8.0,
+      "description": "\"Through-cutting instruments remove remaining partitions after fracturing the ethmoid bulla.\""
+    },
+    {
+      "source": "\"ETHMOID BULLA\"",
+      "target": "\"SUPRABULLAR RECESS\"",
+      "weight": 8.0,
+      "description": "\"The dissection proceeds toward the roof of the ethmoid bulla and suprabullar recess, indicating they are adjacent structures reached sequentially.\""
+    },
+    {
+      "source": "\"ETHMOID BULLA\"",
+      "target": "\"ETHMOIDECTOMY\"",
+      "weight": 9.0,
+      "description": "\"The ethmoidectomy involves dissection that reaches the roof of the ethmoid bulla.\""
+    },
+    {
+      "source": "\"ETHMOID BULLA\"",
+      "target": "\"CURETTE\"",
+      "weight": 8.0,
+      "description": "\"The curette is placed between the ethmoid bulla and middle turbinate.\""
+    },
+    {
+      "source": "\"FLINDERS UNIVERSITY\"",
+      "target": "\"ADELAIDE\"",
+      "weight": 9.0,
+      "description": "\"Flinders University is located in Adelaide, South Australia.\""
+    },
+    {
+      "source": "\"ADELAIDE\"",
+      "target": "\"SOUTH AUSTRALIA\"",
+      "weight": 9.0,
+      "description": "\"Adelaide is a city in South Australia.\""
+    },
+    {
+      "source": "\"UPWARD TURNING FRONTAL PUNCH\"",
+      "target": "\"MEDIAL WALL OF THE AGGER NASI\"",
+      "weight": 9.0,
+      "description": "\"The upward turning frontal punch is used to remove bits of tissue, specifically finalizing removal of the medial wall of the agger nasi.\""
+    },
+    {
+      "source": "\"AGGER NASI\"",
+      "target": "\"TRANSITION ZONE\"",
+      "weight": 9.0,
+      "description": "\"The transition zone is posterior to the agger nasi.\""
+    },
+    {
+      "source": "\"AGGER NASI\"",
+      "target": "\"NASAL SEPTUM\"",
+      "weight": 7.0,
+      "description": "\"The agger nasi is described in relation to the suture between the nasal septum and lateral nasal wall.\""
+    },
+    {
+      "source": "\"AGGER NASI\"",
+      "target": "\"SUTURE BETWEEN NASAL SEPTUM AND LATERAL NASAL WALL\"",
+      "weight": 8.0,
+      "description": "\"The agger nasi refers to the suture between the nasal septum and the lateral nasal wall.\""
+    },
+    {
+      "source": "\"AGGER NASI\"",
+      "target": "\"REMOVAL OF REMNANT AGGER NASI\"",
+      "weight": 9.0,
+      "description": "\"The surgical step involves removing the remnant agger nasi to expose the frontal drainage pathway.\""
+    },
+    {
+      "source": "\"AGGER NASI\"",
+      "target": "\"THROUGHCUTTING INSTRUMENT\"",
+      "weight": 8.0,
+      "description": "\"Throughcutting instruments are used to remove the remnant agger nasi.\""
+    },
+    {
+      "source": "\"OLIVE TIP SUCKER\"",
+      "target": "\"EOSINOPHILIC MUCIN\"",
+      "weight": 9.0,
+      "description": "\"The olive tip sucker is used to remove eosinophilic mucin from the surgical field.\""
+    },
+    {
+      "source": "\"EOSINOPHILIC MUCIN\"",
+      "target": "\"CHRONIC RHINOSINUSITIS\"",
+      "weight": 8.0,
+      "description": "\"Eosinophilic mucin is a characteristic finding in chronic rhinosinusitis.\""
+    },
+    {
+      "source": "\"REMOVAL OF EOSINOPHILIC MUCIN FROM FRONTAL SINUS\"",
+      "target": "\"INFLAMMATORY CASCADE\"",
+      "weight": 8.0,
+      "description": "\"Removal of eosinophilic mucin is necessary to prevent the inflammatory cascade from continuing.\""
+    },
+    {
+      "source": "\"MUCUS\"",
+      "target": "\"METAL INSTRUMENT\"",
+      "weight": 7.0,
+      "description": "\"The metal instrument is used to remove the thick white mucus from the nasal cavity.\""
+    },
+    {
+      "source": "\"MUCUS\"",
+      "target": "\"SUCTION\"",
+      "weight": 7.0,
+      "description": "\"Suction is used to remove mucus from the sinus cavity.\""
+    },
+    {
+      "source": "\"METAL INSTRUMENT\"",
+      "target": "\"NOSTRIL\"",
+      "weight": 8.0,
+      "description": "\"The metal instrument is inserted into the nostril to begin the procedure.\""
+    },
+    {
+      "source": "\"METAL INSTRUMENT\"",
+      "target": "\"RIGHT NASAL CAVITY\"",
+      "weight": 7.0,
+      "description": "\"A metal instrument is used within the right nasal cavity for surgical procedures.\""
+    },
+    {
+      "source": "\"NASAL LINING\"",
+      "target": "\"INFLAMMATORY REACTION\"",
+      "weight": 7.0,
+      "description": "\"The nasal lining shows signs of inflammatory reaction with reddish hues and swelling.\""
+    },
+    {
+      "source": "\"40-DEGREE ANGLED MICRODEBRIDER BLADE\"",
+      "target": "\"DIEGO ELITE\"",
+      "weight": 9.0,
+      "description": "\"The 40-degree angled microdebrider blade is used on the Diego Elite instrument system for tissue cleaning.\""
+    },
+    {
+      "source": "\"POSTERIOR WALL\"",
+      "target": "\"MAXILLARY ANTROSTOMY\"",
+      "weight": 8.0,
+      "description": "\"The maxillary antrostomy is enlarged posteriorly toward the posterior wall.\""
+    },
+    {
+      "source": "\"ENDOSCOPIC PROCEDURE\"",
+      "target": "\"FRONTAL SINUSOTOMY\"",
+      "weight": 8.0,
+      "description": "\"Frontal sinusotomy is a component procedure performed during the endoscopic procedure.\""
+    },
+    {
+      "source": "\"BIOABSORBABLE DRESSING\"",
+      "target": "\"DEXAMETHASONE\"",
+      "weight": 9.0,
+      "description": "\"The bioabsorbable dressing is soaked in dexamethasone before placement.\""
+    },
+    {
+      "source": "\"BIOABSORBABLE DRESSING\"",
+      "target": "\"MIDDLE MEATUS\"",
+      "weight": 9.0,
+      "description": "\"The bioabsorbable dressing is placed into the middle meatus.\""
+    },
+    {
+      "source": "\"BIOABSORBABLE DRESSING\"",
+      "target": "\"FORCEPS\"",
+      "weight": 9.0,
+      "description": "\"The forceps are used to apply or adjust the bioabsorbable dressing.\""
+    },
+    {
+      "source": "\"MIDDLE MEATUS\"",
+      "target": "\"MIDDLE TURBINATE\"",
+      "weight": 8.0,
+      "description": "\"The middle turbinate is the superior boundary of the middle meatus, and the dressing is positioned so that the middle turbinate remains medial.\""
+    },
+    {
+      "source": "\"MIDDLE MEATUS\"",
+      "target": "\"MIDDLE MEATAL ANTROSTOMY\"",
+      "weight": 9.0,
+      "description": "\"The middle meatal antrostomy is a surgical opening created within the middle meatus.\""
+    },
+    {
+      "source": "\"MIDDLE MEATUS\"",
+      "target": "\"PLEDGET WITH CONCENTRATED EPINEPHRINE\"",
+      "weight": 8.0,
+      "description": "\"The pledget with concentrated epinephrine is placed in the middle meatus to provide hemostasis.\""
+    },
+    {
+      "source": "\"MIDDLE MEATUS\"",
+      "target": "\"MIDDLE MEATAL SPACER\"",
+      "weight": 9.0,
+      "description": "\"The middle meatal spacer is placed in the middle meatus.\""
+    },
+    {
+      "source": "\"MIDDLE MEATUS\"",
+      "target": "\"SUPERIOR TURBINATE\"",
+      "weight": 8.0,
+      "description": "\"The superior turbinate can be identified from the lateral aspect of the middle meatus.\""
+    },
+    {
+      "source": "\"MIDDLE MEATAL ANTROSTOMY\"",
+      "target": "\"FRONTAL DRAINAGE PATHWAY\"",
+      "weight": 7.0,
+      "description": "\"Both the middle meatal antrostomy and the frontal drainage pathway are noted to be free for drainage, indicating successful post-procedure patency.\""
+    },
+    {
+      "source": "\"FRONTAL DRAINAGE PATHWAY\"",
+      "target": "\"SUCTIONING\"",
+      "weight": 8.0,
+      "description": "\"Gentle suctioning is used to reveal the hidden frontal drainage pathway by clearing redundant mucosa.\""
+    },
+    {
+      "source": "\"FRONTAL DRAINAGE PATHWAY\"",
+      "target": "\"PROBING\"",
+      "weight": 8.0,
+      "description": "\"Probing is used to locate and reveal the frontal drainage pathway.\""
+    },
+    {
+      "source": "\"FRONTAL DRAINAGE PATHWAY\"",
+      "target": "\"REDUNDANT MUCOSA\"",
+      "weight": 7.0,
+      "description": "\"Redundant mucosa can obscure the frontal drainage pathway, requiring gentle suctioning or probing to reveal.\""
+    },
+    {
+      "source": "\"FORCEPS\"",
+      "target": "\"MUCOSA OF THE POSTERIOR ETHMOIDS\"",
+      "weight": 9.0,
+      "description": "\"The forceps are used to remove the mucosa of the posterior ethmoids.\""
+    },
+    {
+      "source": "\"FUNCTIONAL ENDOSCOPIC SINUS SURGERY (FESS)\"",
+      "target": "\"CHRONIC RHINOSINUSITIS\"",
+      "weight": 18.0,
+      "description": "\"FESS is performed for patients with chronic rhinosinusitis to treat the underlying disease.\"<SEP>\"FESS is the surgical treatment performed for patients with chronic rhinosinusitis.\""
+    },
+    {
+      "source": "\"FUNCTIONAL ENDOSCOPIC SINUS SURGERY (FESS)\"",
+      "target": "\"PARANASAL SINUSES\"",
+      "weight": 9.0,
+      "description": "\"FESS targets the paranasal sinuses to open them up and improve drainage.\""
+    },
+    {
+      "source": "\"FUNCTIONAL ENDOSCOPIC SINUS SURGERY (FESS)\"",
+      "target": "\"ETHMOID SINUS\"",
+      "weight": 8.0,
+      "description": "\"The ethmoid sinus is one of the sinuses that may be opened during FESS.\""
+    },
+    {
+      "source": "\"FUNCTIONAL ENDOSCOPIC SINUS SURGERY (FESS)\"",
+      "target": "\"SPHENOID SINUS\"",
+      "weight": 8.0,
+      "description": "\"The sphenoid sinus is one of the sinuses that may be opened during FESS.\""
+    },
+    {
+      "source": "\"FUNCTIONAL ENDOSCOPIC SINUS SURGERY (FESS)\"",
+      "target": "\"SINUS AIR CELLS\"",
+      "weight": 9.0,
+      "description": "\"FESS opens up sinus air cells to improve ventilation and drainage.\""
+    },
+    {
+      "source": "\"FUNCTIONAL ENDOSCOPIC SINUS SURGERY (FESS)\"",
+      "target": "\"NATURAL DRAINAGE PATHWAYS\"",
+      "weight": 9.0,
+      "description": "\"FESS widens natural drainage pathways to improve sinus function.\""
+    },
+    {
+      "source": "\"FUNCTIONAL ENDOSCOPIC SINUS SURGERY (FESS)\"",
+      "target": "\"HEALTHY NASAL MUCOSA\"",
+      "weight": 8.0,
+      "description": "\"FESS helps restore healthy nasal mucosa by improving sinus ventilation.\""
+    },
+    {
+      "source": "\"FUNCTIONAL ENDOSCOPIC SINUS SURGERY (FESS)\"",
+      "target": "\"TOPICAL MEDICATIONS\"",
+      "weight": 7.0,
+      "description": "\"FESS improves access for topical medications to reach the sinus mucosa.\""
+    },
+    {
+      "source": "\"FUNCTIONAL ENDOSCOPIC SINUS SURGERY (FESS)\"",
+      "target": "\"OPENING SINUS AIR CELLS\"",
+      "weight": 9.0,
+      "description": "\"Opening sinus air cells is a key surgical step within the FESS procedure.\""
+    },
+    {
+      "source": "\"FUNCTIONAL ENDOSCOPIC SINUS SURGERY (FESS)\"",
+      "target": "\"WIDENING NATURAL DRAINAGE PATHWAYS\"",
+      "weight": 9.0,
+      "description": "\"Widening natural drainage pathways is a key surgical step within the FESS procedure.\""
+    },
+    {
+      "source": "\"FUNCTIONAL ENDOSCOPIC SINUS SURGERY (FESS)\"",
+      "target": "\"IMPROVING VENTILATION\"",
+      "weight": 8.0,
+      "description": "\"Improving ventilation is a goal and step of the FESS procedure.\""
+    },
+    {
+      "source": "\"FUNCTIONAL ENDOSCOPIC SINUS SURGERY (FESS)\"",
+      "target": "\"RESTORING HEALTHY MUCOSA\"",
+      "weight": 8.0,
+      "description": "\"Restoring healthy mucosa is a goal and step of the FESS procedure.\""
+    },
+    {
+      "source": "\"FUNCTIONAL ENDOSCOPIC SINUS SURGERY (FESS)\"",
+      "target": "\"IMPROVING ACCESS FOR TOPICAL MEDICATIONS\"",
+      "weight": 8.0,
+      "description": "\"Improving access for topical medications is a goal and step of the FESS procedure.\""
+    },
+    {
+      "source": "\"FUNCTIONAL ENDOSCOPIC SINUS SURGERY (FESS)\"",
+      "target": "\"POLYPS\"",
+      "weight": 8.0,
+      "description": "\"FESS is performed for chronic rhinosinusitis with or without polyps.\""
+    },
+    {
+      "source": "\"FUNCTIONAL ENDOSCOPIC SINUS SURGERY (FESS)\"",
+      "target": "\"RHINOLOGY/ANTERIOR SKULL BASE SURGERY\"",
+      "weight": 8.0,
+      "description": "\"Members of the Rhinology/Anterior Skull Base Surgery division perform the FESS procedure.\""
+    },
+    {
+      "source": "\"FUNCTIONAL ENDOSCOPIC SINUS SURGERY (FESS)\"",
+      "target": "\"GENERAL OTOLARYNGOLOGY\"",
+      "weight": 8.0,
+      "description": "\"Members of the General Otolaryngology division perform the FESS procedure.\""
+    },
+    {
+      "source": "\"FUNCTIONAL ENDOSCOPIC SINUS SURGERY (FESS)\"",
+      "target": "\"MAXILLARY ANTROSTOMY\"",
+      "weight": 9.0,
+      "description": "\"Maxillary antrostomy is a component sub-procedure of a complete FESS.\""
+    },
+    {
+      "source": "\"FUNCTIONAL ENDOSCOPIC SINUS SURGERY (FESS)\"",
+      "target": "\"SPHENOIDOTOMY\"",
+      "weight": 9.0,
+      "description": "\"Sphenoidotomy is a component sub-procedure of a complete FESS.\""
+    },
+    {
+      "source": "\"FUNCTIONAL ENDOSCOPIC SINUS SURGERY (FESS)\"",
+      "target": "\"FRONTAL SINUSOTOMY\"",
+      "weight": 9.0,
+      "description": "\"Frontal sinusotomy is a component sub-procedure of a complete FESS.\""
+    },
+    {
+      "source": "\"CHRONIC RHINOSINUSITIS\"",
+      "target": "\"FESS\"",
+      "weight": 8.0,
+      "description": "\"Chronic rhinosinusitis is the underlying pathology for which the FESS procedure is performed.\""
+    },
+    {
+      "source": "\"SPHENOID SINUS\"",
+      "target": "\"SPHENOID OSTIUM\"",
+      "weight": 9.0,
+      "description": "\"The sphenoid ostium is the natural opening of the sphenoid sinus.\""
+    },
+    {
+      "source": "\"SPHENOID SINUS\"",
+      "target": "\"SPHENOID ANTERIOR WALL\"",
+      "weight": 9.0,
+      "description": "\"The sphenoid anterior wall is the front surface of the sphenoid sinus.\""
+    },
+    {
+      "source": "\"SPHENOID SINUS\"",
+      "target": "\"TRANSETHMOIDAL SPHENOIDOTOMY\"",
+      "weight": 9.0,
+      "description": "\"Transethmoidal sphenoidotomy is the surgical procedure used to access the sphenoid sinus through the posterior ethmoids.\""
+    },
+    {
+      "source": "\"SPHENOID SINUS\"",
+      "target": "\"ENTERING THE SPHENOID SINUS MEDIALLY AND INFERIORLY\"",
+      "weight": 8.0,
+      "description": "\"The step of entering the sphenoid sinus medially and inferiorly is the specific approach used to access the sphenoid sinus safely.\""
+    },
+    {
+      "source": "\"SPHENOID SINUS\"",
+      "target": "\"ANTERIOR WALL OF SPHENOID SINUS\"",
+      "weight": 9.0,
+      "description": "\"The anterior wall is the bony barrier that must be broken open to access the sphenoid sinus.\""
+    },
+    {
+      "source": "\"SPHENOID SINUS\"",
+      "target": "\"POSTERIOR ETHMOIDS\"",
+      "weight": 8.0,
+      "description": "\"The sphenoid sinus is visualized through the posterior ethmoid air cells.\""
+    },
+    {
+      "source": "\"SPHENOID SINUS\"",
+      "target": "\"MIDDLE TURBINATE\"",
+      "weight": 7.0,
+      "description": "\"Going medial to the middle turbinate is a navigational step to confirm the approach to the sphenoid sinus.\""
+    },
+    {
+      "source": "\"SPHENOID SINUS\"",
+      "target": "\"SUPERIOR TURBINATE\"",
+      "weight": 7.0,
+      "description": "\"The superior turbinate is used as a landmark to confirm the sphenoid sinus approach.\""
+    },
+    {
+      "source": "\"SPHENOID SINUS\"",
+      "target": "\"SPHENOID MONOVER CELLS\"",
+      "weight": 6.0,
+      "description": "\"Sphenoid monover cells are posterior ethmoid cells that pneumatize near the sphenoid sinus and influence access.\""
+    },
+    {
+      "source": "\"SPHENOID SINUS\"",
+      "target": "\"SEPTAL FLAP\"",
+      "weight": 6.0,
+      "description": "\"The septal flap is used in procedures involving the sphenoid sinus for reconstruction or access.\""
+    },
+    {
+      "source": "\"SPHENOID SINUS\"",
+      "target": "\"SPHENOID Q\"",
+      "weight": 7.0,
+      "description": "\"Sphenoid q refers to the ostium or area of the sphenoid sinus.\""
+    },
+    {
+      "source": "\"SPHENOID SINUS\"",
+      "target": "\"PITUITARY GLAND\"",
+      "weight": 9.0,
+      "description": "\"The pituitary gland is visualized within the sphenoid sinus, confirming the identity of the sinus.\""
+    },
+    {
+      "source": "\"SPHENOID SINUS\"",
+      "target": "\"ENDOSCOPE\"",
+      "weight": 8.0,
+      "description": "\"The endoscope provides visualization of the sphenoid sinus and its structures.\""
+    },
+    {
+      "source": "\"SPHENOID SINUS\"",
+      "target": "\"LOOKING INTO SPHENOID SINUS THROUGH POSTERIOR ETHMOIDS\"",
+      "weight": 8.0,
+      "description": "\"The surgical step provides a view into the sphenoid sinus via the posterior ethmoids.\""
+    },
+    {
+      "source": "\"SPHENOID SINUS\"",
+      "target": "\"GOING MEDIAL TO MIDDLE TURBINATE\"",
+      "weight": 7.0,
+      "description": "\"This navigational step helps confirm the correct approach to the sphenoid sinus.\""
+    },
+    {
+      "source": "\"SPHENOID SINUS\"",
+      "target": "\"REMOVING MUCOSA FROM SPHENOID SINUS\"",
+      "weight": 9.0,
+      "description": "\"The surgical step removes mucosa from within the sphenoid sinus.\""
+    },
+    {
+      "source": "\"SPHENOID SINUS\"",
+      "target": "\"VISUALIZING THE PITUITARY GLAND\"",
+      "weight": 9.0,
+      "description": "\"Visualizing the pituitary gland confirms the sphenoid sinus identity.\""
+    },
+    {
+      "source": "\"SPHENOID SINUS\"",
+      "target": "\"TRANSSPHENOIDAL VIEW\"",
+      "weight": 9.0,
+      "description": "\"The transsphenoidal view provides visualization through the sphenoid sinus to access the pituitary.\""
+    },
+    {
+      "source": "\"SPHENOID SINUS\"",
+      "target": "\"SPHENOID SINUS AREA\"",
+      "weight": 8.0,
+      "description": "\"The sphenoid sinus area is the region encompassing the sphenoid sinus.\""
+    },
+    {
+      "source": "\"SPHENOID SINUS\"",
+      "target": "\"INNER LINING OF THE SINUS\"",
+      "weight": 8.0,
+      "description": "\"The inner lining is the mucosal layer within the sphenoid sinus.\""
+    },
+    {
+      "source": "\"SPHENOID SINUS\"",
+      "target": "\"SUBPOITUBINATE\"",
+      "weight": 7.0,
+      "description": "\"The subpoitubinate (superior turbinate) is the last attachment removed from the sphenoid sinus.\""
+    },
+    {
+      "source": "\"SPHENOID SINUS\"",
+      "target": "\"LAST LEMNON\"",
+      "weight": 7.0,
+      "description": "\"The last lemnon is the final mucosal attachment removed from the sphenoid sinus.\""
+    },
+    {
+      "source": "\"SPHENOID SINUS\"",
+      "target": "\"PINKISH MUCOSAL TISSUES\"",
+      "weight": 7.0,
+      "description": "\"Pinkish mucosal tissues are the visible lining of the sphenoid sinus.\""
+    },
+    {
+      "source": "\"SPHENOID SINUS\"",
+      "target": "\"SELLA TURCICA\"",
+      "weight": 8.0,
+      "description": "\"The sella turcica is located within the sphenoid bone and is accessed through the sphenoid sinus.\""
+    },
+    {
+      "source": "\"SPHENOID SINUS\"",
+      "target": "\"DISSECTING THE SPHENOID SINUS\"",
+      "weight": 8.0,
+      "description": "\"The surgical step involves dissecting the sphenoid sinus structures.\""
+    },
+    {
+      "source": "\"SPHENOID SINUS\"",
+      "target": "\"CONFIRMING STRUCTURES BY GOING MEDIAL TO MIDDLE TURBINATE\"",
+      "weight": 7.0,
+      "description": "\"This step confirms the approach to the sphenoid sinus.\""
+    },
+    {
+      "source": "\"KERNEL DIAGRAM\"",
+      "target": "\"PARANASAL SINUSES (DIAGRAM)\"",
+      "weight": 7.0,
+      "description": "\"The kernel diagram is used to illustrate the paranasal sinuses in a cross-sectional view.\""
+    },
+    {
+      "source": "\"SAGITTAL DIAGRAM\"",
+      "target": "\"PARANASAL SINUSES (DIAGRAM)\"",
+      "weight": 7.0,
+      "description": "\"The sagittal diagram is used to illustrate the paranasal sinuses in a side view.\""
+    },
+    {
+      "source": "\"FESS\"",
+      "target": "\"MAXILLARY ANTROSTOMY\"",
+      "weight": 18.0,
+      "description": "\"Maxillary antrostomy is a component procedure of a complete FESS.\"<SEP>\"Maxillary antrostomy is a component sub-procedure of a complete FESS.\""
+    },
+    {
+      "source": "\"FESS\"",
+      "target": "\"SPHENOIDOTOMY\"",
+      "weight": 18.0,
+      "description": "\"Sphenoidotomy is a component procedure of a complete FESS.\"<SEP>\"Sphenoidotomy is a component sub-procedure of a complete FESS.\""
+    },
+    {
+      "source": "\"FESS\"",
+      "target": "\"FRONTAL SINUSOTOMY\"",
+      "weight": 18.0,
+      "description": "\"Frontal sinusotomy is a component procedure of a complete FESS.\"<SEP>\"Frontal sinusotomy is a component sub-procedure of a complete FESS.\""
+    },
+    {
+      "source": "\"FESS\"",
+      "target": "\"ETHMOIDECTOMY\"",
+      "weight": 9.0,
+      "description": "\"Ethmoidectomy is a component procedure of a complete FESS.\""
+    },
+    {
+      "source": "\"MAXILLARY ANTROSTOMY\"",
+      "target": "\"MAXILLARY ANTROSTOMY AREA\"",
+      "weight": 9.0,
+      "description": "\"The maxillary antrostomy area is the surgical site where the maxillary antrostomy procedure is performed.\""
+    },
+    {
+      "source": "\"MAXILLARY ANTROSTOMY\"",
+      "target": "\"STRAIGHT THROUGH CUTTING INSTRUMENT\"",
+      "weight": 9.0,
+      "description": "\"The straight through-cutting instrument is used to enlarge the maxillary antrostomy posteriorly.\""
+    },
+    {
+      "source": "\"MAXILLARY ANTROSTOMY\"",
+      "target": "\"NASOLACRIMAL DUCT\"",
+      "weight": 8.0,
+      "description": "\"The maxillary antrostomy is created just posterior to the nasolacrimal duct.\""
+    },
+    {
+      "source": "\"MAXILLARY ANTROSTOMY\"",
+      "target": "\"ANGLED ENDOSCOPE\"",
+      "weight": 9.0,
+      "description": "\"The angled endoscope is used to examine the maxillary antrostomy.\""
+    },
+    {
+      "source": "\"MAXILLARY ANTROSTOMY\"",
+      "target": "\"ZERO DEGREE INSTRUMENTS\"",
+      "weight": 7.0,
+      "description": "\"Zero-degree instruments are used initially to reach the maxillary antrostomy; the angled endoscope is used if not successful.\""
+    },
+    {
+      "source": "\"MAXILLARY ANTROSTOMY\"",
+      "target": "\"SPHENOID\"",
+      "weight": 7.0,
+      "description": "\"The sphenoid opening is seen posteriorly in the same open cavity as the maxillary antrostomy.\""
+    },
+    {
+      "source": "\"MAXILLARY ANTROSTOMY\"",
+      "target": "\"CLEARED ETHMOID AIR CELLS\"",
+      "weight": 7.0,
+      "description": "\"The cleared ethmoid air cells are adjacent to the maxillary antrostomy in the open cavity.\""
+    },
+    {
+      "source": "\"MAXILLARY ANTROSTOMY\"",
+      "target": "\"MAXILLARY LINE\"",
+      "weight": 8.0,
+      "description": "\"The maxillary line is used as a landmark to locate the maxillary sinus ostium for antrostomy.\""
+    },
+    {
+      "source": "\"SPHENOIDOTOMY\"",
+      "target": "\"MAXILLARY ROOF\"",
+      "weight": 8.0,
+      "description": "\"Sphenoidotomy is guided by the height of the maxillary roof as a reference.\""
+    },
+    {
+      "source": "\"SPHENOIDOTOMY\"",
+      "target": "\"SUPERIOR TURBINATE\"",
+      "weight": 9.0,
+      "description": "\"During sphenoidotomy, one-third of the lower superior turbinate is resected to reveal the natural sphenoid os.\""
+    },
+    {
+      "source": "\"SPHENOIDOTOMY\"",
+      "target": "\"SKULL BASE\"",
+      "weight": 9.0,
+      "description": "\"With sphenoidotomy complete, the skull base is defined and used as a reference.\""
+    },
+    {
+      "source": "\"FRONTAL SINUSOTOMY\"",
+      "target": "\"ANTERIOR ETHMOID ARTERY\"",
+      "weight": 9.0,
+      "description": "\"The first step of frontal sinusotomy is to identify the anterior ethmoid artery, which lies posterior to the frontal recess.\""
+    },
+    {
+      "source": "\"FRONTAL SINUSOTOMY\"",
+      "target": "\"TRANSITION ZONE\"",
+      "weight": 9.0,
+      "description": "\"The natural drainage pathway of the frontal sinus, identified during frontal sinusotomy, is the transition zone.\""
+    },
+    {
+      "source": "\"FRONTAL SINUSOTOMY\"",
+      "target": "\"FRONTAL KERRISON\"",
+      "weight": 9.0,
+      "description": "\"The frontal Kerrison punch is used to sequentially widen the frontal sinusotomy.\""
+    },
+    {
+      "source": "\"FRONTAL SINUSOTOMY\"",
+      "target": "\"POSTERIOR TABLE\"",
+      "weight": 7.0,
+      "description": "\"The mucosa overlying the posterior table is visible after the frontal sinusotomy is performed.\""
+    },
+    {
+      "source": "\"LEFT NASAL CAVITY\"",
+      "target": "\"INFERIOR TURBINATE\"",
+      "weight": 9.0,
+      "description": "\"The left nasal cavity contains the inferior turbinate.\""
+    },
+    {
+      "source": "\"LEFT NASAL CAVITY\"",
+      "target": "\"MIDDLE TURBINATE\"",
+      "weight": 9.0,
+      "description": "\"The left nasal cavity contains the middle turbinate.\""
+    },
+    {
+      "source": "\"LEFT NASAL CAVITY\"",
+      "target": "\"SEPTUM\"",
+      "weight": 9.0,
+      "description": "\"The left nasal cavity is bounded medially by the septum.\""
+    },
+    {
+      "source": "\"LEFT NASAL CAVITY\"",
+      "target": "\"SEPTAL SPUR\"",
+      "weight": 8.0,
+      "description": "\"The left nasal cavity contains a left septal spur.\""
+    },
+    {
+      "source": "\"LEFT NASAL CAVITY\"",
+      "target": "\"MUCOSAL LINING\"",
+      "weight": 8.0,
+      "description": "\"The mucosal lining covers the interior surfaces of the left nasal cavity.\""
+    },
+    {
+      "source": "\"INFERIOR TURBINATE\"",
+      "target": "\"RIGHT NASAL CAVITY\"",
+      "weight": 8.0,
+      "description": "\"The inferior turbinate is located within the right nasal cavity and is visualized endoscopically.\""
+    },
+    {
+      "source": "\"SEPTUM\"",
+      "target": "\"RIGHT NASAL CAVITY\"",
+      "weight": 8.0,
+      "description": "\"The septum forms the medial boundary of the right nasal cavity.\""
+    },
+    {
+      "source": "\"BALL TIP PROBE\"",
+      "target": "\"NATURAL MAXILLARY OSTIUM\"",
+      "weight": 9.0,
+      "description": "\"The ball tip probe is aimed to fall into the natural maxillary ostium.\""
+    },
+    {
+      "source": "\"NATURAL MAXILLARY OSTIUM\"",
+      "target": "\"MAXILLARY LINE\"",
+      "weight": 8.0,
+      "description": "\"The natural maxillary ostium is approximated by the junction of the lower third and upper third of the maxillary line.\""
+    },
+    {
+      "source": "\"LACRIMAL BONE\"",
+      "target": "\"NASOLACRIMAL DUCT\"",
+      "weight": 8.0,
+      "description": "\"The lacrimal bone and nasolacrimal duct are adjacent structures that must both be preserved during surgery.\""
+    },
+    {
+      "source": "\"ETHMOIDECTOMY\"",
+      "target": "\"PARTIAL ETHMOIDECTOMY\"",
+      "weight": 8.0,
+      "description": "\"Partial ethmoidectomy is a classification of ethmoidectomy where only some ethmoid cells are removed.\""
+    },
+    {
+      "source": "\"ETHMOIDECTOMY\"",
+      "target": "\"TOTAL ETHMOIDECTOMY\"",
+      "weight": 17.0,
+      "description": "\"Total ethmoidectomy is a classification of ethmoidectomy where both anterior and posterior ethmoid cells are removed.\"<SEP>\"Total ethmoidectomy is the completion of the ethmoidectomy procedure.\""
+    },
+    {
+      "source": "\"ETHMOIDECTOMY\"",
+      "target": "\"SKULL BASE\"",
+      "weight": 9.0,
+      "description": "\"Ethmoidectomy targets the superior most cells, starting posteriorly at the skull base.\""
+    },
+    {
+      "source": "\"ETHMOIDECTOMY\"",
+      "target": "\"SUPRABULLAR RECESS\"",
+      "weight": 8.0,
+      "description": "\"The ethmoidectomy involves dissection that reaches the suprabullar recess.\""
+    },
+    {
+      "source": "\"ETHMOIDECTOMY\"",
+      "target": "\"DISSECTION AND REMOVAL OF TISSUES\"",
+      "weight": 9.0,
+      "description": "\"Dissection and removal of tissues is a key surgical step within the ethmoidectomy procedure.\""
+    },
+    {
+      "source": "\"ETHMOIDECTOMY\"",
+      "target": "\"BASAL LAMELLA\"",
+      "weight": 8.0,
+      "description": "\"The basal lamella is the surgical landmark separating anterior from posterior ethmoidectomy.\""
+    },
+    {
+      "source": "\"J-CURETTE\"",
+      "target": "\"RETROBULLAR SPACE\"",
+      "weight": 8.0,
+      "description": "\"The J-curette enters the ethmoid bulla starting in the retrobullar space.\""
+    },
+    {
+      "source": "\"THROUGH-CUTTING INSTRUMENTS\"",
+      "target": "\"SUPERIOR TURBINATE\"",
+      "weight": 8.0,
+      "description": "\"Through-cutting instruments are used to resect one-third of the lower superior turbinate.\""
+    },
+    {
+      "source": "\"PARTIAL ETHMOIDECTOMY\"",
+      "target": "\"ANTERIOR ETHMOID CELLS\"",
+      "weight": 8.0,
+      "description": "\"Partial ethmoidectomy involves removal of anterior ethmoid cells.\""
+    },
+    {
+      "source": "\"TOTAL ETHMOIDECTOMY\"",
+      "target": "\"POSTERIOR ETHMOID CELLS\"",
+      "weight": 8.0,
+      "description": "\"Total ethmoidectomy involves removal of posterior ethmoid cells in addition to anterior cells.\""
+    },
+    {
+      "source": "\"TOTAL ETHMOIDECTOMY\"",
+      "target": "\"GROUND LAMELLA\"",
+      "weight": 9.0,
+      "description": "\"The ground lamella is a key landmark remaining after a total ethmoidectomy.\""
+    },
+    {
+      "source": "\"ANTERIOR ETHMOID CELLS\"",
+      "target": "\"BASAL LAMELLA\"",
+      "weight": 18.0,
+      "description": "\"The basal lamella divides the anterior ethmoid cells from the posterior ethmoid cells.\"<SEP>\"The basal lamella separates the anterior ethmoid cells from the posterior ethmoid cells.\""
+    },
+    {
+      "source": "\"POSTERIOR ETHMOID CELLS\"",
+      "target": "\"BASAL LAMELLA\"",
+      "weight": 9.0,
+      "description": "\"The basal lamella divides the anterior ethmoid cells from the posterior ethmoid cells.\""
+    },
+    {
+      "source": "\"DEBREEDER\"",
+      "target": "\"HANGING TISSUE\"",
+      "weight": 8.0,
+      "description": "\"The debreeder is used to mop up hanging tissue during the ethmoidectomy procedure.\""
+    },
+    {
+      "source": "\"BLEEDING\"",
+      "target": "\"HEMOSTATIC MATERIAL\"",
+      "weight": 8.0,
+      "description": "\"Hemostatic material is used to control bleeding in the surgical field.\""
+    },
+    {
+      "source": "\"ENDOSCOPE\"",
+      "target": "\"POSTERIOR ETHMOIDS\"",
+      "weight": 9.0,
+      "description": "\"The endoscope is used to visualize the posterior ethmoids.\""
+    },
+    {
+      "source": "\"ENDOSCOPE\"",
+      "target": "\"POSTERIOR ETHMOIDAL ARTERY\"",
+      "weight": 7.0,
+      "description": "\"The endoscope provides visualization of the posterior ethmoidal artery during the procedure.\""
+    },
+    {
+      "source": "\"CURETTE\"",
+      "target": "\"MIDDLE TURBINATE\"",
+      "weight": 8.0,
+      "description": "\"The curette is placed between the ethmoid bulla and the middle turbinate.\""
+    },
+    {
+      "source": "\"CURETTE\"",
+      "target": "\"DISSECTION OF ANTERIOR ETHMOID AIR CELLS\"",
+      "weight": 9.0,
+      "description": "\"The curette is used to dissect out the anterior ethmoid air cells.\""
+    },
+    {
+      "source": "\"CURETTE\"",
+      "target": "\"CLEAVAGE PLANE\"",
+      "weight": 9.0,
+      "description": "\"The curette is placed in the cleavage plane between the ethmoid bulla and middle turbinate.\""
+    },
+    {
+      "source": "\"BASAL LAMELLA\"",
+      "target": "\"MIDDLE TURBINATE\"",
+      "weight": 18.0,
+      "description": "\"The basal lamella is the horizontal attachment of the middle turbinate.\"<SEP>\"The basal lamella is the portion of the middle turbinate that curves laterally.\""
+    },
+    {
+      "source": "\"BASAL LAMELLA\"",
+      "target": "\"HORIZONTAL ATTACHMENT OF MIDDLE TURBINATE\"",
+      "weight": 9.0,
+      "description": "\"The basal lamella is the horizontal attachment of the middle turbinate.\""
+    },
+    {
+      "source": "\"BASAL LAMELLA\"",
+      "target": "\"DIVIDING LINE BETWEEN ANTERIOR AND POSTERIOR ETHMOID AIR CELLS\"",
+      "weight": 9.0,
+      "description": "\"The basal lamella serves as the dividing line between anterior and posterior ethmoid air cells.\""
+    },
+    {
+      "source": "\"BASAL LAMELLA\"",
+      "target": "\"POSTERIOR ETHMOID AIR CELLS\"",
+      "weight": 9.0,
+      "description": "\"The basal lamella separates the anterior ethmoid cells from the posterior ethmoid air cells.\""
+    },
+    {
+      "source": "\"SPHENOID OS\"",
+      "target": "\"SUPERIOR TURBINATE\"",
+      "weight": 8.0,
+      "description": "\"The sphenoid os is located medial to the partially resected superior turbinate.\""
+    },
+    {
+      "source": "\"ORBIT\"",
+      "target": "\"MIDDLE TURBINATE\"",
+      "weight": 6.0,
+      "description": "\"The orbit and middle turbinate are both labeled anatomical structures in the surgical field, providing spatial context.\""
+    },
+    {
+      "source": "\"SUPERIOR TURBINATE\"",
+      "target": "\"NATURAL SPHENOID OS\"",
+      "weight": 9.0,
+      "description": "\"Resection of the lower superior turbinate reveals the natural sphenoid os.\""
+    },
+    {
+      "source": "\"SUPERIOR TURBINATE\"",
+      "target": "\"PARTIAL RESECTION OF SUPERIOR TURBINATE\"",
+      "weight": 9.0,
+      "description": "\"Partial resection of the superior turbinate is performed to reveal the natural sphenoid os.\""
+    },
+    {
+      "source": "\"SUPERIOR TURBINATE\"",
+      "target": "\"MIDDLE TURBINATE\"",
+      "weight": 8.0,
+      "description": "\"The middle turbinate is displaced laterally to reveal the superior turbinate beneath it.\""
+    },
+    {
+      "source": "\"SUPERIOR TURBINATE\"",
+      "target": "\"SPHENOID OSTIUM\"",
+      "weight": 9.0,
+      "description": "\"The superior turbinate is pushed laterally to access the sphenoid ostium between the septum and turbinate.\""
+    },
+    {
+      "source": "\"SUPERIOR TURBINATE\"",
+      "target": "\"POSTERIOR ETHMOIDS\"",
+      "weight": 8.0,
+      "description": "\"The superior turbinate is located medial to the posterior ethmoids and serves as a landmark.\""
+    },
+    {
+      "source": "\"SUPERIOR TURBINATE\"",
+      "target": "\"POSTERIOR ETHMOIDAL ARTERY\"",
+      "weight": 9.0,
+      "description": "\"The superior turbinate is used as a landmark to confirm the identity of the posterior ethmoidal artery.\""
+    },
+    {
+      "source": "\"NATURAL SPHENOID OS\"",
+      "target": "\"PARTIAL RESECTION OF SUPERIOR TURBINATE\"",
+      "weight": 9.0,
+      "description": "\"Partial resection of the superior turbinate reveals the natural sphenoid os.\""
+    },
+    {
+      "source": "\"FREER\"",
+      "target": "\"INSERTION OF FREER\"",
+      "weight": 8.0,
+      "description": "\"The surgical step involves inserting the freer instrument into the nasal cavity.\""
+    },
+    {
+      "source": "\"SKULL BASE\"",
+      "target": "\"ETHMOID PARTITIONS\"",
+      "weight": 9.0,
+      "description": "\"Ethmoid partitions are dissected off the skull base using surgical instruments.\""
+    },
+    {
+      "source": "\"SKULL BASE\"",
+      "target": "\"WIDENING OF OPENING\"",
+      "weight": 8.0,
+      "description": "\"The opening is widened up to the skull base.\""
+    },
+    {
+      "source": "\"SKULL BASE\"",
+      "target": "\"DISSECTION OF ETHMOID PARTITIONS\"",
+      "weight": 9.0,
+      "description": "\"Ethmoid partitions are dissected off the skull base.\""
+    },
+    {
+      "source": "\"SKULL BASE\"",
+      "target": "\"ORBIT (LAMINA PAPYRACEA)\"",
+      "weight": 7.0,
+      "description": "\"Both the skull base and orbit (lamina papyracea) are critical anatomical boundaries labeled during the procedure.\""
+    },
+    {
+      "source": "\"SKULL BASE\"",
+      "target": "\"ANTERIOR ETHMOIDAL ARTERY\"",
+      "weight": 8.0,
+      "description": "\"The anterior ethmoidal artery is identified after removing mucosa over the skull base, indicating its location relative to this landmark.\""
+    },
+    {
+      "source": "\"SKULL BASE\"",
+      "target": "\"REMOVAL OF MUCOSA OVER THE SKULL BASE\"",
+      "weight": 9.0,
+      "description": "\"The step of removing mucosa is performed over the skull base.\""
+    },
+    {
+      "source": "\"ETHMOID PARTITIONS\"",
+      "target": "\"DISSECTION OF ETHMOID PARTITIONS\"",
+      "weight": 9.0,
+      "description": "\"The surgical step dissects ethmoid partitions off the skull base.\""
+    },
+    {
+      "source": "\"AXILLA OF THE MIDDLE TURBINATE\"",
+      "target": "\"MIDDLE TURBINATE\"",
+      "weight": 8.0,
+      "description": "\"The axilla of the middle turbinate is the attachment area of the middle turbinate, opened to improve superior visualization.\""
+    },
+    {
+      "source": "\"OPENING OF AXILLA OF MIDDLE TURBINATE\"",
+      "target": "\"MIDDLE TURBINATE\"",
+      "weight": 8.0,
+      "description": "\"The axilla of the middle turbinate is opened to better visualize superior structures.\""
+    },
+    {
+      "source": "\"REMOVAL OF POSTERIOR MIDDLE TURBINATE\"",
+      "target": "\"MIDDLE TURBINATE\"",
+      "weight": 9.0,
+      "description": "\"The posterior portion of the middle turbinate is removed.\""
+    },
+    {
+      "source": "\"TRANSITION ZONE\"",
+      "target": "\"SHADOW RECESS\"",
+      "weight": 9.0,
+      "description": "\"The shadow recess is another term for the transition zone.\""
+    },
+    {
+      "source": "\"SUPERORBITAL ETHMOID\"",
+      "target": "\"POSTERIOR BONY WALL\"",
+      "weight": 8.0,
+      "description": "\"The posterior bony wall is located between the superorbital ethmoid and the frontal recess.\""
+    },
+    {
+      "source": "\"POSTERIOR BONY WALL\"",
+      "target": "\"FRONTAL KERRISON PUNCH\"",
+      "weight": 9.0,
+      "description": "\"The frontal Kerrison punch is used to open the posterior bony wall between the superorbital ethmoid and the frontal recess.\""
+    },
+    {
+      "source": "\"POSTERIOR BONY WALL\"",
+      "target": "\"OPENING THE POSTERIOR BONY WALL\"",
+      "weight": 9.0,
+      "description": "\"The surgical step involves opening the posterior bony wall to enlarge the frontal recess.\""
+    },
+    {
+      "source": "\"SOFT TISSUES\"",
+      "target": "\"RIGHT NASAL CAVITY\"",
+      "weight": 6.0,
+      "description": "\"Soft tissues are visible within the right nasal cavity during endoscopic examination.\""
+    },
+    {
+      "source": "\"RIGHT NASAL CAVITY\"",
+      "target": "\"MIDDLE TURBINATE\"",
+      "weight": 8.0,
+      "description": "\"The middle turbinate is located within the right nasal cavity and is visualized endoscopically.\""
+    },
+    {
+      "source": "\"MAXILLARY OSTIUM\"",
+      "target": "\"REMOVAL OF INFERIOR UNCINATE PROCESS\"",
+      "weight": 8.0,
+      "description": "\"Removal of the inferior uncinate process allows for a good look at the maxillary ostium.\""
+    },
+    {
+      "source": "\"PLEDGET WITH CONCENTRATED EPINEPHRINE\"",
+      "target": "\"HEMOSTASIS\"",
+      "weight": 9.0,
+      "description": "\"The pledget with concentrated epinephrine is placed to achieve hemostasis.\""
+    },
+    {
+      "source": "\"MAXILLARY PROBE\"",
+      "target": "\"LATERAL WALL OF MAXILLARY SINUS\"",
+      "weight": 9.0,
+      "description": "\"The maxillary probe is used to reflect the lateral wall of the maxillary sinus.\""
+    },
+    {
+      "source": "\"DOWNBITER\"",
+      "target": "\"RESECTION WITH DOWNBITER\"",
+      "weight": 9.0,
+      "description": "\"The downbiter performs the resection of the maxillary sinus component.\""
+    },
+    {
+      "source": "\"DOWNBITER\"",
+      "target": "\"COMPONENT\"",
+      "weight": 8.0,
+      "description": "\"The downbiter is used to resect the component of the maxillary sinus.\""
+    },
+    {
+      "source": "\"ZERO DEGREE SCOPE\"",
+      "target": "\"NEW VIEW WITH ZERO DEGREE SCOPE\"",
+      "weight": 9.0,
+      "description": "\"The zero degree scope provides the new view after uncinate removal.\""
+    },
+    {
+      "source": "\"ZERO DEGREE SCOPE\"",
+      "target": "\"SINUS CAVITY\"",
+      "weight": 8.0,
+      "description": "\"The zero degree scope is used to visualize the sinus cavity after a thorough clean out.\""
+    },
+    {
+      "source": "\"POSTERIOR TABLE\"",
+      "target": "\"FRONTAL SINUSATOMY\"",
+      "weight": 7.0,
+      "description": "\"The mucosa overlying the posterior table is visible in relation to the frontal sinusatomy.\""
+    },
+    {
+      "source": "\"POSTERIOR TABLE\"",
+      "target": "\"CIRCULAR INCISION\"",
+      "weight": 8.0,
+      "description": "\"A circular incision is highlighted on the posterior table.\""
+    },
+    {
+      "source": "\"FRONTAL KERRISON\"",
+      "target": "\"EXPANDING THE SINUS\"",
+      "weight": 9.0,
+      "description": "\"Expanding the sinus is performed using the frontal Kerrison punch.\""
+    },
+    {
+      "source": "\"SINUS CAVITY\"",
+      "target": "\"CLEAN OUT\"",
+      "weight": 8.0,
+      "description": "\"A thorough clean out is performed on the sinus cavity.\""
+    },
+    {
+      "source": "\"MIDDLE MEATAL SPACER\"",
+      "target": "\"MIDDLE TURBINATE\"",
+      "weight": 9.0,
+      "description": "\"The middle meatal spacer is placed to prevent scarring of the middle turbinate to the lateral nasal wall.\""
+    },
+    {
+      "source": "\"MIDDLE MEATAL SPACER\"",
+      "target": "\"HEMOSTATIC MATERIAL\"",
+      "weight": 9.0,
+      "description": "\"The middle meatal spacer is made of hemostatic material.\""
+    },
+    {
+      "source": "\"MIDDLE MEATAL SPACER\"",
+      "target": "\"ADHESIONS\"",
+      "weight": 9.0,
+      "description": "\"The middle meatal spacer prevents adhesions between the middle turbinate and lateral nasal wall.\""
+    },
+    {
+      "source": "\"TURBINATE BONES\"",
+      "target": "\"SURGICAL TOOL\"",
+      "weight": 6.0,
+      "description": "\"The surgical tool is positioned near the turbinate bones for manipulation.\""
+    },
+    {
+      "source": "\"SPHENOID OSTIUM\"",
+      "target": "\"SUPERIOR TURBINATE RECESS\"",
+      "weight": 8.0,
+      "description": "\"The sphenoid ostium is located in the superior turbinate recess.\""
+    },
+    {
+      "source": "\"SPHENOID OSTIUM\"",
+      "target": "\"FUNCTIONAL ENDOSCOPIC SINUS SURGERY\"",
+      "weight": 9.0,
+      "description": "\"During FESS, the sphenoid ostium is enlarged to improve sphenoid sinus drainage.\""
+    },
+    {
+      "source": "\"SPHENOID OSTIUM\"",
+      "target": "\"SPHENOETHMOIDAL RECESS\"",
+      "weight": 9.0,
+      "description": "\"The sphenoid ostium is located within the sphenoethmoidal recess, which is used to identify the opening of the sphenoid sinus.\""
+    },
+    {
+      "source": "\"SPHENOID OSTIUM\"",
+      "target": "\"ANTERIOR WALL OF THE SPHENOID SINUS\"",
+      "weight": 9.0,
+      "description": "\"The sphenoid ostium is an opening on the anterior wall of the sphenoid sinus, confirming the location of the sinus.\""
+    },
+    {
+      "source": "\"SUPERIOR TURBINATE RECESS\"",
+      "target": "\"POSTERIOR ETHMOID\"",
+      "weight": 8.0,
+      "description": "\"The posterior ethmoid drains into the superior turbinate recess.\""
+    },
+    {
+      "source": "\"POSTERIOR ETHMOID\"",
+      "target": "\"POSTERIOR ETHMOIDAL ARTERY\"",
+      "weight": 8.0,
+      "description": "\"The posterior ethmoidal artery supplies the posterior ethmoid region.\""
+    },
+    {
+      "source": "\"POSTERIOR ETHMOID\"",
+      "target": "\"ORBITAL APEX\"",
+      "weight": 7.0,
+      "description": "\"The posterior ethmoid is located near the orbital apex.\""
+    },
+    {
+      "source": "\"GROUND LAMELLA\"",
+      "target": "\"MIDDLE TURBINATE\"",
+      "weight": 26.0,
+      "description": "\"The ground lamella is a continuation of the middle turbinate.\"<SEP>\"The ground lamella is the basal lamella of the middle turbinate, separating anterior and posterior ethmoids.\"<SEP>\"The middle turbinate turns inside to form the ground lamella, establishing an anatomical continuity between these structures.\""
+    },
+    {
+      "source": "\"GROUND LAMELLA\"",
+      "target": "\"VERTICAL PORTION\"",
+      "weight": 9.0,
+      "description": "\"The ground lamella is divided into the vertical portion and the horizontal portion.\""
+    },
+    {
+      "source": "\"GROUND LAMELLA\"",
+      "target": "\"HORIZONTAL PORTION\"",
+      "weight": 9.0,
+      "description": "\"The ground lamella is divided into the vertical portion and the horizontal portion.\""
+    },
+    {
+      "source": "\"GROUND LAMELLA\"",
+      "target": "\"POSTERIOR ETHMOIDS\"",
+      "weight": 16.0,
+      "description": "\"The ground lamella is the boundary separating the anterior ethmoids from the posterior ethmoids; excising it exposes the posterior ethmoids.\"<SEP>\"The ground lamella separates the anterior and posterior ethmoids; its removal allows access to the posterior ethmoids.\""
+    },
+    {
+      "source": "\"GROUND LAMELLA\"",
+      "target": "\"CUTTING FORCEPS\"",
+      "weight": 9.0,
+      "description": "\"Cutting forceps are used to excise the ground lamella during the surgical step.\""
+    },
+    {
+      "source": "\"GROUND LAMELLA\"",
+      "target": "\"POWERED INSTRUMENT\"",
+      "weight": 8.0,
+      "description": "\"A powered instrument is an alternative tool mentioned for excising the ground lamella.\""
+    },
+    {
+      "source": "\"VERTICAL PORTION\"",
+      "target": "\"HORIZONTAL PORTION\"",
+      "weight": 8.0,
+      "description": "\"The junction of the vertical and horizontal portions of the ground lamella is the optimal entry point into the posterior ethmoids.\""
+    },
+    {
+      "source": "\"POSTERIOR ETHMOIDS\"",
+      "target": "\"EXCISION OF GROUND LAMELLA\"",
+      "weight": 9.0,
+      "description": "\"Excision of the ground lamella is performed to expose and access the posterior ethmoids.\""
+    },
+    {
+      "source": "\"POSTERIOR ETHMOIDS\"",
+      "target": "\"AIR CELL\"",
+      "weight": 9.0,
+      "description": "\"The presence of an air cell at the back confirms the location of the posterior ethmoids and guides safe entry.\""
+    },
+    {
+      "source": "\"POSTERIOR ETHMOIDS\"",
+      "target": "\"SINGLE AIR CELL\"",
+      "weight": 8.0,
+      "description": "\"A single air cell is identified within the posterior ethmoids as a navigational marker.\""
+    },
+    {
+      "source": "\"POSTERIOR ETHMOIDS\"",
+      "target": "\"POSTERIOR ETHMOIDAL ARTERY\"",
+      "weight": 7.0,
+      "description": "\"The posterior ethmoidal artery is visualized within the posterior ethmoid region.\""
+    },
+    {
+      "source": "\"POSTERIOR ETHMOIDS\"",
+      "target": "\"ETHMOID SINUSES\"",
+      "weight": 9.0,
+      "description": "\"The posterior ethmoids are part of the ethmoid sinuses.\""
+    },
+    {
+      "source": "\"POSTERIOR ETHMOIDS\"",
+      "target": "\"ANTERIOR WALL OF THE SPHENOID SINUS\"",
+      "weight": 9.0,
+      "description": "\"The posterior ethmoids are located anterior to the sphenoid sinus, and their posterior boundary forms the anterior wall of the sphenoid sinus.\""
+    },
+    {
+      "source": "\"POSTERIOR ETHMOIDS\"",
+      "target": "\"LOOKING INTO SPHENOID SINUS THROUGH POSTERIOR ETHMOIDS\"",
+      "weight": 8.0,
+      "description": "\"The surgical step visualizes the sphenoid sinus through the posterior ethmoids.\""
+    },
+    {
+      "source": "\"POSTERIOR ETHMOIDAL ARTERY\"",
+      "target": "\"SPHENOID ANTERIOR WALL\"",
+      "weight": 9.0,
+      "description": "\"The posterior ethmoidal artery is located just in front of the sphenoid anterior wall.\""
+    },
+    {
+      "source": "\"POSTERIOR ETHMOIDAL ARTERY\"",
+      "target": "\"TURBINATE\"",
+      "weight": 8.0,
+      "description": "\"The posterior ethmoidal artery gives off multiple branches that enter the turbinate bones.\""
+    },
+    {
+      "source": "\"POSTERIOR ETHMOIDAL ARTERY\"",
+      "target": "\"ANTERIOR ETHMOIDAL ARTERY\"",
+      "weight": 8.0,
+      "description": "\"The anterior and posterior ethmoidal arteries are both arterial structures running from medial to lateral, with the posterior artery located near the orbital apex.\""
+    },
+    {
+      "source": "\"POSTERIOR ETHMOIDAL ARTERY\"",
+      "target": "\"ORBITAL APEX\"",
+      "weight": 9.0,
+      "description": "\"The posterior ethmoidal artery runs along the orbital apex, making the orbital apex an important anatomical landmark for identifying this artery.\""
+    },
+    {
+      "source": "\"SPHENOID ANTERIOR WALL\"",
+      "target": "\"GATE NUMBER FOUR\"",
+      "weight": 9.0,
+      "description": "\"Gate number four refers to the anterior wall of the sphenoid sinus.\""
+    },
+    {
+      "source": "\"POSTERIOR WALL OF THE FRONTAL SINUS\"",
+      "target": "\"FRONTAL LOBE\"",
+      "weight": 7.0,
+      "description": "\"The posterior wall of the frontal sinus bulges due to the frontal lobe behind it, as described in the transcript.\""
+    },
+    {
+      "source": "\"POSTERIOR WALL OF THE FRONTAL SINUS\"",
+      "target": "\"BULGE OF THE POSTERIOR WALL\"",
+      "weight": 9.0,
+      "description": "\"The bulge is a characteristic feature of the posterior wall of the frontal sinus.\""
+    },
+    {
+      "source": "\"ANTERIOR ETHMOIDAL ARTERY\"",
+      "target": "\"REMOVAL OF MUCOSA OVER THE SKULL BASE\"",
+      "weight": 8.0,
+      "description": "\"Removing mucosa over the skull base enables identification of the anterior ethmoidal artery.\""
+    },
+    {
+      "source": "\"ANTERIOR ETHMOIDAL ARTERY\"",
+      "target": "\"DISSECTION\"",
+      "weight": 7.0,
+      "description": "\"Dissection is performed to visualize the anterior ethmoidal artery.\""
+    },
+    {
+      "source": "\"ANTERIOR ETHMOIDAL ARTERY\"",
+      "target": "\"MIDDLE ETHMOIDAL ARTERY\"",
+      "weight": 7.0,
+      "description": "\"The anterior and middle ethmoidal arteries are both branches of the ophthalmic artery and are visualized in relation to each other during the procedure.\""
+    },
+    {
+      "source": "\"ANTERIOR ETHMOIDAL ARTERY\"",
+      "target": "\"MIDDLE TURBINATE\"",
+      "weight": 8.0,
+      "description": "\"The anterior ethmoidal artery branches into the middle turbinate, indicating a direct vascular supply relationship.\""
+    },
+    {
+      "source": "\"FRONTAL SINUS OSTIUM\"",
+      "target": "\"CLEANING UP THE FRONTAL SINUS OSTIUM\"",
+      "weight": 9.0,
+      "description": "\"The step of cleaning up directly targets the frontal sinus ostium.\""
+    },
+    {
+      "source": "\"TRANSETHMOIDAL SPHENOIDOTOMY\"",
+      "target": "\"BONE REMOVAL FROM TURBINATE\"",
+      "weight": 8.0,
+      "description": "\"The transethmoidal sphenoidotomy involves removing a piece of bone from the turbinate as part of the approach.\""
+    },
+    {
+      "source": "\"ANTERIOR WALL OF SPHENOID SINUS\"",
+      "target": "\"POSTULATE AND MODEL ARTERY\"",
+      "weight": 9.0,
+      "description": "\"The postulate and model artery is located a few millimeters anterior to the anterior wall of the sphenoid sinus.\""
+    },
+    {
+      "source": "\"ANTERIOR WALL OF SPHENOID SINUS\"",
+      "target": "\"BREAKING OPEN ANTERIOR WALL OF SPHENOID SINUS\"",
+      "weight": 9.0,
+      "description": "\"The surgical step of breaking open the anterior wall accesses the sphenoid sinus.\""
+    },
+    {
+      "source": "\"ANTERIOR WALL OF SPHENOID SINUS\"",
+      "target": "\"SPHENOPALATINE ARTERY\"",
+      "weight": 8.0,
+      "description": "\"The sphenopalatine artery is located near the anterior wall of the sphenoid sinus.\""
+    },
+    {
+      "source": "\"PITUITARY GLAND\"",
+      "target": "\"SPHINOCINUS\"",
+      "weight": 8.0,
+      "description": "\"The pituitary gland is located in the sphinocinus (sphenoid sinus), confirming the sinus identity.\""
+    },
+    {
+      "source": "\"PITUITARY GLAND\"",
+      "target": "\"VISUALIZING THE PITUITARY GLAND\"",
+      "weight": 9.0,
+      "description": "\"The surgical step visualizes the pituitary gland through the sphenoid sinus.\""
+    },
+    {
+      "source": "\"PITUITARY GLAND\"",
+      "target": "\"TRANSSPHENOIDAL VIEW\"",
+      "weight": 9.0,
+      "description": "\"The transsphenoidal view allows visualization of the pituitary gland.\""
+    },
+    {
+      "source": "\"PITUITARY GLAND\"",
+      "target": "\"SELLA TURCICA\"",
+      "weight": 9.0,
+      "description": "\"The sella turcica houses the pituitary gland.\""
+    },
+    {
+      "source": "\"GOING MEDIAL TO MIDDLE TURBINATE\"",
+      "target": "\"MIDDLE TURBINATE\"",
+      "weight": 8.0,
+      "description": "\"The surgical step navigates medial to the middle turbinate to confirm the approach.\""
+    },
+    {
+      "source": "\"CONFIRMING STRUCTURES BY GOING MEDIAL TO MIDDLE TURBINATE\"",
+      "target": "\"MIDDLE TURBINATE\"",
+      "weight": 8.0,
+      "description": "\"The surgical step navigates medial to the middle turbinate to confirm structures.\""
+    }
+  ]
+}
