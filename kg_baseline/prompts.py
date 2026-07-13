@@ -1,58 +1,32 @@
-######################### RUN 002 #########################
-
-"""
-prompts.py — extraction specification for RUN 2 (event-centric graph).
-
-Change from baseline: relations (free-text instrument->anatomy) are replaced by
-structured EVENT nodes. The model now emits two lists:
-  - entities : same as baseline (anatomy / instrument / ... , canonical, merged)
-  - events   : one per distinct surgical action, with structured slots
-
-The model does NOT emit edges. Edges are derived in code (extract.py / merge.py):
-  INVOLVES : event -> instrument        (from the event's "instrument" slot)
-  ACTS_ON  : event -> target anatomy    (from the event's "target" slot)
-  EXPOSES  : event -> exposed anatomy   (from the event's "exposes" slot, if named)
-  PRECEDES : event -> event             (derived by sorting events on time)
-
-Why derive instead of ask: PRECEDES comes free from window timestamps (reliable),
-and INVOLVES/ACTS_ON/EXPOSES fall out of the event's own fields. Only EXPOSES needs
-model judgment (was a NAMED structure revealed?), so it's the one to watch.
-"""
-
-# ---------------------------------------------------------------------------
-# Entity types (surgical_step removed — it was near-empty in baseline).
-# ---------------------------------------------------------------------------
-ENTITY_TYPES = ["anatomy", "instrument", "anatomical_landmark", "procedure"]
-
-# Edge types are built in CODE, not emitted by the model. Listed here for reference.
-EDGE_TYPES = ["INVOLVES", "ACTS_ON", "EXPOSES", "PRECEDES"]
-
-# Suggested action verbs (OPEN for run 2 — the model picks the closest natural verb;
-# we inspect whether these come out consistent, and only CLOSE the set in a later run
-# if fragmentation shows up. Not enforced.)
-ACTION_TYPES = [
-    "contact", "probe", "press", "separate", "perforate", "incise", "cut",
-    "grasp", "mobilize", "bisect", "resect", "remove", "retract", "suction",
-    "clear", "inspect", "navigate", "expose",
-]
-# is this a complete list? do we need action types?
+######################### RUN PROXY_Corrected #########################
 
 
+# Entity types 
+ENTITY_TYPES = ["anatomy", "instrument"]
+
+# Edge types are built in CODE. Listed here for reference.
+EDGE_TYPES = ["INVOLVES", "ACTS_ON", "EXPOSES"]
 EXTRACTION_INSTRUCTION = f"""You are a clinical expert in Functional Endoscopic Sinus Surgery (FESS).
 You will be given a chunk of text describing several short clips from a FESS video.
-Each clip is marked with its window number, like [w40].
+Each clip is marked with its window number, like [w40]. The text is already written
+in clean, canonical clinical language.
 Extract a knowledge graph of ENTITIES and EVENTS.
 
 ENTITY TYPES — use ONLY these types:
 {", ".join(ENTITY_TYPES)}
 
 WHAT IS AN ENTITY:
-- A concrete surgical object: an instrument, an anatomical structure, an
-  anatomical landmark, or a named procedure.
+- A concrete surgical object: an instrument, or an anatomical structure.
 - Do NOT create entities for actions or effects ("perforation", "bleeding").
   Actions are captured as EVENTS, not entities.
 - Do NOT create entities for vague phrases ("tissue", "underlying structures",
   "the area", "the field"). Only concrete, named structures.
+
+NAMING (critical — entities are merged by exact name match):
+- The text is already canonicalized. Use each instrument and anatomy name EXACTLY
+  as it appears in the text — do not paraphrase, abbreviate, pluralize, or rename it.
+- Copy the name verbatim (lowercased). The same structure must get the identical
+  name every time it appears.
 
 WHAT IS AN EVENT:
 - One distinct surgical action: an instrument doing something to an anatomical
@@ -62,35 +36,29 @@ WHAT IS AN EVENT:
 - Each event has these fields:
     "window_idx" : the window number where the action occurs. Copy it from the
                    [wN] marker in the input. Use ONLY window numbers shown.
-    "action_type": a short verb for the action (e.g. perforate, grasp, bisect,
-                   inspect). Use the single most accurate verb.
-    "instrument" : the canonical name of the instrument performing the action.
+    "action_type": a short verb naming the action (e.g. perforate, grasp, bisect,
+                   incise, mobilize, inspect). Choose the single most accurate verb
+                   for what the instrument did. You are not limited to these examples.
+    "instrument" : the instrument performing the action, named exactly as in the text.
                    MUST appear in "entities".
-    "target"     : the canonical name of the anatomy primarily acted on.
+    "target"     : the anatomy primarily acted on, named exactly as in the text.
                    MUST appear in "entities".
-    "exposes"    : the canonical name of a NAMED structure newly revealed by this
-                   action, if any. MUST appear in "entities". If nothing named is
-                   revealed (e.g. only "underlying structures"), use null.
-    "description": free text, past tense — what the instrument did and the effect.
-
-CANONICAL NAMING (critical — entities are merged by exact name match):
-- Full clinical name as a FESS expert would write it; lowercase; singular;
-  no leading articles. Expand vague phrasing to the named structure
-  ("uncinate tissue" -> "uncinate process"). Same structure = same name every time.
+    "exposes"    : a NAMED anatomical structure newly revealed by this action, named
+                   exactly as in the text. MUST appear in "entities". Only fill this
+                   when the text explicitly names the revealed structure; otherwise
+                   use null. Most events will have null here — do not guess.
 
 OUTPUT FORMAT — return a single valid JSON object, nothing else (no preamble,
 no markdown fences):
 {{
   "entities": [
-    {{"name": "<canonical name>", "type": "<entity type>", "description": "<what this entity is>"}}
+    {{"name": "<name exactly as in text>", "type": "<entity type>"}}
   ],
   "events": [
-    {{"window_idx": <int>, "action_type": "<verb>", "instrument": "<entity name>", "target": "<entity name>", "exposes": <"<entity name>" or null>, "description": "<what happened>"}}
+    {{"window_idx": <int>, "action_type": "<verb>", "instrument": "<entity name>", "target": "<entity name>", "exposes": <"<entity name>" or null>}}
   ]
 }}
-Every name in an event's "instrument", "target", or "exposes" MUST also appear in "entities".
-The "description" of an entity defines what it IS in general, not one clip."""
-
+Every name in an event's "instrument", "target", or "exposes" MUST also appear in "entities"."""
 
 # ---------------------------------------------------------------------------
 # Few-shots from real Mar_05 windows.
@@ -101,61 +69,59 @@ The "description" of an entity defines what it IS in general, not one clip."""
 # ---------------------------------------------------------------------------
 FEW_SHOTS = """EXAMPLE 1
 INPUT:
-[w40] The sickle knife was used to perforate the bulla lamella, with the instrument moving medially and making contact with the tissue. The tissue separated and bled slightly, creating a deeper cavity and revealing more of the nasal anatomy beneath as the bulla was entered.
+[w15] A pediatric backbiter was used on the uncinate process. The instrument engaged the uncinate and began the bisection described in the operative note.
 OUTPUT:
 {
   "entities": [
-    {"name": "sickle knife", "type": "instrument", "description": "Sharp endoscopic knife used to perforate and incise tissue."},
-    {"name": "bulla lamella", "type": "anatomy", "description": "Ethmoid air-cell wall; perforated and entered during dissection."}
+    {"name": "pediatric backbiter", "type": "instrument"},
+    {"name": "uncinate process", "type": "anatomy"}
   ],
   "events": [
-    {"window_idx": 40, "action_type": "perforate", "instrument": "sickle knife", "target": "bulla lamella", "exposes": null, "description": "perforated the bulla lamella, moving medially to enter it and open a deeper cavity, causing slight bleeding"}
+    {"window_idx": 15, "action_type": "bisect", "instrument": "pediatric backbiter", "target": "uncinate process", "exposes": null}
   ]
 }
 
 EXAMPLE 2
 INPUT:
-[w18] Microdebrider forceps were introduced to grasp and slightly move a piece of uncinate tissue. The instrument applied gentle pressure, causing the tissue to fold and separate slightly as it was moved medially toward the center of the nasal cavity.
+[w17] The superior portion of the uncinate process was mobilized after bisection. MicroFrance forceps were used to grasp and outfracture the superior uncinate away from the lateral nasal wall.
 OUTPUT:
 {
   "entities": [
-    {"name": "microdebrider forceps", "type": "instrument", "description": "Powered cutting-and-suction instrument with a grasping forceps tip, used to grasp, move, and resect tissue."},
-    {"name": "uncinate process", "type": "anatomy", "description": "Thin curved bone of the lateral nasal wall; grasped and mobilized during uncinectomy."}
+    {"name": "microfrance forceps", "type": "instrument"},
+    {"name": "uncinate process", "type": "anatomy"},
+    {"name": "lateral nasal wall", "type": "anatomy"}
   ],
   "events": [
-    {"window_idx": 18, "action_type": "grasp", "instrument": "microdebrider forceps", "target": "uncinate process", "exposes": null, "description": "grasped and moved the uncinate process medially, applying gentle pressure to fold and separate the tissue"}
+    {"window_idx": 17, "action_type": "mobilize", "instrument": "microfrance forceps", "target": "uncinate process", "exposes": null}
   ]
 }
 
 EXAMPLE 3
 INPUT:
-[w10] The endoscope was maneuvered within the nasal cavity, moving slightly laterally and advancing deeper into the nasal passage. The tip gently pressed against the tissue, causing slight separation and folding of the nasal mucosa, revealing more of the underlying structures.
+[w1] Under 0-degree endoscopic visualization, the nasal cavity was further inspected. Mild contact with the mucosa produced limited bleeding while the surgeon improved exposure of the operative corridor.
 OUTPUT:
 {
   "entities": [
-    {"name": "endoscope", "type": "instrument", "description": "Rigid endoscope providing the intranasal visual field; used to inspect and navigate the cavity."},
-    {"name": "nasal cavity", "type": "anatomy", "description": "The intranasal space navigated and inspected during the procedure."}
+    {"name": "0-degree endoscope", "type": "instrument"},
+    {"name": "nasal cavity", "type": "anatomy"}
   ],
   "events": [
-    {"window_idx": 10, "action_type": "inspect", "instrument": "endoscope", "target": "nasal cavity", "exposes": null, "description": "maneuvered within the nasal cavity, advancing deeper and laterally to inspect the field"}
+    {"window_idx": 1, "action_type": "inspect", "instrument": "0-degree endoscope", "target": "nasal cavity", "exposes": null}
   ]
 }
 
 EXAMPLE 4
 INPUT:
-[w13] The pediatric backbiter was used to bisect the uncinate process, moving slightly laterally along the inner surface. As the instrument engaged the tissue, some bleeding and tissue separation occurred, revealing more of the underlying lateral nasal wall structures.
+[w5] The basal lamella of the middle turbinate was further mobilized in the coronal plane. Tissue was displaced and separated to expose deeper nasal structures.
 OUTPUT:
 {
   "entities": [
-    {"name": "pediatric backbiter", "type": "instrument", "description": "Backward-cutting forceps used to bisect and incise the uncinate process."},
-    {"name": "uncinate process", "type": "anatomy", "description": "Thin curved bone of the lateral nasal wall; bisected during uncinectomy."},
-    {"name": "lateral nasal wall", "type": "anatomy", "description": "Lateral bony wall of the nasal cavity, exposed as the uncinate is taken down."}
+    {"name": "basal lamella of the middle turbinate", "type": "anatomy"}
   ],
   "events": [
-    {"window_idx": 13, "action_type": "bisect", "instrument": "pediatric backbiter", "target": "uncinate process", "exposes": "lateral nasal wall", "description": "bisected the uncinate process, moving laterally along its inner surface, causing slight bleeding and exposing the lateral nasal wall behind it"}
+    {"window_idx": 5, "action_type": "mobilize", "instrument": null, "target": "basal lamella of the middle turbinate", "exposes": null}
   ]
 }"""
-
 
 def build_extraction_prompt(chunk_text):
     return f"""{FEW_SHOTS}
@@ -163,6 +129,221 @@ def build_extraction_prompt(chunk_text):
 NOW EXTRACT FROM THIS INPUT:
 {chunk_text}
 OUTPUT:"""
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# ######################### RUN 002 #########################
+
+# """
+# prompts.py — extraction specification for RUN 2 (event-centric graph).
+
+# Change from baseline: relations (free-text instrument->anatomy) are replaced by
+# structured EVENT nodes. The model now emits two lists:
+#   - entities : same as baseline (anatomy / instrument / ... , canonical, merged)
+#   - events   : one per distinct surgical action, with structured slots
+
+# The model does NOT emit edges. Edges are derived in code (extract.py / merge.py):
+#   INVOLVES : event -> instrument        (from the event's "instrument" slot)
+#   ACTS_ON  : event -> target anatomy    (from the event's "target" slot)
+#   EXPOSES  : event -> exposed anatomy   (from the event's "exposes" slot, if named)
+#   PRECEDES : event -> event             (derived by sorting events on time)
+
+# Why derive instead of ask: PRECEDES comes free from window timestamps (reliable),
+# and INVOLVES/ACTS_ON/EXPOSES fall out of the event's own fields. Only EXPOSES needs
+# model judgment (was a NAMED structure revealed?), so it's the one to watch.
+# """
+
+# # ---------------------------------------------------------------------------
+# # Entity types (surgical_step removed — it was near-empty in baseline).
+# # ---------------------------------------------------------------------------
+# ENTITY_TYPES = ["anatomy", "instrument", "anatomical_landmark", "procedure"]
+
+# # Edge types are built in CODE, not emitted by the model. Listed here for reference.
+# EDGE_TYPES = ["INVOLVES", "ACTS_ON", "EXPOSES", "PRECEDES"]
+
+# # Suggested action verbs (OPEN for run 2 — the model picks the closest natural verb;
+# # we inspect whether these come out consistent, and only CLOSE the set in a later run
+# # if fragmentation shows up. Not enforced.)
+# ACTION_TYPES = [
+#     "contact", "probe", "press", "separate", "perforate", "incise", "cut",
+#     "grasp", "mobilize", "bisect", "resect", "remove", "retract", "suction",
+#     "clear", "inspect", "navigate", "expose",
+# ]
+# # is this a complete list? do we need action types?
+
+
+# EXTRACTION_INSTRUCTION = f"""You are a clinical expert in Functional Endoscopic Sinus Surgery (FESS).
+# You will be given a chunk of text describing several short clips from a FESS video.
+# Each clip is marked with its window number, like [w40].
+# Extract a knowledge graph of ENTITIES and EVENTS.
+
+# ENTITY TYPES — use ONLY these types:
+# {", ".join(ENTITY_TYPES)}
+
+# WHAT IS AN ENTITY:
+# - A concrete surgical object: an instrument, an anatomical structure, an
+#   anatomical landmark, or a named procedure.
+# - Do NOT create entities for actions or effects ("perforation", "bleeding").
+#   Actions are captured as EVENTS, not entities.
+# - Do NOT create entities for vague phrases ("tissue", "underlying structures",
+#   "the area", "the field"). Only concrete, named structures.
+
+# WHAT IS AN EVENT:
+# - One distinct surgical action: an instrument doing something to an anatomical
+#   structure at a moment in time.
+# - Create ONE event per distinct action. If an instrument performs two distinct
+#   actions, create two events.
+# - Each event has these fields:
+#     "window_idx" : the window number where the action occurs. Copy it from the
+#                    [wN] marker in the input. Use ONLY window numbers shown.
+#     "action_type": a short verb for the action (e.g. perforate, grasp, bisect,
+#                    inspect). Use the single most accurate verb.
+#     "instrument" : the canonical name of the instrument performing the action.
+#                    MUST appear in "entities".
+#     "target"     : the canonical name of the anatomy primarily acted on.
+#                    MUST appear in "entities".
+#     "exposes"    : the canonical name of a NAMED structure newly revealed by this
+#                    action, if any. MUST appear in "entities". If nothing named is
+#                    revealed (e.g. only "underlying structures"), use null.
+#     "description": free text, past tense — what the instrument did and the effect.
+
+# CANONICAL NAMING (critical — entities are merged by exact name match):
+# - Full clinical name as a FESS expert would write it; lowercase; singular;
+#   no leading articles. Expand vague phrasing to the named structure
+#   ("uncinate tissue" -> "uncinate process"). Same structure = same name every time.
+
+# OUTPUT FORMAT — return a single valid JSON object, nothing else (no preamble,
+# no markdown fences):
+# {{
+#   "entities": [
+#     {{"name": "<canonical name>", "type": "<entity type>", "description": "<what this entity is>"}}
+#   ],
+#   "events": [
+#     {{"window_idx": <int>, "action_type": "<verb>", "instrument": "<entity name>", "target": "<entity name>", "exposes": <"<entity name>" or null>, "description": "<what happened>"}}
+#   ]
+# }}
+# Every name in an event's "instrument", "target", or "exposes" MUST also appear in "entities".
+# The "description" of an entity defines what it IS in general, not one clip."""
+
+
+# # ---------------------------------------------------------------------------
+# # Few-shots from real Mar_05 windows.
+# #   A = w40  perforate, exposes null (revealed area is unnamed)
+# #   B = w18  grasp,     exposes null
+# #   C = w10  inspect,   exposes null (generic navigation — minimal, teaches restraint)
+# #   D = w13  bisect,    exposes "lateral nasal wall"  (the one positive EXPOSES)
+# # ---------------------------------------------------------------------------
+# FEW_SHOTS = """EXAMPLE 1
+# INPUT:
+# [w40] The sickle knife was used to perforate the bulla lamella, with the instrument moving medially and making contact with the tissue. The tissue separated and bled slightly, creating a deeper cavity and revealing more of the nasal anatomy beneath as the bulla was entered.
+# OUTPUT:
+# {
+#   "entities": [
+#     {"name": "sickle knife", "type": "instrument", "description": "Sharp endoscopic knife used to perforate and incise tissue."},
+#     {"name": "bulla lamella", "type": "anatomy", "description": "Ethmoid air-cell wall; perforated and entered during dissection."}
+#   ],
+#   "events": [
+#     {"window_idx": 40, "action_type": "perforate", "instrument": "sickle knife", "target": "bulla lamella", "exposes": null, "description": "perforated the bulla lamella, moving medially to enter it and open a deeper cavity, causing slight bleeding"}
+#   ]
+# }
+
+# EXAMPLE 2
+# INPUT:
+# [w18] Microdebrider forceps were introduced to grasp and slightly move a piece of uncinate tissue. The instrument applied gentle pressure, causing the tissue to fold and separate slightly as it was moved medially toward the center of the nasal cavity.
+# OUTPUT:
+# {
+#   "entities": [
+#     {"name": "microdebrider forceps", "type": "instrument", "description": "Powered cutting-and-suction instrument with a grasping forceps tip, used to grasp, move, and resect tissue."},
+#     {"name": "uncinate process", "type": "anatomy", "description": "Thin curved bone of the lateral nasal wall; grasped and mobilized during uncinectomy."}
+#   ],
+#   "events": [
+#     {"window_idx": 18, "action_type": "grasp", "instrument": "microdebrider forceps", "target": "uncinate process", "exposes": null, "description": "grasped and moved the uncinate process medially, applying gentle pressure to fold and separate the tissue"}
+#   ]
+# }
+
+# EXAMPLE 3
+# INPUT:
+# [w10] The endoscope was maneuvered within the nasal cavity, moving slightly laterally and advancing deeper into the nasal passage. The tip gently pressed against the tissue, causing slight separation and folding of the nasal mucosa, revealing more of the underlying structures.
+# OUTPUT:
+# {
+#   "entities": [
+#     {"name": "endoscope", "type": "instrument", "description": "Rigid endoscope providing the intranasal visual field; used to inspect and navigate the cavity."},
+#     {"name": "nasal cavity", "type": "anatomy", "description": "The intranasal space navigated and inspected during the procedure."}
+#   ],
+#   "events": [
+#     {"window_idx": 10, "action_type": "inspect", "instrument": "endoscope", "target": "nasal cavity", "exposes": null, "description": "maneuvered within the nasal cavity, advancing deeper and laterally to inspect the field"}
+#   ]
+# }
+
+# EXAMPLE 4
+# INPUT:
+# [w13] The pediatric backbiter was used to bisect the uncinate process, moving slightly laterally along the inner surface. As the instrument engaged the tissue, some bleeding and tissue separation occurred, revealing more of the underlying lateral nasal wall structures.
+# OUTPUT:
+# {
+#   "entities": [
+#     {"name": "pediatric backbiter", "type": "instrument", "description": "Backward-cutting forceps used to bisect and incise the uncinate process."},
+#     {"name": "uncinate process", "type": "anatomy", "description": "Thin curved bone of the lateral nasal wall; bisected during uncinectomy."},
+#     {"name": "lateral nasal wall", "type": "anatomy", "description": "Lateral bony wall of the nasal cavity, exposed as the uncinate is taken down."}
+#   ],
+#   "events": [
+#     {"window_idx": 13, "action_type": "bisect", "instrument": "pediatric backbiter", "target": "uncinate process", "exposes": "lateral nasal wall", "description": "bisected the uncinate process, moving laterally along its inner surface, causing slight bleeding and exposing the lateral nasal wall behind it"}
+#   ]
+# }"""
+
+
+# def build_extraction_prompt(chunk_text):
+#     return f"""{FEW_SHOTS}
+
+# NOW EXTRACT FROM THIS INPUT:
+# {chunk_text}
+# OUTPUT:"""
 
 
 

@@ -137,69 +137,166 @@
 
 #     return {"entities": merged_nodes, "relations": merged_edges}
 
+# """
+# merge.py — build the global graph from per-chunk subgraphs.  [RUN 2: events + typed edges]
+
+# Pipeline position: chunk.py -> extract.py -> [merge.py] -> inspect.py
+
+# Three jobs:
+#   1. ENTITIES  — merge by name (same as baseline): group, synthesize, union provenance.
+#   2. EVENTS    — do NOT merge. Each event is a distinct moment; keep them all, give IDs.
+#   3. EDGES     — build them here, mechanically (no LLM):
+#         INVOLVES : event -> instrument   (from event["instrument"])
+#         ACTS_ON  : event -> target       (from event["target"])
+#         EXPOSES  : event -> exposes       (from event["exposes"], only if not null)
+#         PRECEDES : event -> event         (sort all events by window_idx, link consecutive)
+
+# Output graph shape: {"entities": [...], "events": [...], "edges": [...]}
+# """
+
+# from collections import defaultdict
+# from llm import complete
+
+
+# def _norm(name):
+#     return name.strip().lower()
+
+
+# # ---------------------------------------------------------------------------
+# # ENTITIES — unchanged from baseline.
+# # ---------------------------------------------------------------------------
+# def _synthesize_entity(name, descriptions):
+#     joined = "\n".join(f"- {d}" for d in descriptions)
+#     prompt = (
+#         f'Entity: "{name}"\n'
+#         f"Descriptions collected from different parts of a surgery:\n{joined}\n\n"
+#         f"Write ONE concise description (1-2 sentences) merging these. Output only the text."
+#     )
+#     return complete(prompt).strip()
+
+
+# def _merge_entity_group(name, group):
+#     types = [e["type"] for e in group]
+#     descriptions = [e["description"] for e in group]
+#     description = descriptions[0] if len(descriptions) == 1 else _synthesize_entity(name, descriptions)
+#     return {
+#         "name": name,
+#         "type": max(set(types), key=types.count),
+#         "description": description,
+#         "source_chunks": sorted({c for e in group for c in e["source_chunks"]}),
+#         "source_windows": sorted({w for e in group for w in e["source_windows"]}),
+#         "mention_count": len(group),
+#     }
+
+
+# def _merge_entities(subgraphs):
+#     groups = defaultdict(list)
+#     for sg in subgraphs:
+#         for e in sg["entities"]:
+#             groups[_norm(e["name"])].append(e)
+#     return [_merge_entity_group(name, g) for name, g in groups.items()]
+
+
+# # ---------------------------------------------------------------------------
+# # EVENTS — collected, never merged. Each gets a stable id.
+# # ---------------------------------------------------------------------------
+# def _collect_events(subgraphs):
+#     events = []
+#     counter = 0
+#     for sg in subgraphs:
+#         for ev in sg["events"]:
+#             events.append({
+#                 "event_id": f"evt_{counter:03d}",
+#                 "window_idx": ev["window_idx"],
+#                 "action_type": ev.get("action_type"),
+#                 "instrument": _norm(ev["instrument"]),     # normalize so it matches merged entity names
+#                 "target": _norm(ev["target"]),
+#                 "exposes": _norm(ev["exposes"]) if ev.get("exposes") else None,
+#                 "description": ev.get("description", ""),
+#                 "source_chunks": ev["source_chunks"],
+#             })
+#             counter += 1
+#     return events
+
+
+# # ---------------------------------------------------------------------------
+# # EDGES — built mechanically from event slots + the timeline.
+# # ---------------------------------------------------------------------------
+# def _build_edges(events):
+#     edges = []
+
+#     # slot edges: one event connects to its instrument, its target, its exposes
+#     for ev in events:
+#         edges.append({"source": ev["event_id"], "target": ev["instrument"], "type": "INVOLVES"})
+#         edges.append({"source": ev["event_id"], "target": ev["target"],     "type": "ACTS_ON"})
+#         if ev["exposes"]:
+#             edges.append({"source": ev["event_id"], "target": ev["exposes"], "type": "EXPOSES"})
+
+#     # PRECEDES: sort events in time, link each to the next
+#     ordered = sorted(events, key=lambda ev: ev["window_idx"])
+#     for a, b in zip(ordered, ordered[1:]):
+#         edges.append({"source": a["event_id"], "target": b["event_id"], "type": "PRECEDES"})
+
+#     return edges
+
+
+# # ---------------------------------------------------------------------------
+# # Top level.
+# # ---------------------------------------------------------------------------
+# def merge_subgraphs(subgraphs):
+#     entities = _merge_entities(subgraphs)
+#     events = _collect_events(subgraphs)
+#     edges = _build_edges(events)
+#     return {"entities": entities, "events": events, "edges": edges}
+
+
+
+
+
+
+
+
+
+
+
+
+
 """
-merge.py — build the global graph from per-chunk subgraphs.  [RUN 2: events + typed edges]
+merge.py — build the action-level graph from per-chunk subgraphs.
+[Entities merged; events kept distinct; INVOLVES/ACTS_ON/EXPOSES edges built.
+ No PRECEDES, no triplet merge — those wait for step classification.]
 
-Pipeline position: chunk.py -> extract.py -> [merge.py] -> inspect.py
-
-Three jobs:
-  1. ENTITIES  — merge by name (same as baseline): group, synthesize, union provenance.
-  2. EVENTS    — do NOT merge. Each event is a distinct moment; keep them all, give IDs.
-  3. EDGES     — build them here, mechanically (no LLM):
-        INVOLVES : event -> instrument   (from event["instrument"])
-        ACTS_ON  : event -> target       (from event["target"])
-        EXPOSES  : event -> exposes       (from event["exposes"], only if not null)
-        PRECEDES : event -> event         (sort all events by window_idx, link consecutive)
-
-Output graph shape: {"entities": [...], "events": [...], "edges": [...]}
+Output: {"entities": [...], "events": [...], "edges": [...]}
 """
 
 from collections import defaultdict
-from llm import complete
 
 
 def _norm(name):
-    return name.strip().lower()
+    return name.strip().lower() if name else name
 
 
-# ---------------------------------------------------------------------------
-# ENTITIES — unchanged from baseline.
-# ---------------------------------------------------------------------------
-def _synthesize_entity(name, descriptions):
-    joined = "\n".join(f"- {d}" for d in descriptions)
-    prompt = (
-        f'Entity: "{name}"\n'
-        f"Descriptions collected from different parts of a surgery:\n{joined}\n\n"
-        f"Write ONE concise description (1-2 sentences) merging these. Output only the text."
-    )
-    return complete(prompt).strip()
-
-
-def _merge_entity_group(name, group):
-    types = [e["type"] for e in group]
-    descriptions = [e["description"] for e in group]
-    description = descriptions[0] if len(descriptions) == 1 else _synthesize_entity(name, descriptions)
-    return {
-        "name": name,
-        "type": max(set(types), key=types.count),
-        "description": description,
-        "source_chunks": sorted({c for e in group for c in e["source_chunks"]}),
-        "source_windows": sorted({w for e in group for w in e["source_windows"]}),
-        "mention_count": len(group),
-    }
-
-
+# --- ENTITIES: merge by name (instruments + anatomy) ---
 def _merge_entities(subgraphs):
     groups = defaultdict(list)
     for sg in subgraphs:
         for e in sg["entities"]:
             groups[_norm(e["name"])].append(e)
-    return [_merge_entity_group(name, g) for name, g in groups.items()]
+
+    merged = []
+    for name, group in groups.items():
+        types = [e["type"] for e in group]
+        merged.append({
+            "name": name,
+            "type": max(set(types), key=types.count),      # majority type
+            "source_chunks": sorted({c for e in group for c in e["source_chunks"]}),
+            "source_windows": sorted({w for e in group for w in e["source_windows"]}),
+            "mention_count": len(group),
+        })
+    return merged
 
 
-# ---------------------------------------------------------------------------
-# EVENTS — collected, never merged. Each gets a stable id.
-# ---------------------------------------------------------------------------
+# --- EVENTS: kept distinct, each gets a stable id, names normalized to match merged entities ---
 def _collect_events(subgraphs):
     events = []
     counter = 0
@@ -209,40 +306,29 @@ def _collect_events(subgraphs):
                 "event_id": f"evt_{counter:03d}",
                 "window_idx": ev["window_idx"],
                 "action_type": ev.get("action_type"),
-                "instrument": _norm(ev["instrument"]),     # normalize so it matches merged entity names
-                "target": _norm(ev["target"]),
-                "exposes": _norm(ev["exposes"]) if ev.get("exposes") else None,
-                "description": ev.get("description", ""),
+                "instrument": _norm(ev.get("instrument")),   # None stays None
+                "target": _norm(ev.get("target")),
+                "exposes": _norm(ev.get("exposes")),
+                "description": ev.get("description", ""),      # grounded window text
                 "source_chunks": ev["source_chunks"],
             })
             counter += 1
     return events
 
 
-# ---------------------------------------------------------------------------
-# EDGES — built mechanically from event slots + the timeline.
-# ---------------------------------------------------------------------------
+# --- EDGES: built from event slots. INVOLVES, ACTS_ON, EXPOSES. No PRECEDES yet. ---
 def _build_edges(events):
     edges = []
-
-    # slot edges: one event connects to its instrument, its target, its exposes
     for ev in events:
-        edges.append({"source": ev["event_id"], "target": ev["instrument"], "type": "INVOLVES"})
-        edges.append({"source": ev["event_id"], "target": ev["target"],     "type": "ACTS_ON"})
+        if ev["instrument"]:
+            edges.append({"source": ev["event_id"], "target": ev["instrument"], "type": "INVOLVES"})
+        if ev["target"]:
+            edges.append({"source": ev["event_id"], "target": ev["target"], "type": "ACTS_ON"})
         if ev["exposes"]:
             edges.append({"source": ev["event_id"], "target": ev["exposes"], "type": "EXPOSES"})
-
-    # PRECEDES: sort events in time, link each to the next
-    ordered = sorted(events, key=lambda ev: ev["window_idx"])
-    for a, b in zip(ordered, ordered[1:]):
-        edges.append({"source": a["event_id"], "target": b["event_id"], "type": "PRECEDES"})
-
     return edges
 
 
-# ---------------------------------------------------------------------------
-# Top level.
-# ---------------------------------------------------------------------------
 def merge_subgraphs(subgraphs):
     entities = _merge_entities(subgraphs)
     events = _collect_events(subgraphs)
