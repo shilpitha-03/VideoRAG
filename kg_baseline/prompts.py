@@ -48,6 +48,22 @@ WHAT IS AN EVENT:
                    when the text explicitly names the revealed structure; otherwise
                    use null. Most events will have null here — do not guess.
 
+                   
+NAME CONSISTENCY (this is critical — edges are built by matching these names):
+- First decide the ENTITY names. Then, in every event, the "instrument", "target",
+  and "exposes" fields must be COPIED CHARACTER-FOR-CHARACTER from a name in your
+  "entities" list. They are references, not new descriptions.
+- Do NOT add qualifiers in event fields that aren't in the entity name. If the
+  entity is "middle turbinate", the event target must be exactly "middle turbinate"
+  — never "middle turbinate remnant", "residual middle turbinate", "middle turbinate
+  region", or "middle turbinate segment".
+- Collapse descriptive variants to ONE canonical entity. "the uncinate process",
+  "superior uncinate", "residual uncinate" are all the same structure: pick the
+  simplest correct name (e.g. "uncinate process"), put THAT in entities, and use
+  THAT exact string in every event that touches it.
+- Strip qualifiers like "region", "remnant", "residual", "segment", "portion",
+  "area" — name the structure itself, not the piece or state of it.
+                   
 OUTPUT FORMAT — return a single valid JSON object, nothing else (no preamble,
 no markdown fences):
 {{
