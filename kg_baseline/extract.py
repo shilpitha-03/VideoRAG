@@ -316,7 +316,7 @@ def extract_chunk(chunk, windows_by_idx):
     entities = parsed["entities"]
     events = parsed["events"]
 
-    valid_windows = chunk["window_idxs"]          # PLURAL — matches chunk.py
+    valid_windows = chunk["window_idx"]          # PLURAL — matches chunk.py
 
     # provenance for entities (whole-chunk range)
     for e in entities:
